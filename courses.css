@@ -1,0 +1,321 @@
+/* ─── RESET ─── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f4f9f9;
+  color: #222;
+}
+
+/* ─── HEADER ─── */
+header {
+  background: #d0ebe6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #00695c;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+nav a {
+  margin: 0 1rem;
+  color: #004d40;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #009688;
+}
+
+.auth-buttons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.auth-buttons button {
+  margin-left: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+/* ─── HERO SECTION ─── */
+.hero {
+  background: #e0f2f1;
+  padding: 3rem 2rem;
+  text-align: center;
+  color: #00a88e;
+}
+
+.hero h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #00a88e;
+}
+
+.highlight {
+  color: #00796b;
+  border-bottom: 3px solid #00796b;
+}
+
+/* ─── SEARCH SECTION ─── */
+.search-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem 1rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.search-section input {
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  border: 2px solid #00796b;
+  border-radius: 8px;
+  width: 300px;
+  max-width: 90%;
+  transition: 0.3s ease;
+}
+
+.search-section input:focus {
+  outline: none;
+  border-color: #004d40;
+  background-color: #f1fefc;
+}
+
+.search-section button {
+  padding: 0.8rem 1.2rem;
+  background-color: #009688;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.search-section button:hover {
+  background-color: #00796b;
+  transform: scale(1.05);
+}
+
+#noResults {
+  display: none;
+}
+
+/* ─── GRID LAYOUT ─── */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+/* ─── COURSE CARDS ─── */
+.card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+  text-align: center;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  background: #e0f7fa;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.card h3 {
+  margin: 1rem 0 0.5rem;
+  color: #00695c;
+}
+
+.card p {
+  font-size: 0.9rem;
+  color: #444;
+}
+
+/* ─── ICONS ─── */
+.icon {
+  font-size: 2.2rem;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .icon {
+  transform: scale(1.2);
+  color: #004d40;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  background-color: #00a88e;
+  color: #fff;
+  padding: 50px 20px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-logo img {
+  max-width: 120px;
+  margin-bottom: 20px;
+}
+
+.social-icons {
+  margin: 25px 0;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.social-icon {
+  font-size: 32px;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.social-icon:hover {
+  transform: scale(1.3);
+}
+
+.social-icon.instagram:hover { color: #e4405f; }
+.social-icon.mail:hover { color: #d44638; }
+.social-icon.telephone:hover { color: #34b7f1; }
+.social-icon.linkedin:hover { color: #0077b5; }
+.social-icon.facebook:hover { color: #3b5998; }
+.social-icon.whatsapp:hover { color: #25d366; }
+
+.contact-info {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #ccc;
+}
+
+.contact-info a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-info a:hover {
+  color: #f1c40f;
+}
+
+/* ────────────── RESPONSIVE MEDIA QUERIES ────────────── */
+
+/* 📱 Mobile (<=600px) */
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  nav a {
+    margin: 0.5rem 0;
+  }
+
+  .hero h1 {
+    font-size: 1.5rem;
+  }
+
+  .search-section {
+    padding: 1.5rem 1rem;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .grid-container {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  footer {
+    padding: 30px 10px;
+  }
+
+  .contact-info {
+    font-size: 14px;
+  }
+
+  .social-icon {
+    font-size: 28px;
+  }
+}
+
+/* 📲 Tablet (601px - 1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  header {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  nav {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .grid-container {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  .search-section {
+    padding: 2rem;
+  }
+
+  footer {
+    padding: 40px 20px;
+  }
+}
+
+/* 💻 Desktop (1025px and above) */
+@media (min-width: 1025px) {
+  .grid-container {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}

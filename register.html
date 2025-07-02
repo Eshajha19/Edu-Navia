@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Webinar Registration</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="register.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="navbar-left">
+      <div class="logo">
+        <a href="index.html" style="color:black; text-decoration: none;">🎓 Edu Navia</a>
+      </div>
+    </div>
+    <nav>
+      <a href="p.html">Universities</a>
+      <a href="courses.html">Courses</a>
+      <a href="consulting.html">Consulting</a>
+      <a href="#">Resources</a>
+    </nav>
+  </div>
+
+  <!-- Registration Form -->
+  <div class="registration-container">
+    <h2>Register for Webinar</h2>
+    <form id="registrationForm" onsubmit="submitForm(event)">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <input type="tel" name="phone" placeholder="Your Phone Number" required />
+      <select name="webinar" required>
+        <option value="">Select Webinar</option>
+        <option>Top Indian Institutes: IITs, NITs, and Beyond</option>
+        <option>How to Crack JEE & NEET</option>
+        <option>Career Opportunities after Studying in India</option>
+        <option>Mastering English for Indian Competitive Exams</option>
+        <option>All About CLAT & Law Schools in India</option>
+        <option>Design Careers in India: NID, NIFT & More</option>
+        <option>Preparing for UPSC CSE: Strategies from Toppers</option>
+        <option>Commerce Pathways: CA, CS, CMA Explained</option>
+        <option>Scholarships & Financial Aid for Indian Students</option>
+        <option>MBA in India: IIMs and Beyond</option>
+        <option>Opportunities in Indian Startups: For Fresh Graduates</option>
+        <option>State vs. Central Universities: Which is Right for You?</option>
+      </select>
+      <button type="submit">Submit Registration</button>
+    </form>
+    <p id="msg">✅ Registration successful! Confirmation email sent.</p>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <!--<div class="footer-logo">
+        <img src="logo.jpg" alt="EduNavigator Logo" height="80" width="80" />
+      </div>-->
+      <div class="social-icons">
+        <a href="https://www.instagram.com" target="_blank" class="social-icon">📷</a>
+        <a href="mailto:info@edunavigator.com" target="_blank" class="social-icon">✉️</a>
+        <a href="tel:+1234567890" target="_blank" class="social-icon">📞</a>
+        <a href="https://www.linkedin.com" target="_blank" class="social-icon">🔗</a>
+        <a href="https://www.facebook.com" target="_blank" class="social-icon">📘</a>
+        <a href="https://wa.me/+1234567890" target="_blank" class="social-icon">💬</a>
+      </div>
+      <div class="contact-info">
+        <p>&copy; 2025 Edu Navia. All Rights Reserved.</p>
+        <p>Follow us on social media for updates!</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="register.js">
+    
+  </script>
+
+</body>
+</html>
+

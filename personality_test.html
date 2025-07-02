@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Edu Navia: Course Finder Quiz</title>
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="personality_test.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="navbar-left">
+      <div class="logo"><a href="index.html" style="color:black;text-decoration: none;">🎓 Edu Navia</a></div>
+    </div>
+    <nav>
+    <a href="p.html" style="color:black;text-decoration: none;">Universities</a>
+    <a href="courses.html" style="color:black;text-decoration: none;">Courses</a>
+    <a href="consulting.html" style="color:black;text-decoration: none;">Consulting</a>
+    <a href="resource.html" style="color:black;text-decoration: none;">Resources</a>
+  </nav>
+    <!--<div class="navbar-right">
+      <button class="nav-btn login-btn"><a href="login.html" style="color:black;text-decoration: none;">Login</a></button>
+      <button class="nav-btn signup-btn"><a href="login.html" style="color:black;text-decoration: none;">Sign Up</a></button>
+    </div>-->
+  </div>
+
+  <!-- Main Title -->
+  <div class="main-title">
+    Explore Your Higher Education Journey with <span class="highlight">Edu Navia Smart Tools</span>
+  </div>
+
+  <!-- Quiz Card -->
+  <div class="quiz-container">
+    <div id="quiz-intro">
+      <h1>Find Your Ideal Course</h1>
+      <p>Answer 25 questions to discover which course suits you best!</p>
+      <button id="start-btn">Start Quiz</button>
+    </div>
+
+    <div id="quiz" style="display:none;">
+      <div id="question"></div>
+      <ul id="answers"></ul>
+      <div id="scale" class="scale-options" style="display:none;"></div>
+      <button id="next-btn" disabled>Next</button>
+    </div>
+
+    <div id="dashboard" style="display:none;">
+      <div class="top-result-card dashboard-summary"></div>
+      <div class="chart-box">
+        <canvas id="barChart" height="350"></canvas>
+      </div>
+      <button id="restart-btn">Restart Quiz</button>
+    </div>
+  </div>
+ <!-- Footer Section -->
+<footer>
+    <div class="footer-container">
+        <!--<div class="footer-logo">
+            <img src="logo.jpg" alt="EduNavigator Logo" height="100" width="100px" />
+        </div>-->
+
+        <div class="social-icons">
+            <a href="https://www.instagram.com" target="_blank" class="social-icon instagram">📷</a>
+            <a href="mailto:info@edunavigator.com" target="_blank" class="social-icon mail">✉️</a>
+            <a href="tel:+1234567890" target="_blank" class="social-icon telephone">📞</a>
+            <a href="https://www.linkedin.com" target="_blank" class="social-icon linkedin">🔗</a>
+            <a href="https://www.facebook.com" target="_blank" class="social-icon facebook">📘</a>
+            <a href="https://wa.me/+1234567890" target="_blank" class="social-icon whatsapp">💬</a>
+        </div>
+
+        <div class="contact-info">
+            <p>&copy; 2025 Edu Navia. All Rights Reserved.</p>
+            <p>Follow Us on Social Media for Updates!</p>
+        </div>
+    </div>
+</footer>
+  <script src="personality_test.js">
+  </script>
+</body>
+</html>
+
+

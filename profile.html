@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Edu Navia | My Profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="profile.css" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+  <div class="profile-container">
+    <div class="profile-card">
+      <p class="intro-text" id="quoteText">🚀 Unlock your potential with every step!</p>
+       <div class="initial-avatar" id="initialAvatar">U</div>
+
+      <h2 id="username">👤 Loading...</h2>
+      <p class="role" id="userrole">🎓 Student</p>
+
+      <div class="progress-wrapper">
+        <label id="progressText">0%</label>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+
+      <div class="social-links" id="socialLinks"></div>
+      <button id="editBtn">✏️ Edit Profile</button>
+    </div>
+
+    <div class="edit-section hidden" id="editSection">
+      <h3>Update Your Details</h3>
+      <input type="text" id="nameInput" placeholder="Full Name" />
+      <input type="email" id="emailInput" placeholder="Email" disabled style="display:none;" />
+      <input type="tel" id="phoneInput" placeholder="Mobile Number" />
+      <select id="roleInput">
+        <option value="Student">Student</option>
+        <option value="Consultant">Consultant</option>
+        <option value="Admin">Admin</option>
+      </select>
+      <input type="url" id="linkedinInput" placeholder="LinkedIn Profile URL" />
+      <input type="url" id="githubInput" placeholder="GitHub Profile URL" />
+      <button id="saveBtn">💾 Save</button>
+    </div>
+
+    <div class="wishlist-section">
+      <h3>🎯 University Wishlist</h3>
+      <ul id="universityWishlist"></ul>
+
+      <h4>Add to University Wishlist</h4>
+      <select id="universitySelect"><option value="">Select a university</option></select>
+      <button id="addUniversityBtn">➕ Add University</button>
+
+      <h3>📚 Course Wishlist</h3>
+      <ul id="courseWishlist"></ul>
+
+      <h4>Add to Course Wishlist</h4>
+      <select id="courseSelect"><option value="">Select a course</option></select>
+      <button id="addCourseBtn">➕ Add Course</button>
+    </div>
+  </div>
+
+  <script type="module" src="profile.js"></script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+/* ─── Base Styles ─── */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* ─── Navbar ─── */
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: #d0ebe6;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-left .logo {
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.navbar nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.navbar nav a {
+  margin: 0 10px;
+  color: black;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.navbar nav a:hover {
+  color: #00a88e;
+}
+
+/* ─── Registration Form ─── */
+.registration-container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #f9f9f9;
+}
+
+.registration-container h2 {
+  text-align: center;
+  color: #00a88e;
+  margin-bottom: 20px;
+}
+
+.registration-container input,
+.registration-container select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.registration-container button {
+  width: 100%;
+  padding: 10px;
+  background: #00a88e;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.registration-container button:hover {
+  background: #008f7a;
+}
+
+#msg {
+  color: green;
+  text-align: center;
+  display: none;
+}
+
+/* ─── Footer ─── */
+footer {
+  background: #d0ebe6;
+  padding: 20px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.footer-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.social-icons {
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.social-icon {
+  margin: 0 5px;
+  font-size: 20px;
+  text-decoration: none;
+  color: #333;
+  transition: transform 0.2s ease;
+}
+
+.social-icon:hover {
+  transform: scale(1.2);
+  color: #00a88e;
+}
+
+.contact-info p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+/* ─── Media Queries ─── */
+
+/* 📱 Mobile Devices */
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  .navbar nav {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+
+  .registration-container {
+    margin: 20px 10px;
+    padding: 15px;
+  }
+
+  .registration-container h2 {
+    font-size: 1.5rem;
+  }
+
+  footer {
+    padding: 15px;
+  }
+
+  .contact-info p {
+    font-size: 13px;
+  }
+}
+
+/* 📲 Tablets */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .registration-container {
+    margin: 30px 20px;
+  }
+
+  .navbar {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

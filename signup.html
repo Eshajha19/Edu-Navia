@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Signup</title>
+  <link rel="stylesheet" href="signup.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="signup-container fade-in">
+    <div class="signup-left">
+      <h2>Come join us!</h2>
+      <p>
+        We are so excited to have you here. If you haven't already, create an account to get access to our website.
+      </p>
+      <a href="login.html" class="btn-outline">Already have an account? Sign in</a>
+    </div>
+    <div class="signup-right slide-up">
+      <h2>Signup</h2>
+      <form id="signup-form">
+        <input type="text" id="full-name" placeholder="Full Name" required>
+        <input type="email" id="signup-email" placeholder="Email Address" required>
+        <input type="password" id="signup-password" placeholder="Password" required>
+        <input type="password" id="signup-confirm" placeholder="Confirm Password" required>
+        <button type="submit" class="btn-primary full-width">Signup</button>
+      </form>
+      <p class="alt-signup-text">or signup with</p>
+      <div class="social-icons">
+        <a href="#" id="google"><img src="https://img.icons8.com/color/48/google-logo.png" alt="Google"></a>
+        <a href="#"><img src="https://img.icons8.com/color/48/facebook-new.png" alt="Facebook"></a>
+        <a href="#"><img src="https://img.icons8.com/color/48/linkedin.png" alt="LinkedIn"></a>
+      </div>
+    </div>
+  </div>
+  <!-- 🎉 Welcome Modal -->
+<div id="welcomeModal" class="modal hidden">
+  <div class="modal-content">
+    <div class="checkmark">
+      <div class="checkmark-circle"></div>
+      <div class="checkmark-stem"></div>
+      <div class="checkmark-kick"></div>
+    </div>
+    <h2>Welcome to Edu Navia!</h2>
+    <p>Your account has been created successfully.</p>
+    <button id="closeModal">Continue</button>
+  </div>
+</div>
+
+  <!-- Firebase + Auth script -->
+  <script type="module" src="signup.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Colleges</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link href="pstyle.css" rel="stylesheet">
+
+  <script defer>
+    // Toggle nav menu on small screens
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggleBtn = document.querySelector(".menu-toggle");
+      const navLinks = document.querySelector("nav");
+
+      toggleBtn.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+      });
+    });
+  </script>
+  
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo"><a href="index.html">🎓 Edu Navia</a></div>
+    <nav>
+      <a href="p.html">Universities</a>
+      <a href="courses.html">Courses</a>
+      <a href="consulting.html">Consulting</a>
+      <a href="resource.html">Resources</a>
+    </nav>
+  </header>
+
+  <!-- Title -->
+  <h2 class="section-title">Discover Top Colleges</h2>
+
+  <!-- Search -->
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search colleges (e.g., IIT, Delhi)" />
+  </div>
+
+  <!-- University Grid -->
+  <div class="universities-grid" id="universitiesGrid"></div>
+
+  <!-- No Results Message -->
+  <p id="noResultsMsg" style="display: none; text-align: center; font-weight: bold; margin-top: 20px;">
+    No results found.
+  </p>
+
+  <!-- Footer -->
+  <footer>
+    <!--<div class="footer-logo">
+      <img src="logo.jpg" alt="EduNavigator Logo" />
+    </div>-->
+    <div class="social-icons">
+      <a href="https://www.instagram.com" target="_blank">📷</a>
+      <a href="mailto:info@edunavia.com" target="_blank">✉️</a>
+      <a href="tel:+1234567890" target="_blank">📞</a>
+      <a href="https://www.linkedin.com" target="_blank">🔗</a>
+      <a href="https://www.facebook.com" target="_blank">📘</a>
+      <a href="https://wa.me/+1234567890" target="_blank">💬</a>
+    </div>
+    <div class="contact-info">
+      <p>&copy; 2025 Edu Navia. All Rights Reserved.</p>
+      <p>Follow Us on Social Media for Updates!</p>
+    </div>
+  </footer>
+
+  <script src="pscript.js"></script>
+
+<script src="pscript.js"></script>
+
+<!-- Firebase + JS -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import {
+    getFirestore,
+    collection,
+    getDocs,
+    query,
+    orderBy
+  } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAPXYOQk3LPxayuymhac79P4QsX13xvMZA",
+    authDomain: "edu-navigator-cc4a0.firebaseapp.com",
+    projectId: "edu-navigator-cc4a0",
+    storageBucket: "edu-navigator-cc4a0.appspot.com",
+    messagingSenderId: "33607968332",
+    appId: "1:33607968332:web:59cbf34a0aae68375736e9"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const universitiesGrid = document.getElementById("universitiesGrid");
+  const searchInput = document.getElementById("searchInput");
+  const noResultsMsg = document.getElementById("noResultsMsg");
+
+  let allUniversities = [];
+
+  const loadUniversities = async () => {
+    const cached = sessionStorage.getItem("universities");
+    if (cached) {
+      allUniversities = JSON.parse(cached);
+      renderUniversities(allUniversities);
+    } else {
+      const q = query(collection(db, "colleges"), orderBy("name")); // fetch all
+      const snapshot = await getDocs(q);
+      allUniversities = snapshot.docs.map(doc => doc.data());
+      sessionStorage.setItem("universities", JSON.stringify(allUniversities));
+      renderUniversities(allUniversities);
+    }
+  };
+
+  const renderUniversities = (data) => {
+    universitiesGrid.innerHTML = "";
+    if (data.length === 0) {
+      noResultsMsg.style.display = "block";
+    } else {
+      noResultsMsg.style.display = "none";
+      let html = "";
+      data.forEach(univ => {
+        html += `
+          <div class="university-card">
+            <img src="${univ.image}" alt="${univ.name}" loading="lazy" />
+            <h3>${univ.name}</h3>
+            <p>Location: ${univ.location || "N/A"}</p>
+            <p>Type: ${univ.type || "N/A"}</p>
+            <p>Website: <a href="${univ.website}" target="_blank" rel="noopener noreferrer">${univ.website}</a></p>
+          </div>`;
+      });
+      universitiesGrid.innerHTML = html;
+    }
+  };
+
+  function debounce(func, delay) {
+    let timeout;
+    return function (...args) {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), delay);
+    };
+  }
+
+  searchInput.addEventListener("input", debounce(() => {
+    const value = searchInput.value.toLowerCase();
+    const filtered = allUniversities.filter(u =>
+      (u.name && u.name.toLowerCase().includes(value)) ||
+      (u.location && u.location.toLowerCase().includes(value))
+    );
+    renderUniversities(filtered);
+  }, 300)); // delay in ms
+
+  loadUniversities();
+</script>
+
+
+</body>
+</html>

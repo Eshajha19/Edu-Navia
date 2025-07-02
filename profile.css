@@ -1,0 +1,207 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #e3f2fd, #fce4ec);
+  margin: 0;
+  padding: 40px 15px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+.profile-container {
+  background: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 100%;
+  animation: fadeInUp 0.6s ease-in-out;
+}
+
+.intro-text {
+  font-size: 15px;
+  color: #555;
+  text-align: center;
+  margin-bottom: 20px;
+  animation: fadeInUp 0.8s ease-in-out;
+  font-style: italic;
+}
+
+.profile-card {
+  text-align: center;
+}
+
+.role {
+  color: teal;
+  font-weight: 600;
+  margin: 10px 0;
+}
+
+.social-links {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.social-links a {
+  padding: 8px 16px;
+  border: 2px solid teal;
+  border-radius: 8px;
+  background-color: white;
+  color: teal;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  background-color: teal;
+  color: white;
+  box-shadow: 0 3px 10px rgba(0, 128, 128, 0.2);
+}
+
+.edit-section {
+  margin-top: 30px;
+  animation: fadeInUp 0.6s ease-in-out;
+}
+
+.edit-section input,
+.edit-section select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+
+button {
+  background-color: teal;
+  color: #fff;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+  background-color: #00796b;
+  box-shadow: 0 4px 12px rgba(0, 150, 136, 0.3);
+}
+
+.hidden {
+  display: none;
+}
+
+.progress-wrapper {
+  margin: 20px 0;
+  text-align: left;
+}
+
+.progress-bar {
+  background-color: #eee;
+  border-radius: 30px;
+  overflow: hidden;
+  height: 15px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: teal;
+  width: 0%;
+  transition: width 0.7s ease-in-out, background-color 0.4s ease;
+}
+
+#progressText {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+  display: block;
+  text-align: right;
+}
+
+.wishlist-section {
+  margin-top: 30px;
+}
+
+.wishlist-section h3 {
+  color: #444;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.wishlist-section ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0 0 15px 0;
+}
+
+.wishlist-section li {
+  padding: 8px 12px;
+  background-color: #f1f8f9;
+  border-left: 4px solid teal;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  transition: transform 0.3s ease;
+}
+
+.wishlist-section li:hover {
+  transform: translateX(5px);
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.wishlist-section select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.wishlist-section button {
+  margin-bottom: 20px;
+}
+
+
+.initial-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  font-size: 40px;
+  font-weight: bold;
+  color: white;
+  background-color: teal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px auto;
+  transition: background-color 0.4s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.8s ease;
+  text-transform: uppercase;
+}
+
+@keyframes fadeIn {
+  from {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

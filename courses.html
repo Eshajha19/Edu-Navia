@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>University Course Explorer</title>
+  <link rel="stylesheet" href="courses.css" />
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="logo"><a href="index.html" style="color:black;text-decoration: none;">🎓 Edu Navia</a></div>
+  <nav>
+    <a href="p.html">Universities</a>
+    <a href="courses.html">Courses</a>
+    <a href="consulting.html">Consulting</a>
+    <a href="resource.html">Resources</a>
+  </nav>
+  <!--<div class="auth-buttons">
+    <button class="login"><a href="login.html" style="color:black;text-decoration: none;">Login</a></button>
+      <button class="signup"><a href="signup.html" style="color:white;text-decoration: none;">Sign Up</a></button>
+  </div>-->
+</header>
+
+<!-- Hero Section -->
+<!-- Hero Section -->
+<section class="hero">
+  <h1><span id="typewriter"></span><span class="cursor">|</span></h1>
+</section>
+
+<!-- Search Bar Section -->
+<section class="search-section">
+  <input type="text" id="courseSearch" onkeyup="searchCourses()" placeholder="Search courses (e.g.,Computer Science,Medical)" />
+  <button onclick="searchCourses()">🔍 Search</button>
+  <div id="noResults">No Results Found</div>
+</section>
+
+<!-- Courses Grid -->
+<section class="grid-container" id="coursesGrid">
+  <!-- Add 24 course cards -->
+  <div class="card"><div class="icon">💻</div><h3>Computer Science</h3><p>Explore AI, ML, Web Dev, and more.</p></div>
+  <div class="card"><div class="icon">📈</div><h3>Business & Management</h3><p>Marketing, Finance, HR, and Operations.</p></div>
+  <div class="card"><div class="icon">🏗️</div><h3>Engineering</h3><p>Mechanical, Civil, Electrical, and more.</p></div>
+  <div class="card"><div class="icon">🩺</div><h3>Medicine</h3><p>MBBS, Nursing, Pharmacy programs.</p></div>
+  <div class="card"><div class="icon">⚖️</div><h3>Law</h3><p>LLB, LLM, and International Law programs.</p></div>
+  <div class="card"><div class="icon">🎨</div><h3>Design & Arts</h3><p>Fashion, UI/UX, Interior, Animation.</p></div>
+  <div class="card"><div class="icon">📚</div><h3>Education</h3><p>Teaching degrees and educational research.</p></div>
+  <div class="card"><div class="icon">🧠</div><h3>Social Sciences</h3><p>Psychology, Sociology, Anthropology.</p></div>
+  <div class="card"><div class="icon">📊</div><h3>Data Science</h3><p>Big Data, Analytics, and Stats.</p></div>
+  <div class="card"><div class="icon">🌱</div><h3>Environmental Studies</h3><p>Sustainability, Ecology, Climate.</p></div>
+  <div class="card"><div class="icon">🏨</div><h3>Hospitality & Tourism</h3><p>Hotel, Events, Travel Management.</p></div>
+  <div class="card"><div class="icon">📝</div><h3>Languages & Literature</h3><p>English, French, Writing, Linguistics.</p></div>
+  <div class="card"><div class="icon">🏛️</div><h3>Architecture</h3><p>Urban Planning, Interior Design.</p></div>
+  <div class="card"><div class="icon">📰</div><h3>Journalism & Media</h3><p>Mass Comm, Reporting, Editing.</p></div>
+  <div class="card"><div class="icon">🔭</div><h3>Physics & Astronomy</h3><p>Astrophysics, Quantum Mechanics.</p></div>
+  <div class="card"><div class="icon">➗</div><h3>Mathematics</h3><p>Pure Math, Applied Math, Statistics.</p></div>
+  <div class="card"><div class="icon">🧬</div><h3>Biotechnology</h3><p>Genetics, Molecular Biology.</p></div>
+  <div class="card"><div class="icon">📜</div><h3>Philosophy & Ethics</h3><p>Logic, Ethics, Worldview Studies.</p></div>
+  <div class="card"><div class="icon">🌍</div><h3>Political Science</h3><p>Policy, Governance, Global Studies.</p></div>
+  <div class="card"><div class="icon">🧪</div><h3>Chemistry</h3><p>Organic, Inorganic, Physical Chem.</p></div>
+  <div class="card"><div class="icon">🚜</div><h3>Agricultural Sciences</h3><p>Crop Science, Agribusiness.</p></div>
+  <div class="card"><div class="icon">🧑‍🎓</div><h3>International Relations</h3><p>Diplomacy, Geopolitics, Conflict.</p></div>
+  <div class="card"><div class="icon">🔬</div><h3>Life Sciences</h3><p>Biology, Zoology, Botany.</p></div>
+  <div class="card"><div class="icon">🎭</div><h3>Performing Arts</h3><p>Drama, Dance, Theatre, Music.</p></div>
+</section>
+<!-- Footer Section -->
+<footer>
+    <div class="footer-container">
+        <!--<div class="footer-logo">
+            <img src="logo.jpg" alt="EduNavigator Logo" height="100" width="100px" />
+        </div>-->
+
+        <div class="social-icons">
+            <a href="https://www.instagram.com" target="_blank" class="social-icon instagram">📷</a>
+            <a href="mailto:info@edunavia.com" target="_blank" class="social-icon mail">✉️</a>
+            <a href="tel:+1234567890" target="_blank" class="social-icon telephone">📞</a>
+            <a href="https://www.linkedin.com" target="_blank" class="social-icon linkedin">🔗</a>
+            <a href="https://www.facebook.com" target="_blank" class="social-icon facebook">📘</a>
+            <a href="https://wa.me/+1234567890" target="_blank" class="social-icon whatsapp">💬</a>
+        </div>
+
+        <div class="contact-info">
+            <p>&copy; 2025 Edu Navia. All Rights Reserved.</p>
+            <p>Follow Us on Social Media for Updates!</p>
+        </div>
+    </div>
+</footer>
+
+<!-- JavaScript -->
+<!--<script>
+  function searchCourses() {
+    const input = document.getElementById("courseSearch").value.toLowerCase();
+    const cards = document.querySelectorAll(".card");
+    const noResults = document.getElementById("noResults");
+    let matchFound = false;
+
+    cards.forEach(card => {
+      const title = card.querySelector("h3").textContent.toLowerCase();
+      const desc = card.querySelector("p").textContent.toLowerCase();
+
+      if (title.includes(input) || desc.includes(input)) {
+        card.style.display = "block";
+        matchFound = true;
+      } else {
+        card.style.display = "none";
+      }
+    });
+
+    // Show or hide the "No Results Found" message
+    noResults.style.display = matchFound ? "none" : "block";
+  }
+</script>
+-->
+<script src="courses.js"></script>
+</body>
+</html>

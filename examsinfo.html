@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrance Exams Info</title>
+    <link rel="stylesheet" href="examinfo.css">
+</head>
+<body>
+    <header>
+  <div class="logo"><a href="index.html" style="color:black;text-decoration: none;">🎓 Edu Navia</a></div>
+  <nav>
+    <a href="p.html">Universities</a>
+    <a href="courses.html">Courses</a>
+    <a href="consulting.html">Consulting</a>
+    <a href="resource.html">Resources</a>
+  </nav>
+  <!--<div class="auth-buttons">
+    <button class="login"><a href="login.html" style="color:black;text-decoration: none;">Login</a></button>
+      <button class="signup"><a href="signup.html" style="color:white;text-decoration: none;">Sign Up</a></button>
+  </div>-->
+</header>
+    <header class="info">
+        <h1>Indian Entrance Exams</h1>
+        <p>Find essential details about various competitive exams including eligibility, duration.</p>
+    </header>
+
+    <section class="exam-container">
+        <div class="exam-card" onclick="toggleDetails(this)">
+            <h2>JEE (Joint Entrance Examination)</h2>
+            <p class="summary">National-level engineering entrance exam.</p>
+            <div class="details">
+                <p><strong>Eligibility:</strong> 12th pass with PCM</p>
+                <p><strong>Duration:</strong> 3 hours</p>
+                <p><strong>Exam Mode:</strong> Computer-based</p>
+                <p><strong>Purpose:</strong> Admission to IITs, NITs, and engineering colleges</p>
+            </div>
+        </div>
+        
+        <div class="exam-card" onclick="toggleDetails(this)">
+            <h2>NEET (National Eligibility Entrance Test)</h2>
+            <p class="summary">Medical entrance exam for MBBS, BDS, etc.</p>
+            <div class="details">
+                <p><strong>Eligibility:</strong> 12th pass with PCB</p>
+                <p><strong>Duration:</strong> 3 hours 20 minutes</p>
+                <p><strong>Exam Mode:</strong> Pen-paper based</p>
+                <p><strong>Purpose:</strong> Admission to medical courses</p>
+            </div>
+        </div>
+
+        <div class="exam-card" onclick="toggleDetails(this)">
+            <h2>SSC (Staff Selection Commission)</h2>
+            <p class="summary">Government job recruitment exam.</p>
+            <div class="details">
+                <p><strong>Eligibility:</strong> Varies by post</p>
+                <p><strong>Duration:</strong> 60 min (Tier 1), 120 min (Tier 2)</p>
+                <p><strong>Exam Mode:</strong> Computer-based</p>
+                <p><strong>Purpose:</strong> Recruitment for government jobs</p>
+            </div>
+        </div>
+
+        <div class="exam-card" onclick="toggleDetails(this)">
+            <h2>CAT (Common Admission Test)</h2>
+            <p class="summary">MBA entrance exam for IIMs.</p>
+            <div class="details">
+                <p><strong>Eligibility:</strong> Graduation (min 50% marks)</p>
+                <p><strong>Duration:</strong> 2 hours</p>
+                <p><strong>Exam Mode:</strong> Computer-based</p>
+                <p><strong>Purpose:</strong> Admission to IIMs and business schools</p>
+            </div>
+        </div>
+        <div class="exam-card" onclick="toggleDetails(this)">
+            <h2>CUET (Common University Entrance Test)</h2>
+            <p class="summary">Entrance exam for central university admissions.</p>
+            <div class="details">
+                <p><strong>Eligibility:</strong> 12th pass</p>
+                <p><strong>Duration:</strong> 3 hours</p>
+                <p><strong>Exam Mode:</strong> Computer-based</p>
+                <p><strong>Purpose:</strong> Admission to central universities</p>
+            </div>
+        </div>
+        <div class="exam-card" onclick="toggleDetails(this)">
+            <h2>UPSC (Union Public Service Commission)</h2>
+            <p class="summary">Exam for civil services like IAS, IPS, IFS.</p>
+            <div class="details">
+                <p><strong>Eligibility:</strong> Graduate in any stream</p>
+                <p><strong>Duration:</strong> Prelims (2 hrs each), Mains (3 hrs per paper)</p>
+                <p><strong>Exam Mode:</strong> Pen-paper based</p>
+                <p><strong>Purpose:</strong> Recruitment for India's civil services</p>
+            </div>
+        </div>
+        <div class="exam-card" onclick="toggleDetails(this)">
+            <h2>NDA (National Defence Academy)</h2>
+            <p class="summary">Defense services entrance exam.</p>
+            <div class="details">
+                <p><strong>Eligibility:</strong> 12th pass (PCM for Air Force & Navy)</p>
+                <p><strong>Duration:</strong> Written test (2.5 hours per section)</p>
+                <p><strong>Exam Mode:</strong> Pen-paper based</p>
+                <p><strong>Purpose:</strong> Entry into Indian Army, Navy, Air Force</p>
+            </div>
+        </div>
+         <div class="exam-card" onclick="toggleDetails(this)">
+            <h2>GATE (Graduate Aptitude Test in Engineering)</h2>
+            <p class="summary">Postgraduate engineering entrance exam.</p>
+            <div class="details">
+                <p><strong>Eligibility:</strong> Engineering/science graduates</p>
+                <p><strong>Duration:</strong> 3 hours</p>
+                <p><strong>Exam Mode:</strong> Computer-based</p>
+                <p><strong>Purpose:</strong> Higher studies & PSU job eligibility</p>
+            </div>
+        </div>
+        <div class="exam-card" onclick="toggleDetails(this)">
+            <h2>AMCAT (Aspiring Minds Test)</h2>
+            <p class="summary">Employability assessment test for job placements.</p>
+            <div class="details">
+                <p><strong>Eligibility:</strong> Graduation (any stream)</p>
+                <p><strong>Duration:</strong> 2 hours</p>
+                <p><strong>Exam Mode:</strong> Computer-based</p>
+                <p><strong>Purpose:</strong> Job placements in IT, business, and various industries</p>
+            </div>
+        </div>
+        <div class="exam-card" onclick="toggleDetails(this)">
+            <h2>CLAT (Common Law Admission Test)</h2>
+            <p class="summary">Law entrance exam for National Law Universities.</p>
+            <div class="details">
+                <p><strong>Eligibility:</strong> 12th pass for UG, Graduation for PG</p>
+                <p><strong>Duration:</strong> 2 hours</p>
+                <p><strong>Exam Mode:</strong> Computer-based</p>
+                <p><strong>Purpose:</strong> Admission to law programs</p>
+            </div>
+        </div>
+         <div class="exam-card" onclick="toggleDetails(this)">
+            <h2>CDS (Combined Defence Services)</h2>
+            <p class="summary">Exam for joining Indian Army, Navy, Air Force.</p>
+            <div class="details">
+                <p><strong>Eligibility:</strong> Graduation (specific stream for different forces)</p>
+                <p><strong>Duration:</strong> 6 hours (2 hours per paper)</p>
+                <p><strong>Exam Mode:</strong> Pen-paper based</p>
+                <p><strong>Purpose:</strong> Entry into Indian Armed Forces</p>
+            </div>
+        </div>
+         <div class="exam-card" onclick="toggleDetails(this)">
+            <h2>NATA (National Aptitude Test in Architecture)</h2>
+            <p class="summary">Exam for admission into architecture programs.</p>
+            <div class="details">
+                <p><strong>Eligibility:</strong> 12th pass with Mathematics</p>
+                <p><strong>Duration:</strong> 3 hours</p>
+                <p><strong>Exam Mode:</strong> Computer-based</p>
+                <p><strong>Purpose:</strong> Admission into B.Arch courses</p>
+            </div>
+        </div>
+         <div class="exam-card" onclick="toggleDetails(this)">
+            <h2>NIFT (National Institute of Fashion Technology)</h2>
+            <p class="summary">Exam for admission into fashion & design courses.</p>
+            <div class="details">
+                <p><strong>Eligibility:</strong> 12th pass for UG, Graduation for PG</p>
+                <p><strong>Duration:</strong> 3 hours</p>
+                <p><strong>Exam Mode:</strong> Computer-based & offline tests</p>
+                <p><strong>Purpose:</strong> Entry into fashion design courses</p>
+            </div>
+        </div>
+        <div class="exam-card" onclick="toggleDetails(this)">
+            <h2>AIIMS Entrance Exam</h2>
+            <p class="summary">Medical exam for admission into AIIMS institutions.</p>
+            <div class="details">
+                <p><strong>Eligibility:</strong> 12th pass with PCB</p>
+                <p><strong>Duration:</strong> 3 hours 30 minutes</p>
+                <p><strong>Exam Mode:</strong> Computer-based</p>
+                <p><strong>Purpose:</strong> Admission into AIIMS MBBS courses</p>
+            </div>
+        </div>
+        <div class="exam-card" onclick="toggleDetails(this)">
+            <h2>MAT (Management Aptitude Test)</h2>
+            <p class="summary">Exam for admission into MBA programs.</p>
+            <div class="details">
+                <p><strong>Eligibility:</strong> Graduation</p>
+                <p><strong>Duration:</strong> 2.5 hours</p>
+                <p><strong>Exam Mode:</strong> Computer-based or pen-paper</p>
+                <p><strong>Purpose:</strong> Admission into management courses</p>
+            </div>
+        </div>
+         <div class="exam-card" onclick="toggleDetails(this)">
+            <h2>AILET (All India Law Entrance Test)</h2>
+            <p class="summary">Law entrance exam for NLU Delhi.</p>
+            <div class="details">
+                <p><strong>Eligibility:</strong> 12th pass for UG, Graduation for PG</p>
+                <p><strong>Duration:</strong> 1.5 hours</p>
+                <p><strong>Exam Mode:</strong> Pen-paper based</p>
+                <p><strong>Purpose:</strong> Admission into NLU Delhi law programs</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p style="color:black">&copy; 2025 Edu Navia | All Rights Reserved</p>
+    </footer>
+
+    <script src="examsinfo.js"></script>
+</body>
+</html>

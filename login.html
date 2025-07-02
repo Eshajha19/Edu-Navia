@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Edu Navia | Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="login.css" />
+
+  <!-- Firebase Modular SDK -->
+  <script type="module" src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script type="module" src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+</head>
+<body>
+  <!-- 🌗 Dark Mode Toggle -->
+  <button class="dark-toggle" onclick="toggleDarkMode()">🌙</button>
+
+  <!-- 🔐 Main Container -->
+  <div class="container">
+    <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" class="login-icon" alt="login" />
+    <h1>Welcome Back!</h1>
+
+    <!-- 🔐 Login Form -->
+    <form id="login-form">
+      <input type="email" id="email" placeholder="Email" required />
+
+      <div class="password-wrap">
+        <input type="password" id="password" placeholder="Password" required />
+        <span class="toggle-password" onclick="togglePassword()">👁️</span>
+      </div>
+
+      <label class="remember-wrap">
+        <input type="checkbox" id="rememberMe" /> Remember Me
+      </label>
+
+      <button type="submit" id="loginBtn">
+        Log In <span id="spinner" class="hidden">⏳</span>
+      </button>
+
+      <button type="button" class="google-btn" onclick="googleLogin()">Continue with Google</button>
+
+      <!--<p class="forgot-link">
+        <a href="#" onclick="forgotPassword()">Forgot Password?</a>
+      </p>-->
+
+      <div class="error-message" id="error"></div>
+      <div class="success-message" id="success">✅ Login successful! Redirecting...</div>
+    </form>
+
+    <!-- 🔁 Reset Password Section (hidden initially) -->
+    <div id="reset-password-form" class="hidden">
+      <h3>Reset Your Password</h3>
+      <input type="email" id="reset-email" placeholder="Enter your email" required />
+      <button type="button" id="send-reset-link">Send Reset Link</button>
+      <p id="reset-message" class="status-message"></p>
+      <p><a href="#" id="back-to-login">← Back to Login</a></p>
+    </div>
+
+    <p class="support-msg">Need help? <a href="mailto:support@edunav.com">Contact Support</a></p>
+  </div>
+
+  <!-- 🔌 Main Logic -->
+  <script type="module" src="login.js"></script>
+</body>
+</html>

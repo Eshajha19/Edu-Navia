@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edu Navia ChatBot</title>
+  <link rel="stylesheet" href="chatbot.css" />
+  
+</head>
+<body>
+  <!-- Header -->
+  <header class="navbar">
+    <div class="logo"><a href="index.html" style="color:black;text-decoration: none;">🎓 Edu Navia</a></div>
+    <nav>
+      <a href="p.html" style="color:black;text-decoration: none;">Universities</a>
+      <a href="courses.html" style="color:black;text-decoration: none;">Courses</a>
+      <a href="consulting.html" style="color:black;text-decoration: none;">Consulting</a>
+      <a href="resource.html" style="color:black;text-decoration: none;">Resources</a>
+    </nav>
+  </header>
+
+  <!-- ChatBot Container -->
+  <main>
+    <div id="chatbot-container" class="hidden">
+      <div id="chatbot-header">
+        How Can I Help You Today?
+        <button id="close-btn">×</button>
+      </div>
+      <div id="chatbot-body">
+        <div id="chatbot-messages"></div>
+      </div>
+      <div id="chatbot-input-container">
+        <input type="text" id="chatbot-input" placeholder="Ask me anything..." />
+        <button id="send-btn">Send</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Chat Icon -->
+  <div id="chatbot-icon">💬</div>
+
+  <script src="chatbot.js"></script>
+  <!--<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    if (!user) {
+      alert("Access denied. Please log in.");
+      window.location.href = "index.html";
+    }
+  });
+</script>-->
+</body>
+</html>

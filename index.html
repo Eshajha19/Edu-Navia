@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Discover Your Future</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- Navigation -->
+<header class="navbar">
+  <div class="container nav-wrapper">
+    <div class="logo">
+      <div class="logo"> 🎓 Edu Navia</div>
+    </div>
+
+    <nav>
+      <ul class="nav-links">
+        <li><a href="p.html">Universities</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="consulting.html">Consulting</a></li>
+        <li><a href="resource.html">Resources</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="profile.html" class="active">Profile</a></li>
+ <!-- ✅ Added Profile -->
+      </ul>
+    </nav>
+
+    <div class="cta-buttons" id="auth-buttons">
+      <!-- Will be replaced by JS based on login -->
+      <a href="login.html" class="btn-outline">Login</a>
+      <a href="signup.html" class="btn-primary">Sign Up</a>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Hero Section -->
+  <section class="hero fade-in">
+    <div class="container hero-content">
+      <div class="text-content">
+        <h1>
+          <span id="typingText"></span><br />
+          <span class="second-text">with Edu Navia</span>
+        </h1>
+        <p>
+          Explore universities, courses, and personalized pathways to achieve your educational goals with confidence.
+        </p>
+
+        <div class="search-bar">
+          <input type="text" placeholder="Search for universities or courses..." />
+          <button class="btn-search">Search</button>
+        </div>
+
+        <div class="stats">
+          <div><strong>5000+</strong><br />Courses</div>
+          <div><strong>3500+</strong><br />Universities</div>
+          <div><strong>40K+</strong><br />Happy Students</div>
+        </div>
+      </div>
+
+      <div class="card-actions slide-up">
+        <a href="p.html" class="card-button protected" >🎓 Find Universities</a>
+        <a href="courses.html" class="card-button protected">📘 Browse Courses</a>
+        <a href="CHATBOT.html" class="card-button ">💬 Get Support</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Smart Tools Section -->
+  <section class="tools-section fade-in">
+    <div class="container">
+      <h2 class="section-title">
+        Explore Your Higher Education Journey with <span>Edu Navia Smart Tools</span>
+      </h2>
+
+      <div class="tools-grid">
+        <!-- Tool Card -->
+        <div class="tool-card green">
+          <div class="tool-icon">🎯</div>
+          <h3>University Finder</h3>
+          <p>AI-powered listing of Dream, Reach, Safe universities based on destination, program, grades, and budget.</p>
+          <a href="p.html" class="protected">Find Universities →</a>
+        </div>
+
+        <div class="tool-card green">
+          <div class="tool-icon">📚</div>
+          <h3>Programs Finder</h3>
+          <p>Search engine for programs across different countries and universities.</p>
+          <a href="courses.html" class="protected">Find Programs →</a>
+        </div>
+
+        <div class="tool-card green">
+          <div class="tool-icon">⚖️</div>
+          <h3>Compare Universities</h3>
+          <p>Compare up to 2 universities by rankings, costs, and entry requirements.</p>
+          <a href="compare.html" >Compare Universities →</a>
+        </div>
+
+        <div class="tool-card green">
+          <div class="tool-icon">🔍</div>
+          <h3>University Advance Search</h3>
+          <p>Search global universities based on rankings, costs, and entry criteria.</p>
+          <a href="univeristy-search.html" >Explore Now →</a>
+        </div>
+
+        <div class="tool-card blue">
+  <div class="tool-icon">⏳</div>
+  <h3>Entrance Exam Tracker</h3>
+  <p>Stay updated on JEE, NEET, UPSC, CLAT upcoming exam dates and countdowns.</p>
+  <a href="exam_tracker.html" >Track Exams →</a>
+</div>
+
+
+        <div class="tool-card blue">
+          <div class="tool-icon">🧠</div>
+          <h3>Personality Test</h3>
+          <p>Discover your unique personality type and get personalized course recommendations.</p>
+          <a href="personality_test.html" >Take the Test →</a>
+        </div>
+
+        <div class="tool-card blue">
+          <div class="tool-icon">🎓</div>
+          <h3>Entrance Exams Info</h3>
+          <p>Get detailed info on various entrance exams, dates, and preparation tips.</p>
+          <a href="examsinfo.html" >Explore Exams →</a>
+        </div>
+
+        <div class="tool-card blue">
+          <div class="tool-icon">🎥</div>
+          <h3>Educational Webinar</h3>
+          <p>Expert-led webinars to explore top universities, programs, and admission strategies.</p>
+          <a href="webinar.html" >Explore Webinars →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <h1>Explore Our Range Of Admission Services</h1>
+  <p class="description">
+    At Edu Navia, we are dedicated to simplifying the university selection process by offering a diverse range of courses tailored to different academic disciplines. Our comprehensive offerings ensure that students can explore various fields with ease, making informed decisions about their educational journey. By curating programs that align with university requirements, we empower students to seamlessly transition into their chosen institutions, setting the stage for academic success. Whether it's specialized subjects or foundational courses, we provide the resources needed to navigate college selection confidently.
+  </p>
+
+  <div class="slider-container">
+    <button class="nav-button left" id="prevBtn">&#8592;</button>
+    <div class="card-slider" id="cardSlider"></div>
+    <button class="nav-button right" id="nextBtn">&#8594;</button>
+  </div>
+
+  <div class="buttons">
+    <button class="explore">Explore More +</button>
+    <button class="guidance">Get Expert Guidance &#9881;</button>
+  </div>
+
+  <!-- F`ooter Section -->
+  <footer>
+    <div class="footer-container">
+      <!--<div class="footer-logo">
+        <img src="logo.jpg" alt="EduNavigator Logo" height="100" width="100px" />
+      </div>-->
+
+      <div class="social-icons">
+        <a href="https://www.instagram.com" target="_blank" class="social-icon instagram">📷</a>
+        <a href="mailto:info@edunavia.com" target="_blank" class="social-icon mail">✉️</a>
+        <a href="tel:+1234567890" target="_blank" class="social-icon telephone">📞</a>
+        <a href="https://www.linkedin.com" target="_blank" class="social-icon linkedin">🔗</a>
+        <a href="https://www.facebook.com" target="_blank" class="social-icon facebook">📘</a>
+        <a href="https://wa.me/+1234567890" target="_blank" class="social-icon whatsapp">💬</a>
+      </div>
+
+      <div class="contact-info">
+        <p>&copy; 2025 Edu Navia. All Rights Reserved.</p>
+        <p>Follow Us on Social Media for Updates!</p>
+      </div>
+    </div>
+  </footer>
+  <!-- 🔐 Beautiful Login Required Modal -->
+<div id="login-popup" class="popup-overlay">
+  <div class="popup-box">
+    <h2>🔒 Access Restricted</h2>
+    <p>Please log in to explore this section of Edu Navia.</p>
+    <button id="popup-close-btn">Got it</button>
+  </div>
+</div>
+
+<!-- ⭐ Floating Rate Us Button -->
+<button id="rateUsBtn">⭐ Rate Us</button>
+
+<!-- 🪟 Rating Modal -->
+<div id="ratingModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" id="closeRatingModal">&times;</span>
+    <h2>Rate Your Edu Navia Experience</h2>
+    <iframe src="rating.html" width="100%" height="500px" style="border: none; border-radius: 10px;"></iframe>
+  </div>
+</div>
+
+
+
+  <!-- Firebase scripts -->
+  <script type="module">
+    // Import Firebase modules
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-auth.js";
+
+  // Your Firebase config
+  const firebaseConfig = {
+    apiKey: "AIzaSyAPXYOQk3LPxayuymhac79P4QsX13xvMZA",
+    authDomain: "edu-navigator-cc4a0.firebaseapp.com",
+    projectId: "edu-navigator-cc4a0",
+    storageBucket: "edu-navigator-cc4a0.appspot.com",
+    messagingSenderId: "33607968332",
+    appId: "1:33607968332:web:59cbf34a0aae68375736e9"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  const authButtonsDiv = document.getElementById("auth-buttons");
+
+  // Helper function to get a safe display name
+  function getSafeName(user) {
+    const name = user.displayName;
+    const email = user.email;
+    if (name && name !== "null" && name !== "undefined") {
+      return name;
+    } else if (email && email !== "null" && email !== "undefined") {
+      return email;
+    } else {
+      return "User";
+    }
+  }
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is signed in
+      const displayName = getSafeName(user);
+
+      authButtonsDiv.innerHTML = `
+        <span class="user-info">Hello, ${displayName}</span>
+        <button id="logoutBtn" class="btn-logout">Logout</button>
+      `;
+
+      document.getElementById("logoutBtn").addEventListener("click", () => {
+        signOut(auth).then(() => {
+          // Signed out successfully, redirect to login
+          window.location.href = "login.html";
+        }).catch((error) => {
+          alert("Error logging out: " + error.message);
+        });
+      });
+
+    } else {
+      // No user signed in, show login/signup links
+      authButtonsDiv.innerHTML = `
+        <a href="login.html" class="btn-outline">Login</a>
+        <a href="signup.html" class="btn-primary">Sign Up</a>
+      `;
+    }
+  });
+
+  // 🚫 Block navigation for unauthenticated users
+  document.addEventListener("DOMContentLoaded", () => {
+  const protectedLinks = document.querySelectorAll("a.protected");
+  const loginPopup = document.getElementById("login-popup");
+  const closePopupBtn = document.getElementById("popup-close-btn");
+
+  closePopupBtn.addEventListener("click", () => {
+    loginPopup.classList.remove("show");
+  });
+
+  auth.onAuthStateChanged((user) => {
+    if (!user) {
+      protectedLinks.forEach(link => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          loginPopup.classList.add("show");
+        });
+      });
+    }
+  });
+});
+  </script>
+
+
+  <script>
+  window.onload = function () {
+    const rateBtn = document.getElementById("rateUsBtn");
+    const modal = document.getElementById("ratingModal");
+    const closeBtn = document.getElementById("closeRatingModal");
+
+    // ✅ Show modal on button click
+    rateBtn.onclick = () => {
+      modal.style.display = "flex";
+    };
+
+    // ❌ Close modal when clicking the close button
+    closeBtn.onclick = () => {
+      modal.style.display = "none";
+    };
+
+    // ❌ Close modal if clicked outside content
+    window.onclick = (event) => {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    };
+
+    // ⏱️ Auto show after 10 seconds (once per session)
+    const shown = sessionStorage.getItem("ratingPopupShown");
+    if (!shown) {
+      setTimeout(() => {
+        modal.style.display = "flex";
+        sessionStorage.setItem("ratingPopupShown", "true");
+      }, 10000); // 10 seconds
+    }
+  };
+</script>
+
+  
+  
+  <script src="script.js"></script>
+</body>
+</html>

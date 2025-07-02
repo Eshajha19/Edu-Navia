@@ -1,0 +1,374 @@
+/* ─── Global Styles ─── */
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  background: linear-gradient(135deg, #f0f4f8, #e6ecf3);
+  color: #333;
+}
+
+/* ─── Navbar ─── */
+.navbar {
+  background-color: #d0ebe6;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  border-bottom: 3px solid #009e8e;
+  flex-wrap: wrap;
+}
+
+.logo {
+  height: 40px;
+  margin-right: 1rem;
+  border-radius: 4px;
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: #7fcfff;
+  transform: scale(1.05);
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 30px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  padding: 10px 20px;
+  margin: 0 15px;
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+}
+
+/* ─── Main Title ─── */
+.main-title {
+  text-align: center;
+  margin: 3rem auto 2rem;
+  font-size: 2rem;
+  max-width: 700px;
+  line-height: 1.4;
+  color: #00bfa6;
+}
+
+.highlight {
+  color: #00bfa6;
+  font-weight: bold;
+}
+
+/* ─── Quiz Container ─── */
+.quiz-container {
+  max-width: 700px;
+  margin: 0 auto 2.5rem auto;
+  background-color: white;
+  padding: 2.5rem;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+#quiz-intro, #quiz, #dashboard {
+  text-align: center;
+}
+
+#quiz-intro h1 {
+  color: #00bfa6;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+#quiz-intro p {
+  color: #555;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+#question {
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  color: #00bfa6;
+}
+
+/* ─── Answers ─── */
+ul#answers {
+  list-style: none;
+  padding: 0;
+}
+
+ul#answers li {
+  background-color: #f5f8fc;
+  padding: 0.9rem 1.2rem;
+  margin: 0.5rem 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+ul#answers li:hover {
+  background-color: #d6eaff;
+  border-color: #b3d9ff;
+}
+
+ul#answers li.selected {
+  background-color: #00bfa6;
+  color: white;
+  font-weight: bold;
+  border-color: #00bfa6;
+}
+
+/* ─── Scale Options ─── */
+.scale-options {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0 1.5rem;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.scale-btn {
+  background-color: #e6e6e6;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.scale-btn:hover,
+.scale-btn.selected {
+  background-color: #00bfa6;
+  color: white;
+}
+
+/* ─── Buttons ─── */
+#next-btn, #start-btn, #restart-btn {
+  margin-top: 2rem;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  background-color: #00bfa6;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#next-btn:disabled {
+  background-color: #a0a0a0;
+  cursor: not-allowed;
+}
+
+#next-btn:hover:not(:disabled),
+#start-btn:hover,
+#restart-btn:hover {
+  background-color: #009e8e;
+}
+
+/* ─── Dashboard ─── */
+.dashboard-title {
+  color: #00bfa6;
+  font-size: 1.3rem;
+  margin-bottom: 1.2rem;
+}
+
+.dashboard-section {
+  margin: 2rem 0 1.5rem 0;
+}
+
+.dashboard-summary h3 {
+  color: #009e8e;
+  margin-bottom: 0.3rem;
+}
+
+.dashboard-summary ul {
+  list-style: none;
+  padding: 0;
+  max-height: 180px;
+  overflow-y: auto;
+  margin-top: 0.5rem;
+  text-align: left;
+}
+
+.dashboard-summary li {
+  margin: 0.3rem 0;
+  font-size: 1.05rem;
+  padding-left: 5px;
+  border-left: 3px solid #00bfa6;
+}
+
+/* ─── Charts ─── */
+.chart-box {
+  background: #f9fcfc;
+  border-radius: 14px;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.1);
+  margin-bottom: 2rem;
+}
+
+/* ─── Top Result Card ─── */
+.top-result-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 191, 166, 0.3);
+  padding: 1.8rem 2rem;
+  max-width: 480px;
+  margin: 0 auto 2rem auto;
+  text-align: center;
+  color: #007a70;
+}
+
+.top-result-card h3 {
+  margin-bottom: 0.7rem;
+  font-size: 1.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.top-result-card p {
+  font-size: 1.1rem;
+  line-height: 1.4;
+  color: #004d45;
+}
+
+/* ─── Footer ─── */
+footer {
+  margin-top: 30px;
+  background-color: #00a88e;
+  color: #fff;
+  padding: 50px 20px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-logo img {
+  max-width: 120px;
+  margin-bottom: 20px;
+}
+
+.social-icons {
+  margin: 25px 0;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.social-icon {
+  font-size: 32px;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.social-icon:hover {
+  transform: scale(1.3);
+}
+
+.social-icon.instagram:hover { color: #e4405f; }
+.social-icon.mail:hover { color: #d44638; }
+.social-icon.telephone:hover { color: #34b7f1; }
+.social-icon.linkedin:hover { color: #0077b5; }
+.social-icon.facebook:hover { color: #3b5998; }
+.social-icon.whatsapp:hover { color: #25d366; }
+
+.contact-info {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #ccc;
+}
+
+.contact-info a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-info a:hover {
+  color: #f1c40f;
+}
+
+/* ────────────── Responsive Media Queries ────────────── */
+
+/* 📱 Mobile Devices */
+@media (max-width: 600px) {
+  .main-title {
+    font-size: 1.3rem;
+    padding: 0 1rem;
+  }
+
+  .quiz-container {
+    padding: 1rem;
+  }
+
+  .chart-box {
+    padding: 1rem;
+  }
+
+  .top-result-card {
+    max-width: 100%;
+    padding: 1rem;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .footer-logo img {
+    max-width: 100px;
+  }
+
+  .social-icon {
+    font-size: 28px;
+  }
+
+  footer {
+    padding: 30px 10px;
+  }
+}
+
+/* 📲 Tablet Devices */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .quiz-container {
+    padding: 1.5rem;
+  }
+
+  .top-result-card {
+    max-width: 90%;
+  }
+
+  .chart-box {
+    padding: 1.2rem;
+  }
+}

@@ -1,0 +1,229 @@
+   body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+    /* ─── HEADER ─── */
+header {
+  background: #d0ebe6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #00695c;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+nav a {
+  margin: 0 1rem;
+  color: #004d40;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #009688;
+}
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card h2 {
+      margin: 0 0 0.5rem;
+      color: teal;
+      font-size: 1.2rem;
+    }
+    .card p {
+      margin-bottom: 1rem;
+    }
+    .card button {
+      background: teal;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .card button:hover {
+      background-color: #00796b;
+    }
+    .tool-section {
+      padding: 2rem;
+      display: none;
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    }
+    .tool-section.active {
+      display: block;
+    }
+    .tool-section input,
+    .tool-section textarea {
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 0.6rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .tool-section button {
+      background: teal;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      margin-right: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .tool-section button:hover {
+      background: #00796b;
+    }
+    #resumeOutput, #cgpaResult {
+      margin-top: 2rem;
+      padding: 1rem;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    /* ─── FOOTER ─── */
+footer {
+  background-color: #00a88e;
+  color: #fff;
+  padding: 50px 20px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-logo img {
+  max-width: 120px;
+  margin-bottom: 20px;
+}
+
+.social-icons {
+  margin: 25px 0;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.social-icon {
+  font-size: 32px;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.social-icon:hover {
+  transform: scale(1.3);
+}
+
+.social-icon.instagram:hover { color: #e4405f; }
+.social-icon.mail:hover { color: #d44638; }
+.social-icon.telephone:hover { color: #34b7f1; }
+.social-icon.linkedin:hover { color: #0077b5; }
+.social-icon.facebook:hover { color: #3b5998; }
+.social-icon.whatsapp:hover { color: #25d366; }
+
+.contact-info {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #ccc;
+}
+
+.contact-info a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-info a:hover {
+  color: #f1c40f;
+}
+
+@media (max-width: 1024px) {
+  .tool-section {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .tool-section {
+    padding: 1rem;
+  }
+
+  .resource-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    padding: 1rem;
+  }
+
+  .card h2 {
+    font-size: 1rem;
+  }
+
+  .card p {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  .tool-section input,
+  .tool-section textarea {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+
+  .tool-section button,
+  .card button {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>University Comparison</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <link href="compare.css" rel="stylesheet">
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo">🎓Edu Navia</div>
+    <nav>
+      <a href="p.html">Universities</a>
+      <a href="courses.html">Courses</a>
+      <a href="consulting.html">Consulting</a>
+      <a href="resource.html">Resources</a>
+      <button id="darkModeToggle" style="margin-left: 20px;">🌙 Dark Mode</button>
+    </nav>
+  </div>
+
+  <header style="text-align:center; padding: 20px;">
+    <h1>Compare Universities</h1>
+  </header>
+
+  <section class="selector">
+    <div class="dropdowns">
+      <select id="university1"><option value="">Select First University</option></select>
+      <select id="university2"><option value="">Select Second University</option></select>
+    </div>
+    <div class="compare-container">
+      <button id="compareBtn">Compare</button>
+    </div>
+  </section>
+
+  <section id="comparison-output" class="results"></section>
+
+  <div style="text-align:center; margin-top: 10px;">
+    <button id="downloadPDF" style="background:#0d9488; color:white; padding:10px 20px; border:none; border-radius:8px; cursor:pointer;">
+      📄 Download Comparison as PDF
+    </button>
+  </div>
+
+  <div class="footer">
+    &copy; 2025 Edu Navia. All rights reserved. | Empowering Education for the Future
+  </div>
+
+  <!-- App Logic -->
+  <script type="module">
+    document.getElementById('darkModeToggle').addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    // 🔁 Replace this with your actual config
+    const firebaseConfig = {
+       apiKey: "AIzaSyAPXYOQk3LPxayuymhac79P4QsX13xvMZA",
+    authDomain: "edu-navigator-cc4a0.firebaseapp.com",
+    projectId: "edu-navigator-cc4a0",
+    storageBucket: "edu-navigator-cc4a0.appspot.com",
+    messagingSenderId: "33607968332",
+    appId: "1:33607968332:web:59cbf34a0aae68375736e9"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const uni1Select = document.getElementById("university1");
+    const uni2Select = document.getElementById("university2");
+    const outputDiv = document.getElementById("comparison-output");
+    const compareBtn = document.getElementById("compareBtn");
+
+    let universityData = [];
+
+    async function loadUniversities() {
+      const snapshot = await getDocs(collection(db, "colleges"));
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        universityData.push(data);
+        const opt1 = new Option(data.name, data.name);
+        const opt2 = new Option(data.name, data.name);
+        uni1Select.add(opt1);
+        uni2Select.add(opt2.cloneNode(true));
+      });
+    }
+
+    function compareUniversities() {
+      const u1 = uni1Select.value;
+      const u2 = uni2Select.value;
+
+      if (!u1 || !u2 || u1 === u2) {
+        outputDiv.innerHTML = `<p style="color:red;">Please select two different universities to compare.</p>`;
+        return;
+      }
+
+      const uni1 = universityData.find(u => u.name === u1);
+      const uni2 = universityData.find(u => u.name === u2);
+
+      const locationMsg = uni1.location === uni2.location
+        ? `Both universities are located in <strong>${uni1.location}</strong>.`
+        : `${uni1.name} is located in <strong>${uni1.location}</strong>, while ${uni2.name} is in <strong>${uni2.location}</strong>.`;
+
+      const tierMsg = uni1.type === uni2.type
+        ? `Both are classified as <strong>${uni1.type}</strong> institutions.`
+        : `${uni1.name} is a <strong>${uni1.type}</strong> institute, while ${uni2.name} is categorized as <strong>${uni2.type}</strong>.`;
+
+      outputDiv.innerHTML = `
+        <div class="card animate-result">
+          <h2>${uni1.name} vs ${uni2.name}</h2>
+          <p>📍 <strong>Location:</strong><br>${locationMsg}</p>
+          <p>🏆 <strong>Tier:</strong><br>${tierMsg}</p>
+        </div>
+      `;
+    }
+
+    compareBtn.addEventListener("click", compareUniversities);
+    loadUniversities();
+  </script>
+
+
+<script src="compare.js">
+</script>
+
+</body>
+</html>

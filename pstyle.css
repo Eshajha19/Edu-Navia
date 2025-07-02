@@ -1,0 +1,423 @@
+/* ─── Global Styles ─── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f4f4f4;
+}
+
+/* ─── Header ─── */
+header {
+  background-color: #d0ebe6;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo a {
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+}
+
+/* ─── Navbar ─── */
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+nav a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: teal;
+}
+
+/* ─── Section Title ─── */
+.section-title {
+  text-align: center;
+  margin: 30px 0 10px;
+  color: #1d3557;
+}
+
+/* ─── Search Input ─── */
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  padding: 0 10px;
+}
+
+#searchInput {
+  width: 100%;
+  max-width: 500px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 30px;
+  border: 2px solid teal;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+}
+
+#searchInput::placeholder {
+  color: #888;
+  font-style: italic;
+}
+
+#searchInput:focus {
+  border-color: #008080;
+  box-shadow: 0 0 10px rgba(0, 128, 128, 0.3);
+}
+
+/* ─── Grid Layout ─── */
+.universities-grid,
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+/* ─── University Card ─── */
+.university-card {
+  background-color: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: 0.3s;
+}
+
+.university-card:hover {
+  background-color: #e0f7f7;
+  transform: translateY(-5px);
+}
+
+.university-card h3 {
+  color: #1b6b5a;
+  margin-bottom: 10px;
+}
+
+.university-card p {
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.university-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+/* ─── No Results Message ─── */
+#noResultsMsg {
+  color: #555;
+  font-size: 1.1rem;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* ─── Footer ─── */
+footer {
+  background-color: #00a88e;
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.footer-logo img {
+  max-width: 100px;
+  margin-bottom: 20px;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.social-icons a {
+  font-size: 24px;
+  color: white;
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+
+.social-icons a:hover {
+  transform: scale(1.3);
+}
+
+.contact-info {
+  font-size: 14px;
+  color: #f0f0f0;
+}
+
+/* ────────────── Responsive Media Queries ────────────── */
+
+/* 📱 Mobile (<=600px) */
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 10px;
+  }
+
+  .logo a {
+    font-size: 20px;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  nav a {
+    margin: 5px 0;
+    font-size: 14px;
+  }
+
+  .section-title {
+    font-size: 1.3rem;
+    margin: 20px 0 10px;
+  }
+
+  .search-container {
+    padding: 0 10px;
+  }
+
+  .universities-grid,
+  .grid-container {
+    grid-template-columns: 1fr;
+    padding: 10px;
+    gap: 15px;
+  }
+
+ .university-card {
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.university-card img {
+  height: 110px;
+}
+
+.university-card h3 {
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.university-card p {
+  font-size: 0.85rem;
+}
+
+
+  footer {
+    padding: 30px 10px;
+    font-size: 0.9rem;
+  }
+
+  .social-icons {
+    gap: 15px;
+  }
+
+  .social-icons a {
+    font-size: 20px;
+  }
+}
+
+/* 📲 Tablet (601px - 1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  header {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+  }
+
+  nav {
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .section-title {
+    font-size: 1.6rem;
+  }
+
+  .search-container {
+    padding: 0 20px;
+  }
+
+  .universities-grid,
+  .grid-container {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    padding: 15px;
+  }
+
+  .university-card {
+    padding: 14px;
+  }
+
+  .university-card img {
+    height: 160px;
+  }
+  header {
+  width: 100%;
+}
+
+nav {
+  width: 100%;
+}
+}
+
+/* 📱 Extra Small Phones (<400px) */
+@media (max-width: 400px) {
+  .logo a {
+    font-size: 18px;
+  }
+
+  .section-title {
+    font-size: 1.1rem;
+  }
+
+  #searchInput {
+    font-size: 14px;
+    padding: 8px;
+  }
+.university-card {
+  padding: 8px;
+}
+
+.university-card img {
+  height: 100px;
+}
+
+.university-card h3 {
+  font-size: 0.95rem;
+}
+
+.university-card p {
+  font-size: 0.8rem;
+}
+header {
+  width: 100%;
+}
+
+nav {
+  width: 100%;
+}
+}
+
+/* 📱 Ultra-Small Phones (<=300px) */
+@media (max-width: 300px) {
+  header {
+  width: 100%;
+}
+
+nav {
+  width: 100%;
+}
+  body {
+    font-size: 14px;
+  }
+
+  header {
+    padding: 12px 8px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .logo a {
+    font-size: 16px;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 6px;
+    margin-top: 8px;
+  }
+
+  nav a {
+    font-size: 12px;
+    padding: 4px 0;
+    margin: 3px 0;
+  }
+
+  .section-title {
+    font-size: 1rem;
+    margin: 15px 0 8px;
+  }
+
+  .search-container {
+    padding: 0 5px;
+  }
+
+  #searchInput {
+    font-size: 13px;
+    padding: 8px;
+    border-radius: 20px;
+  }
+
+  .universities-grid,
+  .grid-container {
+    grid-template-columns: 1fr;
+    padding: 8px;
+    gap: 10px;
+  }
+
+  .university-card {
+    padding: 8px;
+    border-radius: 8px;
+  }
+
+  .university-card img {
+    height: 90px;
+  }
+
+  .university-card h3 {
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+  }
+
+  .university-card p {
+    font-size: 0.75rem;
+  }
+
+  footer {
+    padding: 20px 8px;
+    font-size: 0.8rem;
+  }
+
+  .social-icons a {
+    font-size: 18px;
+  }
+
+  .contact-info {
+    font-size: 12px;
+  }
+}

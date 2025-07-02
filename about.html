@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Meet the Developers | Edu Navia</title>
+  <link rel="stylesheet" href="about.css">
+</head>
+<body>
+
+  <section class="team-section">
+    <h1 class="section-title"><span id="typingText"></span></h1>
+   
+      
+      <!-- Developer Grid -->
+<div class="team-container">
+
+  <!-- Developer Card -->
+  <div class="developer-card" onclick="openModal('eshita')">
+    <img src="eshita.jpg" alt="Eshita Jha" />
+    <h2>Eshita Jha</h2>
+    <p>Frontend Specialist & UI Designer</p>
+  </div>
+
+  <div class="developer-card" onclick="openModal('esha')">
+    <img src="esha.png" alt="Esha Jha" />
+    <h2>Esha Jha</h2>
+    <p>Backend Developer & Firebase Expert</p>
+  </div>
+
+  <div class="developer-card" onclick="openModal('shreyshi')">
+    <img src="shreyshi.jpg" alt="Shreyshi Sriwastav" />
+    <h2>Shreyshi Sriwastav</h2>
+    <p>Frontend Developer & Layout Specialist</p>
+  </div>
+
+</div>
+
+<!-- Modal Template -->
+<div id="devModal" class="modal hidden">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+
+  <script src="about.js"></script>
+</body>
+</html>

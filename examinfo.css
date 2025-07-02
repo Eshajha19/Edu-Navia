@@ -1,0 +1,179 @@
+/* ─── RESET ─── */
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #f4f7fa, #dde4ee);
+  text-align: center;
+  color: #222;
+}
+
+/* ─── HEADER ─── */
+header {
+  background: #d0ebe6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #00695c;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+nav a {
+  color: #004d40;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #009688;
+}
+
+#noResults {
+  display: none;
+}
+
+.info {
+  background: linear-gradient(to right, #e1f7f4, #f4f9ff);
+}
+
+
+
+/* ─── EXAM CARD SECTION ─── */
+.exam-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 30px;
+}
+
+#examCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.exam-card {
+  background: #f9f9f9;
+  width: 100%;
+  max-width: 300px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+
+.exam-card:hover {
+  transform: scale(1.05);
+}
+
+.exam-card h2,
+.exam-card h3 {
+  color: #004d40;
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.exam-card p {
+  margin: 5px 0;
+}
+
+.summary {
+  font-size: 1rem;
+  color: black;
+  margin-bottom: 10px;
+}
+
+.details {
+  display: none;
+  font-size: 0.9rem;
+  color: #333;
+  margin-top: 10px;
+}
+
+.countdown {
+  font-weight: bold;
+  color: #d32f2f;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  background: #7eccc3;
+  color: black;
+  padding: 15px;
+  font-size: 1rem;
+  margin-top: 20px;
+}
+
+/* ────────────── RESPONSIVE MEDIA QUERIES ────────────── */
+
+/* 📱 Mobile (<=600px) */
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  nav {
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .exam-container {
+    padding: 15px;
+  }
+
+  #examCards {
+    padding: 15px;
+    grid-template-columns: 1fr;
+  }
+
+  .exam-card {
+    max-width: 100%;
+    padding: 15px;
+  }
+
+  footer {
+    padding: 20px 10px;
+    font-size: 0.9rem;
+  }
+}
+
+/* 📲 Tablet (601px - 1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  #examCards {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    padding: 20px;
+  }
+
+  nav {
+    justify-content: flex-end;
+  }
+
+  .exam-container {
+    padding: 20px;
+  }
+}
+

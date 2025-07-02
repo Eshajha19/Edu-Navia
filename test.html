@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Download PDF Example</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <style>
+    #comparison-output {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fdfdfd;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 700px;
+      margin: 20px auto;
+    }
+    .comparison-card {
+      background-color: #e8f0fe;
+      padding: 16px;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+      border-radius: 10px;
+    }
+    #downloadPDF {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div id="comparison-output">
+  <div class="comparison-card">
+    <h3>University A</h3>
+    <p>Ranking: 1<br>Fees: ₹1,00,000<br>Location: Delhi</p>
+  </div>
+  <div class="comparison-card">
+    <h3>University B</h3>
+    <p>Ranking: 2<br>Fees: ₹1,20,000<br>Location: Mumbai</p>
+  </div>
+</div>
+
+<button id="downloadPDF">Download PDF</button>
+
+<script>
+  document.getElementById('downloadPDF').addEventListener('click', () => {
+    const element = document.getElementById('comparison-output');
+
+    if (!element || element.innerHTML.trim() === '') {
+      alert("No comparison result to download.");
+      return;
+    }
+
+    const opt = {
+      margin: 0.5,
+      filename: 'university_comparison.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2, useCORS: true },
+      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+
+    html2pdf().set(opt).from(element).save();
+  });
+</script>
+
+</body>
+</html>
+ const firebaseConfig = {
+       apiKey: "AIzaSyAPXYOQk3LPxayuymhac79P4QsX13xvMZA",
+    authDomain: "edu-navigator-cc4a0.firebaseapp.com",
+    projectId: "edu-navigator-cc4a0",
+    storageBucket: "edu-navigator-cc4a0.appspot.com",
+    messagingSenderId: "33607968332",
+    appId: "1:33607968332:web:59cbf34a0aae68375736e9"
+    };
+
+    AIzaSyAtbNRDp_zJsDohfLv0d-es2713vZCpukI
+
+    <!--
+  <script>
+    // Typing and Erasing effect for "Shape Your Academic Future"
+    const typingElement = document.getElementById("typingText");
+    const text = "Shape Your Academic Future";
+    let index = 0;
+    let isDeleting = false;
+    let typingSpeed = 100; // Typing speed
+    let erasingSpeed = 50; // Erasing speed
+    let delay = 2000; // Time before erasing starts
+
+    function typeEffect() {
+      if (index < text.length && !isDeleting) {
+        typingElement.textContent += text.charAt(index);
+        index++;
+        setTimeout(typeEffect, typingSpeed);
+      } else if (index === text.length && !isDeleting) {
+        isDeleting = true;
+        setTimeout(typeEffect, delay);
+      } else if (isDeleting && index > 0) {
+        typingElement.textContent = text.substring(0, index - 1);
+        index--;
+        setTimeout(typeEffect, erasingSpeed);
+      } else if (isDeleting && index === 0) {
+        isDeleting = false;
+        setTimeout(typeEffect, delay);
+      }
+    }
+
+    window.onload = typeEffect;
+
+    const cardsData = [
+      { img: "engineering.jpeg", title: "Study Engineering" },
+      { img: "law.jpeg", title: "Study Law" },
+      { img: "economics.jpeg", title: "Study Economics" },
+      { img: "psychology.jpeg", title: "Study Psychology" },
+      { img: "liberal arts.png", title: "Study Liberal Arts" },
+      { img: "fine arts.png", title: "Study Fine Arts" },
+      { img: "finance.png", title: "Study Finance" },
+      { img: "architecture.png", title: "Study Architecture" },
+      { img: "computer science.png", title: "Study Computer Science" },
+      { img: "medical.png", title: "Study Medical" }
+    ];
+
+    const slider = document.getElementById("cardSlider");
+
+    cardsData.forEach(data => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `<img src="${data.img}" alt="${data.title}"><p>${data.title}</p>`;
+      slider.appendChild(card);
+    });
+
+    let slideIndex = 0;
+    const visibleCards = 4;
+
+    function showSlides(n) {
+      const card = slider.querySelector(".card");
+      const cardWidth = card.offsetWidth + parseInt(getComputedStyle(card).marginLeft) + parseInt(getComputedStyle(card).marginRight);
+      const maxIndex = cardsData.length - visibleCards;
+
+      if (n > maxIndex) slideIndex = 0;
+      else if (n < 0) slideIndex = maxIndex;
+      else slideIndex = n;
+
+      slider.style.transform = `translateX(${-slideIndex * cardWidth}px)`;
+    }
+
+    document.getElementById("prevBtn").addEventListener("click", () => showSlides(slideIndex - 1));
+    document.getElementById("nextBtn").addEventListener("click", () => showSlides(slideIndex + 1));
+
+    window.addEventListener("resize", () => showSlides(slideIndex));
+
+    showSlides(slideIndex);
+  </script>-->
+
+  /* window.onload = function () {
+  // Show modal after 10 seconds, only if not already shown in this session
+  const modalShown = sessionStorage.getItem("ratingModalShown");
+  if (!modalShown) {
+    setTimeout(() => {
+      const modal = document.getElementById("ratingModal");
+      if (modal) modal.style.display = "block";
+    }, 10000); // 10 seconds
+  }
+
+  // Close modal
+  const closeBtn = document.getElementById("closeModal");
+  if (closeBtn) {
+    closeBtn.onclick = function () {
+      document.getElementById("ratingModal").style.display = "none";
+      sessionStorage.setItem("ratingModalShown", "true");
+    };
+  }
+
+  // Remind me later
+  const remindLaterBtn = document.getElementById("remindLaterBtn");
+  if (remindLaterBtn) {
+    remindLaterBtn.onclick = function () {
+      document.getElementById("ratingModal").style.display = "none";
+    };
+  }
+
+  // Close on outside click
+  window.onclick = function (event) {
+    const modal = document.getElementById("ratingModal");
+    if (event.target === modal) {
+      modal.style.display = "none";
+      sessionStorage.setItem("ratingModalShown", "true");
+    }
+  };
+
+  // Submit handler (runs from inside the iframe content)
+  const iframe = document.querySelector("#ratingModal iframe");
+  iframe.onload = function () {
+    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+    const submitBtn = iframeDoc.getElementById("submitAllBtn");
+    if (submitBtn) {
+      submitBtn.onclick = async function (e) {
+        e.preventDefault();
+
+        const userName = prompt("Enter your name to submit your rating:");
+        if (!userName || userName.trim() === "") {
+          alert("Name is required to submit.");
+          return;
+        }
+
+        const categories = [
+          "Universities",
+          "Courses",
+          "Support",
+          "Personality Test",
+          "University Finder",
+          "Exam Info",
+          "Consulting",
+          "Exam Tracker"
+        ];
+
+        const ratingData = {};
+        let allRated = true;
+
+        categories.forEach(category => {
+          const stars = iframeDoc.querySelector(`.stars[data-category="${category}"]`);
+          const rating = parseInt(stars?.getAttribute("data-rating")) || 0;
+          const feedback = iframeDoc.querySelector(`textarea[data-category="${category}"]`)?.value.trim() || "";
+
+          if (rating === 0) allRated = false;
+
+          ratingData[`${category}_rating`] = rating;
+          ratingData[`${category}_feedback`] = feedback;
+        });
+
+        if (!allRated) {
+          alert("Please rate all categories before submitting.");
+          return;
+        }
+
+        ratingData.timestamp = new Date();
+
+        try {
+          await db.collection("ratings").doc(userName.trim()).set(ratingData);
+          iframeDoc.getElementById("submitMsg").classList.remove("hidden");
+          sessionStorage.setItem("ratingModalShown", "true");
+        } catch (err) {
+          alert("Error saving rating: " + err.message);
+        }
+      };
+    }
+  };
+};
+*/

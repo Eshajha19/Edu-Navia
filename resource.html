@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EduNavigator - Resources</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link href="resource.css" rel="stylesheet">
+  <style>
+       body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+    /* ─── HEADER ─── */
+header {
+  background: #d0ebe6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #00695c;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+nav a {
+  margin: 0 1rem;
+  color: #004d40;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #009688;
+}
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card h2 {
+      margin: 0 0 0.5rem;
+      color: teal;
+      font-size: 1.2rem;
+    }
+    .card p {
+      margin-bottom: 1rem;
+    }
+    .card button {
+      background: teal;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .card button:hover {
+      background-color: #00796b;
+    }
+    .tool-section {
+      padding: 2rem;
+      display: none;
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    }
+    .tool-section.active {
+      display: block;
+    }
+    .tool-section input,
+    .tool-section textarea {
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 0.6rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .tool-section button {
+      background: teal;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      margin-right: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .tool-section button:hover {
+      background: #00796b;
+    }
+    #resumeOutput, #cgpaResult {
+      margin-top: 2rem;
+      padding: 1rem;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    /* ─── FOOTER ─── */
+footer {
+  background-color: #00a88e;
+  color: #fff;
+  padding: 50px 20px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-logo img {
+  max-width: 120px;
+  margin-bottom: 20px;
+}
+
+.social-icons {
+  margin: 25px 0;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.social-icon {
+  font-size: 32px;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.social-icon:hover {
+  transform: scale(1.3);
+}
+
+.social-icon.instagram:hover { color: #e4405f; }
+.social-icon.mail:hover { color: #d44638; }
+.social-icon.telephone:hover { color: #34b7f1; }
+.social-icon.linkedin:hover { color: #0077b5; }
+.social-icon.facebook:hover { color: #3b5998; }
+.social-icon.whatsapp:hover { color: #25d366; }
+
+.contact-info {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #ccc;
+}
+
+.contact-info a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-info a:hover {
+  color: #f1c40f;
+}
+
+@media (max-width: 1024px) {
+  .tool-section {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .tool-section {
+    padding: 1rem;
+  }
+
+  .resource-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    padding: 1rem;
+  }
+
+  .card h2 {
+    font-size: 1rem;
+  }
+
+  .card p {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  .tool-section input,
+  .tool-section textarea {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+
+  .tool-section button,
+  .card button {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+}
+  </style>
+</head>
+<body>
+  <!-- Header -->
+<header>
+  <div class="logo"><a href="index.html" style="color:black;text-decoration: none;">🎓 Edu Navia</a></div>
+  <nav>
+    <a href="p.html">Universities</a>
+    <a href="courses.html">Courses</a>
+    <a href="consulting.html">Consulting</a>
+    <a href="resource.html">Resources</a>
+  </nav>
+</header>
+
+
+  <section class="resource-grid" id="resourceGrid"></section>
+
+  <section id="resumeTool" class="tool-section">
+    <h2>📄 Resume Builder</h2>
+    <input type="text" id="resName" placeholder="Full Name" />
+    <input type="email" id="resEmail" placeholder="Email" />
+    <input type="text" id="resPhone" placeholder="Phone" />
+    <input type="text" id="resLinkedIn" placeholder="LinkedIn Profile URL" />
+    <input type="text" id="resGithub" placeholder="GitHub Profile URL" />
+    <textarea id="resSummary" placeholder="Professional Summary"></textarea>
+    <textarea id="resEducation" placeholder="Education"></textarea>
+    <textarea id="resSkills" placeholder="Skills (comma-separated)"></textarea>
+    <textarea id="resProjects" placeholder="Projects (one per line)"></textarea>
+    <textarea id="resExperience" placeholder="Experience"></textarea>
+    <textarea id="resCertifications" placeholder="Certifications (one per line)"></textarea>
+    <button onclick="generateResume()">Generate Resume</button>
+    <button onclick="downloadResume()">Download as PDF</button>
+    <div id="resumeOutput"></div>
+  </section>
+
+  <section id="cgpaTool" class="tool-section">
+    <h2>📊 CGPA Calculator</h2>
+    <input type="number" id="gradePoints" placeholder="Total Grade Points" />
+    <input type="number" id="totalCredits" placeholder="Total Credits" />
+    <button onclick="calculateCGPA()">Calculate CGPA</button>
+    <div id="cgpaResult"></div>
+  </section>
+
+
+  <script>
+    const resources = [
+  { 
+    title: "📚 Study Materials", 
+    description: "Download curated notes, previous year papers, and PDFs.", 
+    action: () => showComingSoonPopup("Study Materials") 
+  },
+  { 
+    title: "🧪 Exam Prep", 
+    description: "Mock tests, guides & flashcards.", 
+    action: () => showComingSoonPopup("Exam Prep") 
+  },
+  { 
+    title: "💸 Scholarships", 
+    description: "Find scholarships with eligibility and deadlines.", 
+    action: () => showComingSoonPopup("Scholarships") 
+  },
+  { 
+    title: "📄 Resume Builder", 
+    description: "Create professional resumes instantly.", 
+    action: () => toggleTool('resumeTool') 
+  },
+  { 
+    title: "📊 CGPA Calculator", 
+    description: "Convert grade points to CGPA easily.", 
+    action: () => toggleTool('cgpaTool') 
+  }
+];
+
+
+    const container = document.getElementById("resourceGrid");
+    resources.forEach((res) => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `<h2>${res.title}</h2><p>${res.description}</p><button>Explore</button>`;
+      card.querySelector('button').addEventListener('click', res.action);
+      container.appendChild(card);
+    });
+
+    function toggleTool(id) {
+      document.querySelectorAll('.tool-section').forEach(section => {
+        section.classList.remove('active');
+      });
+      document.getElementById(id).classList.add('active');
+      window.scrollTo({ top: document.getElementById(id).offsetTop, behavior: 'smooth' });
+    }
+
+    function generateResume() {
+      const name = document.getElementById('resName').value;
+      const email = document.getElementById('resEmail').value;
+      const phone = document.getElementById('resPhone').value;
+      const linkedin = document.getElementById('resLinkedIn').value;
+      const github = document.getElementById('resGithub').value;
+      const summary = document.getElementById('resSummary').value;
+      const education = document.getElementById('resEducation').value;
+      const skills = document.getElementById('resSkills').value.split(',').map(s => s.trim()).join(', ');
+      const projects = document.getElementById('resProjects').value.split('\n').map(p => `<li>${p}</li>`).join('');
+      const experience = document.getElementById('resExperience').value;
+      const certifications = document.getElementById('resCertifications').value.split('\n').map(c => `<li>${c}</li>`).join('');
+
+      const resumeHTML = `
+        <h2>${name}</h2>
+        <p>📧 ${email} | 📞 ${phone}</p>
+        <p>🔗 <a href='${linkedin}' target='_blank'>LinkedIn</a> | 💻 <a href='${github}' target='_blank'>GitHub</a></p>
+        <hr>
+        <h3>Professional Summary</h3>
+        <p>${summary}</p>
+        <h3>Education</h3>
+        <p>${education}</p>
+        <h3>Skills</h3>
+        <p>${skills}</p>
+        <h3>Projects</h3>
+        <ul>${projects}</ul>
+        <h3>Experience</h3>
+        <p>${experience}</p>
+        <h3>Certifications</h3>
+        <ul>${certifications}</ul>
+      `;
+
+      document.getElementById('resumeOutput').innerHTML = resumeHTML;
+    }
+
+   function downloadResume() {
+  const element = document.getElementById('resumeOutput');
+  const opt = {
+    margin:       0.5,
+    filename:     'resume.pdf',
+    image:        { type: 'jpeg', quality: 0.98 },
+    html2canvas:  { scale: 2 },
+    jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+  };
+  html2pdf().set(opt).from(element).save();
+}function downloadResume() {
+  const element = document.getElementById('resumeOutput');
+
+  // Create a clone to avoid affecting visible DOM
+  const cloned = element.cloneNode(true);
+  cloned.style.width = "800px"; // ensure proper width for PDF
+  cloned.style.padding = "20px";
+  cloned.style.background = "white";
+  cloned.style.fontSize = "12px";
+
+  document.body.appendChild(cloned); // temporarily add it for rendering
+
+  const opt = {
+    margin: 0.5,
+    filename: 'resume.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: {
+      scale: 2,
+      scrollY: 0,
+      scrollX: 0,
+      useCORS: true
+    },
+    jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+  };
+
+  html2pdf().set(opt).from(cloned).save().then(() => {
+    document.body.removeChild(cloned); // clean up
+  });
+}
+
+
+
+    function calculateCGPA() {
+      const gradePoints = parseFloat(document.getElementById('gradePoints').value);
+      const totalCredits = parseFloat(document.getElementById('totalCredits').value);
+      if (isNaN(gradePoints) || isNaN(totalCredits) || totalCredits === 0) {
+        document.getElementById('cgpaResult').innerText = 'Please enter valid values';
+        return;
+      }
+      const cgpa = (gradePoints / totalCredits).toFixed(2);
+      document.getElementById('cgpaResult').innerText = `Your CGPA is ${cgpa}`;
+    }
+    function showComingSoonPopup(feature) {
+  Swal.fire({
+    title: `${feature} 🚧`,
+    text: "This feature is coming soon. Stay tuned!",
+    icon: "info",
+    confirmButtonText: "Okay!",
+    confirmButtonColor: "teal",
+    background: "#fefefe",
+    backdrop: `rgba(0,0,0,0.5)`,
+    showClass: {
+      popup: 'animate__animated animate__fadeInDown'
+    },
+    hideClass: {
+      popup: 'animate__animated animate__fadeOutUp'
+    }
+  });
+}
+
+  </script>
+</body>
+</html>

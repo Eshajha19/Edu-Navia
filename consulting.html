@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Counseling-Edu Navia</title>
+  <style>
+   /* ─── BASE STYLES ─── */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9fdfc;
+  color: #333;
+}
+
+nav {
+  background-color: #d4f1e3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  flex-wrap: wrap;
+}
+
+nav .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+nav .logo span {
+  margin-left: 10px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+}
+
+nav .auth-buttons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+nav .auth-buttons button {
+  margin-left: 10px;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+header {
+  background-color: #d4f1e3;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+header p {
+  margin-top: 10px;
+  font-size: 1.1rem;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.form-group input[type="radio"] {
+  width: auto;
+  margin-right: 10px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: #1aaa7f;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(26, 170, 127, 0.2);
+}
+
+.btn {
+  background-color: #1aaa7f;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #168f6d;
+}
+
+.pricing {
+  display: flex;
+  gap: 20px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.plan {
+  flex: 1;
+  min-width: 250px;
+  background: #e8f9f0;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px solid #1aaa7f;
+  transition: all 0.3s ease;
+}
+
+.plan:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.plan h3 {
+  margin-top: 0;
+  color: #1aaa7f;
+  font-size: 1.4rem;
+}
+
+.faq {
+  margin-top: 40px;
+}
+
+.faq h3 {
+  color: #1aaa7f;
+}
+
+.faq-item {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 8px;
+  cursor: pointer;
+}
+
+.faq-item h4 {
+  margin: 0;
+  font-weight: 600;
+}
+
+.faq-item p {
+  margin-top: 6px;
+  display: none;
+  color: #444;
+}
+
+/* Toast Notification */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #1aaa7f;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 1000;
+  display: none;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+/* Footer */
+footer {
+  margin-top: 30px;
+  background-color: #00a88e;
+  color: #fff;
+  padding: 50px 20px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-logo img {
+  max-width: 120px;
+  margin-bottom: 20px;
+}
+
+.social-icons {
+  margin: 25px 0;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.social-icon {
+  font-size: 32px;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.social-icon:hover {
+  transform: scale(1.3);
+}
+
+.social-icon.instagram:hover { color: #e4405f; }
+.social-icon.mail:hover { color: #d44638; }
+.social-icon.telephone:hover { color: #34b7f1; }
+.social-icon.linkedin:hover { color: #0077b5; }
+.social-icon.facebook:hover { color: #3b5998; }
+.social-icon.whatsapp:hover { color: #25d366; }
+
+.contact-info {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #ccc;
+}
+
+.contact-info a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-info a:hover {
+  color: #f1c40f;
+}
+
+/* ────────────── RESPONSIVE MEDIA QUERIES ────────────── */
+
+/* 📱 Mobile (<= 600px) */
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 20px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .auth-buttons {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  .container {
+    padding: 15px;
+    margin: 20px 10px;
+  }
+
+  .pricing {
+    flex-direction: column;
+  }
+
+  .faq-item h4 {
+    font-size: 1rem;
+  }
+
+  footer {
+    padding: 30px 10px;
+  }
+
+  .social-icons {
+    gap: 20px;
+  }
+
+  .contact-info {
+    font-size: 14px;
+  }
+
+  .toast {
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 16px;
+    font-size: 0.9rem;
+  }
+}
+
+/* 📲 Tablets (601px - 1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  nav ul {
+    gap: 15px;
+  }
+
+  .container {
+    margin: 20px;
+    padding: 25px;
+  }
+
+  .pricing {
+    justify-content: center;
+  }
+
+  .plan {
+    flex: 0 0 45%;
+  }
+
+  footer {
+    padding: 40px 20px;
+  }
+}
+
+/* 💻 Desktop (1025px and above) */
+@media (min-width: 1025px) {
+  .container {
+    max-width: 1000px;
+  }
+
+  .pricing {
+    flex-wrap: nowrap;
+  }
+
+  .plan {
+    flex: 1;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo"><a href="index.html" style="color:black;text-decoration: none;">🎓<span>Edu Navia</span></a></div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="p.html">Universities</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="consulting.html">Consulting</a></li>
+      <li><a href="resource.html">Resources</a></li>
+    </ul>
+    <!--<div class="auth-buttons">
+      <button class="login-btn"><a href="login.html" style="color:black;text-decoration: none;">Login</a></button>
+      <button class="signup-btn"><a href="signup.html" style="color:white;text-decoration: none;">Sign Up</a></button>
+    </div>-->
+  </nav>
+
+  <header>
+    <h1>🎓 Book Your Counseling Session</h1>
+    <p>Get expert help choosing the right course and university.</p>
+  </header>
+
+  <div class="container">
+    <form id="bookingForm">
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" required />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" required />
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" required />
+      </div>
+
+      <div class="form-group">
+        <label for="datetime">Preferred Date & Time</label>
+        <input type="datetime-local" id="datetime" required />
+      </div>
+
+      <div class="form-group">
+        <label for="counselor">Choose Counselor Type</label>
+        <select id="counselor">
+          <option>General</option>
+          <option>Course Expert</option>
+          <option>Overseas</option>
+          <option>Career Path</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Session Mode</label>
+        <label><input type="radio" name="mode" value="Chat" required /> Chat</label>
+        <label><input type="radio" name="mode" value="Audio Call" /> Audio Call</label>
+        <label><input type="radio" name="mode" value="Video Call" /> Video Call</label>
+      </div>
+
+      <div class="form-group">
+        <label>Type of Session</label>
+        <label><input type="radio" name="type" value="Free" required /> Free (15 min)</label>
+        <label><input type="radio" name="type" value="Premium" /> Premium (30/60 min)</label>
+      </div>
+
+      <div class="form-group">
+        <label for="notes">Additional Notes or Questions</label>
+        <textarea id="notes" rows="4"></textarea>
+      </div>
+
+      <button type="submit" class="btn">📅 Confirm Booking</button>
+    </form>
+
+    <div class="pricing">
+      <div class="plan">
+        <h3>🎧 Free Session</h3>
+        <p>✔ 15 minutes chat</p>
+        <p>✔ General queries only</p>
+        <p>✔ Limited access</p>
+      </div>
+      <div class="plan">
+        <h3>🌟 Premium Session</h3>
+        <p>✔ 30/60 min chat, call, or video</p>
+        <p>✔ Personalized course advice</p>
+        <p>✔ University suggestions</p>
+      </div>
+    </div>
+
+    <div class="faq">
+      <h3>❓ Frequently Asked Questions</h3>
+      <div class="faq-item">
+        <h4>Who are the counselors?</h4>
+        <p>Experts in academic guidance and admission support.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Will I get a course suggestion?</h4>
+        <p>Yes, based on your academic and personality profile.</p>
+      </div>
+      <div class="faq-item">
+        <h4>What if I miss my session?</h4>
+        <p>One reschedule is allowed at no extra cost.</p>
+      </div>
+    </div>
+  </div>
+  <!-- Footer Section -->
+<footer>
+    <div class="footer-container">
+        
+
+        <div class="social-icons">
+            <a href="https://www.instagram.com" target="_blank" class="social-icon instagram">📷</a>
+            <a href="mailto:info@edunavia.com" target="_blank" class="social-icon mail">✉️</a>
+            <a href="tel:+1234567890" target="_blank" class="social-icon telephone">📞</a>
+            <a href="https://www.linkedin.com" target="_blank" class="social-icon linkedin">🔗</a>
+            <a href="https://www.facebook.com" target="_blank" class="social-icon facebook">📘</a>
+            <a href="https://wa.me/+1234567890" target="_blank" class="social-icon whatsapp">💬</a>
+        </div>
+
+        <div class="contact-info">
+            <p>&copy; 2025 Edu Navia. All Rights Reserved.</p>
+            <p>Follow Us on Social Media for Updates!</p>
+        </div>
+    </div>
+</footer>
+  <div class="toast" id="toast">Booking confirmed!</div>
+
+  <!-- Stripe.js for payments -->
+  <script src="https://js.stripe.com/v3/"></script>
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+  <script type="module">
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+    import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+// ✅ Replace with your Firebase project config
+const firebaseConfig = {
+  apiKey: "AIzaSyAPXYOQk3LPxayuymhac79P4QsX13xvMZA",
+      authDomain: "edu-navigator-cc4a0.firebaseapp.com",
+      projectId: "edu-navigator-cc4a0",
+      storageBucket: "edu-navigator-cc4a0.appspot.com",
+      messagingSenderId: "33607968332",
+      appId: "1:33607968332:web:59cbf34a0aae68375736e9"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+    // Initialize EmailJS - replace 'YOUR_USER_ID' below with your actual EmailJS user ID
+    emailjs.init('XNuIdOImhADBCVO2-');
+
+    const bookingForm = document.getElementById('bookingForm');
+    const toast = document.getElementById('toast');
+
+    // Stripe public key - replace with your own Stripe publishable key
+    const stripe = Stripe('YOUR_STRIPE_PUBLISHABLE_KEY');
+
+    // Example Stripe Price IDs for Free and Premium
+    // In real use, set these up in your Stripe dashboard
+    const PRICE_ID_PREMIUM_30MIN = '300'; // replace with actual price id
+    const PRICE_ID_PREMIUM_60MIN = '600'; // replace with actual price id
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.style.display = 'block';
+      toast.style.opacity = 1;
+
+      setTimeout(() => {
+        toast.style.opacity = 0;
+        setTimeout(() => (toast.style.display = 'none'), 500);
+      }, 3000);
+    }
+
+    // FAQ toggle
+    document.querySelectorAll('.faq-item').forEach((item) => {
+      item.addEventListener('click', () => {
+        const para = item.querySelector('p');
+        para.style.display = para.style.display === 'block' ? 'none' : 'block';
+      });
+    });
+
+    bookingForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      // Gather form data
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const datetime = document.getElementById('datetime').value;
+      const counselor = document.getElementById('counselor').value;
+      const mode = document.querySelector('input[name="mode"]:checked').value;
+      const type = document.querySelector('input[name="type"]:checked').value;
+      const notes = document.getElementById('notes').value.trim();
+
+      if (!datetime) {
+        alert('Please select a valid date and time.');
+        return;
+      }
+
+      // Convert datetime-local string to ISO and human readable
+      const startDate = new Date(datetime);
+      const endDate = new Date(startDate);
+      // Duration depends on type
+      if (type === 'Free') {
+        endDate.setMinutes(endDate.getMinutes() + 15);
+      } else {
+        // Ask user to select 30 or 60 min for premium - for demo, use 30 min
+        endDate.setMinutes(endDate.getMinutes() + 30);
+      }
+
+      // If premium session, process payment first
+      if (type === 'Premium') {
+        try {
+          // You can customize priceId selection logic here based on duration
+          // For demo, we use a fixed price id for 30min premium session
+          await stripe.redirectToCheckout({
+            lineItems: [
+              {
+                price: PRICE_ID_PREMIUM_30MIN,
+                quantity: 1,
+              },
+            ],
+            mode: 'payment',
+            successUrl: window.location.href + '?success=true',
+            cancelUrl: window.location.href + '?canceled=true',
+            customerEmail: email,
+          });
+          // After payment, the user is redirected back to success or cancel URL
+          // So no further code executes here on payment redirect
+        } catch (err) {
+          alert('Payment failed: ' + err.message);
+        }
+        return;
+      }
+
+      // For free sessions (or after payment for premium, you need a backend webhook to confirm)
+      // Here we simulate booking confirmation:
+
+      // 1. Send email notification via EmailJS
+      const emailParams = {
+        name,
+        email,
+        phone,
+        datetime: startDate.toLocaleString(),
+        counselor,
+        mode,
+        type,
+        notes,
+      };
+
+      try {
+        await emailjs.send("service_q19sf0g","template_1vqcw07",emailParams);
+      } catch (err) {
+        console.error('Email send failed', err);
+      }
+    
+     
+// ✅ Save with student's name as document ID
+try {
+  const studentName = name.replace(/\s+/g, "_").toLowerCase(); // format ID safely
+  const docRef = doc(db, "consulting", studentName); // collection "consulting", doc ID = name
+  await setDoc(docRef, {
+    name,
+    email,
+    phone,
+    datetime: startDate.toISOString(),
+    counselor,
+    mode,
+    type,
+    notes,
+    timestamp: serverTimestamp()
+  });
+  console.log("✅ Booking saved to Firestore with ID:", studentName);
+} catch (err) {
+  console.error("❌ Firestore save error:", err);
+  alert("Failed to save booking: " + err.message);
+}
+      // 2. Show Google Calendar link popup (optional)
+      const googleCalendarUrl = generateGoogleCalendarLink({
+        title: `${type} Counseling Session with Edu Navigator`,
+        details: `Counselor: ${counselor}\nMode: ${mode}\nNotes: ${notes}`,
+        location: 'Online / Edu Navigator',
+        startDate,
+        endDate,
+      });
+
+      if (confirm('Booking confirmed! Would you like to add this session to your Google Calendar?')) {
+        window.open(googleCalendarUrl, '_blank');
+      }
+
+      // 3. Show toast & reset form
+      showToast('✅ Your session has been booked!');
+      bookingForm.reset();
+    });
+
+    // Function to generate Google Calendar event link
+    function generateGoogleCalendarLink({ title, details, location, startDate, endDate }) {
+      function formatDate(d) {
+        return d.toISOString().replace(/-|:|\.\d+/g, '');
+      }
+      const startStr = formatDate(startDate);
+      const endStr = formatDate(endDate);
+      const url = new URL('https://calendar.google.com/calendar/render');
+      url.searchParams.set('action', 'TEMPLATE');
+      url.searchParams.set('text', title);
+      url.searchParams.set('dates', `${startStr}/${endStr}`);
+      url.searchParams.set('details', details);
+      url.searchParams.set('location', location);
+      url.searchParams.set('trp', 'false');
+      return url.toString();
+    }
+  </script>
+</body>
+</html>

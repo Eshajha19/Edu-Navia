@@ -1,0 +1,351 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #f0fdfa, #f4f9ff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+  padding: 20px;
+}
+
+/* Container */
+.signup-container {
+  display: flex;
+  width: 900px;
+  background: #ffffff;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  overflow: hidden;
+  animation: fadeInScale 1s ease-in-out;
+  transition: transform 0.4s ease;
+}
+
+.signup-container:hover {
+  transform: translateY(-4px);
+}
+
+/* Left Panel */
+.signup-left {
+  background: linear-gradient(135deg, #00a88e, #009b82);
+  color: white;
+  padding: 50px 40px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: slideFromLeft 1.2s ease;
+}
+
+.signup-left h2 {
+  font-size: 28px;
+  margin-bottom: 18px;
+  line-height: 1.3;
+}
+
+.signup-left p {
+  font-size: 16px;
+  margin-bottom: 30px;
+  line-height: 1.7;
+}
+
+.signup-left .btn-outline {
+  text-decoration: none;
+  padding: 10px 20px;
+  border: 2px solid white;
+  color: white;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.signup-left .btn-outline:hover {
+  background: white;
+  color: #00a88e;
+}
+
+/* Right Panel */
+.signup-right {
+  flex: 1;
+  padding: 50px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: slideFromRight 1.2s ease;
+}
+
+.signup-right h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #222;
+}
+
+/* Form */
+.signup-right form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: fadeIn 1s ease-in;
+}
+
+.signup-right input {
+  padding: 14px 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-size: 15px;
+  background: #f9f9f9;
+}
+
+.signup-right input:focus {
+  border-color: #00a88e;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(0, 168, 142, 0.15);
+  outline: none;
+}
+
+/* Submit Button */
+.btn-primary.full-width {
+  padding: 14px;
+  background-color: #00a88e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 14px rgba(0, 168, 142, 0.2);
+}
+
+.btn-primary.full-width:hover {
+  background-color: #008d78;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 168, 142, 0.3);
+}
+
+/* Alternate Text */
+.alt-signup-text {
+  text-align: center;
+  margin: 20px 0 10px;
+  color: #777;
+  font-size: 14px;
+}
+
+/* Social Icons */
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.social-icons img {
+  width: 34px;
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: grayscale(50%);
+}
+
+.social-icons img:hover {
+  transform: scale(1.15);
+  filter: none;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInScale {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideFromLeft {
+  from { transform: translateX(-60px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideFromRight {
+  from { transform: translateX(60px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* ─────────── RESPONSIVE ─────────── */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .signup-container {
+    flex-direction: column;
+    width: 95%;
+  }
+  .signup-left, .signup-right {
+    padding: 30px;
+  }
+}
+
+/* Mobiles */
+@media (max-width: 600px) {
+  .signup-container {
+    margin: 10px;
+    border-radius: 12px;
+  }
+
+  .signup-left h2,
+  .signup-right h2 {
+    font-size: 20px;
+  }
+
+  .signup-left p {
+    font-size: 14px;
+  }
+
+  .signup-left, .signup-right {
+    padding: 20px;
+  }
+
+  .btn-primary.full-width {
+    padding: 12px;
+    font-size: 15px;
+  }
+
+  .signup-right input {
+    font-size: 14px;
+  }
+
+  .social-icons img {
+    width: 28px;
+  }
+}
+
+/* 🔒 Welcome Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 10, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  transition: all 0.4s ease;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+
+.modal-content {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  padding: 40px 30px;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 400px;
+  animation: popUp 0.6s ease-out;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+.modal-content h2 {
+  margin-top: 20px;
+  font-size: 24px;
+  color: #00a88e;
+}
+
+.modal-content p {
+  margin: 12px 0 20px;
+  color: #333;
+  font-size: 15px;
+}
+
+.modal-content button {
+  padding: 10px 24px;
+  background-color: #00a88e;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.modal-content button:hover {
+  background-color: #008d78;
+}
+
+/* ✔️ Checkmark Animation */
+.checkmark {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: inline-block;
+  border: 4px solid #00a88e;
+  position: relative;
+  animation: bounceIn 0.5s ease;
+}
+
+.checkmark-circle {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #e0fdfa;
+}
+
+.checkmark-stem {
+  position: absolute;
+  width: 4px;
+  height: 30px;
+  background: #00a88e;
+  top: 24px;
+  left: 36px;
+  transform: rotate(45deg);
+}
+
+.checkmark-kick {
+  position: absolute;
+  width: 4px;
+  height: 15px;
+  background: #00a88e;
+  top: 38px;
+  left: 36px;
+  transform: rotate(-45deg);
+}
+
+/* Animations */
+@keyframes popUp {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+  80% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
