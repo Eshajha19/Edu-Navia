@@ -1,5 +1,5 @@
  (function(){
-      emailjs.init("XNuIdOImhADBCVO2-"); // 🔑 Replace with your EmailJS public key
+      emailjs.init(""); // 
     })();
 function submitForm(event) {
       event.preventDefault();
@@ -12,7 +12,7 @@ function submitForm(event) {
         webinar: form.webinar.value
       };
 
-      emailjs.send("service_5e42qtn", "template_xr0hqrk", formData)
+      emailjs.send()
       .then(() => {
         document.getElementById("msg").style.display = "block";
         form.reset();
