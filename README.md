@@ -82,10 +82,10 @@ Home_1::https://drive.google.com/file/d/1efdav5NOVRNHcbmc2R_fcb3w5P7wIb5G/view?u
 Consulting::https://drive.google.com/file/d/12UlzKJFxx5Qbu0b4MRr3Uoqc67TGy3C7/view?usp=drive_link
 Resources::https://drive.google.com/file/d/19txq8jjKcBKUhEDl51qdMfnlpinF5znr/view?usp=drive_link
 Webinar::https://drive.google.com/file/d/1ESe7zxPSAw0OkRzeI3x98qesF19ZXjT5/view?usp=drive_link
-Exam Tracker::https://drive.google.com/file/d/1XVpDH9Z64Irw_oMmjgOn4mEbR4FcmKR8/view?usp=drive_link
+Exam_Tracker::https://drive.google.com/file/d/1XVpDH9Z64Irw_oMmjgOn4mEbR4FcmKR8/view?usp=drive_link
 University::https://drive.google.com/file/d/1SUO9FOw1diw-ebD1_kN7LcD674Q0LMhn/view?usp=drive_link
-Compare University::https://drive.google.com/file/d/1F97qz4E4GXGPgUwCtRBxV3TSj0wbpYa7/view?usp=drive_link
-Exam Info::https://drive.google.com/file/d/1pw_QzsfhCtmlNY3c0IAfgcAVlsJDzUMm/view?usp=drive_link
+Compare_University::https://drive.google.com/file/d/1F97qz4E4GXGPgUwCtRBxV3TSj0wbpYa7/view?usp=drive_link
+Exam_Info::https://drive.google.com/file/d/1pw_QzsfhCtmlNY3c0IAfgcAVlsJDzUMm/view?usp=drive_link
 Home_2::https://drive.google.com/file/d/1CLRdpxE8SOV69_hE7YJLlXG2j8L4YPgz/view?usp=drive_link
 
 Demo Video::
