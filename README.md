@@ -74,30 +74,19 @@ Edu Navia empowers users with smart filters, AI-driven assistance, and interacti
 LINK OF OUR DEPLOYED SITE:: https://edunavia.netlify.app/
 
 IMAGES::
-Personality Test::
-https://drive.google.com/file/d/1hkNbtVUHSJjIdXyIPPMZtl8_f4ZP5ldF/view?usp=drive_link
-Advance University Search::
-https://drive.google.com/file/d/1r4kTz-TF3o_RNupJNFAnawkIQE29ZukC/view?usp=drive_link
-courses::
-https://drive.google.com/file/d/1P_JbTwoRzsTrwlyKRNIbqvn11i0n36fh/view?usp=drive_link
-Home 1::
-https://drive.google.com/file/d/1efdav5NOVRNHcbmc2R_fcb3w5P7wIb5G/view?usp=drive_link
-Consulting::
-https://drive.google.com/file/d/12UlzKJFxx5Qbu0b4MRr3Uoqc67TGy3C7/view?usp=drive_link
-Resources::
-https://drive.google.com/file/d/19txq8jjKcBKUhEDl51qdMfnlpinF5znr/view?usp=drive_link
-Webinar::
-https://drive.google.com/file/d/1ESe7zxPSAw0OkRzeI3x98qesF19ZXjT5/view?usp=drive_link
-Exam Tracker::
-https://drive.google.com/file/d/1XVpDH9Z64Irw_oMmjgOn4mEbR4FcmKR8/view?usp=drive_link
-University::
-https://drive.google.com/file/d/1SUO9FOw1diw-ebD1_kN7LcD674Q0LMhn/view?usp=drive_link
-Compare University::
-https://drive.google.com/file/d/1F97qz4E4GXGPgUwCtRBxV3TSj0wbpYa7/view?usp=drive_link
-Exam Info::
-https://drive.google.com/file/d/1pw_QzsfhCtmlNY3c0IAfgcAVlsJDzUMm/view?usp=drive_link
-Home 2::
-https://drive.google.com/file/d/1CLRdpxE8SOV69_hE7YJLlXG2j8L4YPgz/view?usp=drive_link
+
+Personality Test::https://drive.google.com/file/d/1hkNbtVUHSJjIdXyIPPMZtl8_f4ZP5ldF/view?usp=drive_link
+Advance University Search::https://drive.google.com/file/d/1r4kTz-TF3o_RNupJNFAnawkIQE29ZukC/view?usp=drive_link
+courses::https://drive.google.com/file/d/1P_JbTwoRzsTrwlyKRNIbqvn11i0n36fh/view?usp=drive_link
+Home 1::https://drive.google.com/file/d/1efdav5NOVRNHcbmc2R_fcb3w5P7wIb5G/view?usp=drive_link
+Consulting::https://drive.google.com/file/d/12UlzKJFxx5Qbu0b4MRr3Uoqc67TGy3C7/view?usp=drive_link
+Resources::https://drive.google.com/file/d/19txq8jjKcBKUhEDl51qdMfnlpinF5znr/view?usp=drive_link
+Webinar::https://drive.google.com/file/d/1ESe7zxPSAw0OkRzeI3x98qesF19ZXjT5/view?usp=drive_link
+Exam Tracker::https://drive.google.com/file/d/1XVpDH9Z64Irw_oMmjgOn4mEbR4FcmKR8/view?usp=drive_link
+University::https://drive.google.com/file/d/1SUO9FOw1diw-ebD1_kN7LcD674Q0LMhn/view?usp=drive_link
+Compare University::https://drive.google.com/file/d/1F97qz4E4GXGPgUwCtRBxV3TSj0wbpYa7/view?usp=drive_link
+Exam Info::https://drive.google.com/file/d/1pw_QzsfhCtmlNY3c0IAfgcAVlsJDzUMm/view?usp=drive_link
+Home 2::https://drive.google.com/file/d/1CLRdpxE8SOV69_hE7YJLlXG2j8L4YPgz/view?usp=drive_link
 
 Demo Video::
 https://drive.google.com/file/d/1osAdEVA1xVNWNTxY9unX3DMCPlXepmaG/view?usp=drive_link
