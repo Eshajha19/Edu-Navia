@@ -77,7 +77,7 @@ IMAGES::
 
 Personality Test::https://drive.google.com/file/d/1hkNbtVUHSJjIdXyIPPMZtl8_f4ZP5ldF/view?usp=drive_link
 Advance University Search::https://drive.google.com/file/d/1r4kTz-TF3o_RNupJNFAnawkIQE29ZukC/view?usp=drive_link
-courses::https://drive.google.com/file/d/1P_JbTwoRzsTrwlyKRNIbqvn11i0n36fh/view?usp=drive_link
+Courses::https://drive.google.com/file/d/1P_JbTwoRzsTrwlyKRNIbqvn11i0n36fh/view?usp=drive_link
 Home 1::https://drive.google.com/file/d/1efdav5NOVRNHcbmc2R_fcb3w5P7wIb5G/view?usp=drive_link
 Consulting::https://drive.google.com/file/d/12UlzKJFxx5Qbu0b4MRr3Uoqc67TGy3C7/view?usp=drive_link
 Resources::https://drive.google.com/file/d/19txq8jjKcBKUhEDl51qdMfnlpinF5znr/view?usp=drive_link
