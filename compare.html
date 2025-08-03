@@ -50,15 +50,7 @@
       document.body.classList.toggle('dark-mode');
     });
 
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
-    // 🔁 Replace this with your actual config
-    const firebaseConfig = {
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+    
 
     const uni1Select = document.getElementById("university1");
     const uni2Select = document.getElementById("university2");
@@ -118,3 +110,4 @@
 
 </body>
 </html>
+
