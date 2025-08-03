@@ -1,6 +1,4 @@
- (function(){
-      emailjs.init(""); // 
-    })();
+
 function submitForm(event) {
       event.preventDefault();
 
@@ -21,3 +19,4 @@ function submitForm(event) {
         console.error("EmailJS Error:", error);
       });
     }
+
