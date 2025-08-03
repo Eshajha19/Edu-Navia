@@ -1,11 +1,3 @@
-// ✅ Replace with your Firebase config
-const firebaseConfig = {
-  
-};
-
-
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
 
 const categories = [
   "Universities", "Courses", "Support", "Personality Test",
@@ -122,3 +114,4 @@ document.getElementById("submitAllBtn").onclick = () => {
     }
   });
 };
+
