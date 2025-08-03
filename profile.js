@@ -1,21 +1,4 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-import {
-  getFirestore,
-  doc,
-  getDoc,
-  setDoc,
-  updateDoc,
-  getDocs,
-  collection,
-  arrayUnion,
-  arrayRemove
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-// 🔧 Firebase Config
-const firebaseConfig = {
-   
-};
 
 // 🔄 Firebase Init 
 const app = initializeApp(firebaseConfig);
@@ -23,9 +6,9 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 let currentUID = null;
-let userDocId = null; // Document ID will be user's name
+let userDocId = null; // ID will be user's name
 
-// 💬 Rotating Quotes
+// 💬 Rotating QuotesDocument 
 const quotes = [
   "Believe you can and you're halfway there.",
   "Push yourself, because no one else will.",
@@ -269,4 +252,5 @@ document.getElementById("saveBtn").addEventListener("click", async () => {
     Swal.fire("Error", "Could not update profile", "error");
   }
 });
+
 
