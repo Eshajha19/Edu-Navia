@@ -1,16 +1,3 @@
-// signup.js
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-app.js";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithPopup,
-  GoogleAuthProvider
-} from "https://www.gstatic.com/firebasejs/11.9.0/firebase-auth.js";
-
-// 🔐 Firebase Config (replace this with your actual config)
-const firebaseConfig = {
-  
-};
 
 // 🔧 Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -73,3 +60,4 @@ googleBtn.addEventListener("click", async (e) => {
     alert("Google sign-in failed: " + error.message);
   }
 });
+
