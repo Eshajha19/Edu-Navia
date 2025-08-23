@@ -17,18 +17,7 @@ import {
   getAuth,
   onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-  const firebaseConfig = {
-    // your firebase config
-    apiKey: "AIzaSyAPXYOQk3LPxayuymhac79P4QsX13xvMZA",
-      authDomain: "edu-navigator-cc4a0.firebaseapp.com",
-      projectId: "edu-navigator-cc4a0",
-      storageBucket: "edu-navigator-cc4a0.appspot.com",
-      messagingSenderId: "33607968332",
-      appId: "1:33607968332:web:59cbf34a0aae68375736e9"
-  };
-
-
-
+  
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
@@ -280,4 +269,5 @@ document.getElementById("loginNowBtn").addEventListener("click", () => {
     } else {
       header.classList.remove('scrolled');
     }
+
   });
