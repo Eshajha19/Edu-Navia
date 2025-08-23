@@ -1,0 +1,320 @@
+
+    :root {
+      --primary: #008080;
+      --accent: #00bfa6;
+      --bg-light: #f0faff;
+      --text-dark: #003b3b;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: var(--bg-light);
+      color: #333;
+    }
+
+    .navbar {
+      background: linear-gradient(to right, var(--primary), var(--accent));
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    .navbar nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .navbar nav a:hover {
+      color: #ffe600;
+    }
+
+    .hero {
+      background: linear-gradient(to right, #004d61, #007e80);
+      color: white;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .section {
+      padding: 3rem 2rem;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .section h2 {
+      color: var(--primary);
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .section p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      text-align: justify;
+      margin-bottom: 2rem;
+    }
+
+    .highlight {
+      background: #ffffff;
+      border-left: 5px solid var(--primary);
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    }
+
+    .highlight h3 {
+      margin-top: 0;
+      color: var(--primary);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+
+    th, td {
+      padding: 1rem;
+      text-align: center;
+    }
+
+    th {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+    }
+
+    .card h3 {
+      color: #005555;
+      margin-bottom: 0.5rem;
+    }
+
+    .career-path {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .step {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+      text-align: center;
+    }
+
+    .step .icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+
+    .footer {
+      background: #004d61;
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    @media (min-width: 768px) {
+      .career-path {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      .step {
+        width: 18%;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .navbar nav {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .navbar nav a {
+        margin: 0.5rem 0;
+      }
+    }
+    .path-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-top: 2rem;
+}
+
+.step-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  width: 200px;
+  text-align: center;
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.step-card:hover {
+  transform: translateY(-5px);
+}
+
+.step-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+}
+
+.arrow {
+  font-size: 1.8rem;
+  color: #008080;
+  font-weight: bold;
+  margin: 0 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .path-container {
+    flex-direction: column;
+  }
+
+  .arrow {
+    transform: rotate(90deg);
+  }
+}
+   a {
+      text-decoration: none;
+      color: white;
+    }
+/* Keep navbar original color — do not set background here */
+
+/* Google Translate Dropdown beside profile */
+.translate-dropdown {
+  display: inline-block;
+  margin-left: 8px;
+}
+
+/* Hide extra text from Google widget */
+.goog-te-gadget {
+  font-size: 0 !important;
+}
+
+/* Style dropdown to match navbar */
+.goog-te-gadget select {
+  padding: 5px 8px;
+  border: none;
+  border-radius: 4px;
+  
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Hover effect */
+.goog-te-gadget select:hover {
+  opacity: 0.8;
+}
+
+/* Dropdown options */
+.goog-te-gadget select option {
+  background: white;
+  color: black;
+}
+/* Color for Google Translate select box */
+.goog-te-gadget select {
+  background-color: #008080; /* background of select */
+  color: #000000; /* text color */
+}
+
+/* Color for dropdown options */
+.goog-te-gadget select option {
+  background-color: #f4f4f4; /* light grey */
+  color: #000000; /* black text */
+}
+/* Force styles inside Google Translate select */
+.goog-te-gadget .goog-te-combo {
+  background-color: #ffffff !important; /* change to your color */
+  color: #000000 !important; /* text color */
+  border-radius: 4px;
+  padding: 4px 6px;
+}
+/* Custom dropdown style - adjust colors to match your navbar */
+#customTranslate {
+  background-color: #008080;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+#customTranslate:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
