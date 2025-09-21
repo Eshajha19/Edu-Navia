@@ -151,13 +151,14 @@ dfx.json defines canisters & deployment configuration
 ## Deployment:
 Currently live on Netlify; ICP deployment in progress
 
-##⚡ ICP-Ready Submission Note
+## ⚡ ICP-Ready Submission Note
 Edu Navia is ICP-ready, even though full deployment on the Internet Computer (ICP) is not yet complete.
 
 ## Current Status:
 ●Live demo hosted on Netlify, showcasing key functionality.
-●dfx.json included for canister configuration and ICP
-compatibility.
+
+●dfx.json included for canister configuration and ICP compatibility.
+
 ●Some backend canister source files and environment configurations are missing.
 
 ## ICP Readiness:
