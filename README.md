@@ -1,4 +1,4 @@
-🎓 Edu Nava - Your Personalized University & Course Navigator
+## 🎓 Edu Nava - Your Personalized University & Course Navigator
 
 Edu Nava is a smart web platform that helps students, parents, and counselors explore the best-fit universities and courses based on interests, skills, and career goals. It offers advanced filters, real-time data from Firebase, interactive search tools, chat support, and calendar scheduling to make the decision process simpler and more personalized.
 ---
