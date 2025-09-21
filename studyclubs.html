@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edu Navia - Study Clubs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif;}
+    body { display:flex; flex-direction:column; height:100vh; background:linear-gradient(135deg,#e6f7f7,#d9fafa); color:#333;}
+    /* Navbar */
+    .navbar {
+      height:60px;
+      background: rgba(0,128,128,0.95);
+      display:flex; align-items:center; justify-content:space-between;
+      padding:0 20px; color:white; font-weight:600;
+      box-shadow:0 2px 10px rgba(0,0,0,0.1);
+    }
+    .navbar a { color:white; text-decoration:none; margin-left:20px; font-weight:500; transition:0.3s;}
+    .navbar a:hover { color:#cceeee; }
+    /* Layout */
+    .layout { flex:1; display:flex;}
+    /* Sidebar */
+    .sidebar {
+      width:270px;
+      background: rgba(255,255,255,0.25);
+      backdrop-filter: blur(10px);
+      padding:20px;
+      border-right:1px solid rgba(255,255,255,0.3);
+    }
+    .sidebar h2 { font-size:18px; margin-bottom:15px; color:teal;}
+    .club {
+      padding:12px; margin-bottom:12px;
+      background: rgba(255,255,255,0.45);
+      border-radius:12px;
+      cursor:pointer;
+      transition:0.3s;
+      font-weight:500;
+    }
+    .club:hover { background: rgba(0,128,128,0.2); transform:translateX(5px);}
+    /* Main Discussion Area */
+    .main { flex:1; padding:20px; display:flex; flex-direction:column;}
+    .main h2 { color:teal; margin-bottom:10px;}
+    .discussion-box {
+      flex:1;
+      background: rgba(255,255,255,0.45);
+      backdrop-filter: blur(12px);
+      border-radius:15px;
+      padding:15px;
+      overflow-y:auto;
+      box-shadow: inset 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .discussion {
+      padding:12px; margin-bottom:10px;
+      background:white;
+      border-radius:10px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      box-shadow:0 2px 6px rgba(0,0,0,0.1);
+    }
+    .discussion span { flex:1; margin-left:5px;}
+    .discussion button {
+      background: crimson; border:none; color:white;
+      padding:5px 10px; border-radius:8px; cursor:pointer; transition:0.3s;
+    }
+    .discussion button:hover { background: darkred; }
+    .add-btn {
+      margin-top:15px; padding:10px; border:none;
+      border-radius:10px; background:teal; color:white;
+      font-weight:600; cursor:pointer; transition:0.3s;
+    }
+    .add-btn:hover { background:#006666; }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo"><a href="index.html" style="color:White;text-decoration: none;">🎓 Edu Navia</a></div>
+    <div class="nav-links">
+      <a href="p.html">Universities</a>
+      <a href="courses.html">Courses</a>
+      <a href="consulting.html">Consulting</a>
+      <a href="resource.html">Resources</a>
+    </div>
+  </div>
+
+  <div class="layout">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h2>Study Clubs</h2>
+      <div class="club" onclick="openClub('Universities by Location')">🏙 Universities by Location</div>
+      <div class="club" onclick="openClub('Courses & Streams')">🎓 Courses & Streams</div>
+      <div class="club" onclick="openClub('Entrance Exam Prep')">📝 Entrance Exam Prep</div>
+      <div class="club" onclick="openClub('Study Abroad')">🌍 Study Abroad</div>
+      <div class="club" onclick="openClub('Scholarships & Aid')">💰 Scholarships & Aid</div>
+      <div class="club" onclick="openClub('Student Experiences')">👩‍🎓 Student Experiences</div>
+      <div class="club" onclick="openClub('Career Pathways')">💼 Career Pathways</div>
+    </div>
+
+    <!-- Main Discussion Area -->
+    <div class="main">
+      <h2 id="club-title">Select a Club</h2>
+      <div class="discussion-box" id="discussion-box">
+        <p style="text-align:center;color:gray;">No club selected.</p>
+      </div>
+      <button class="add-btn" onclick="addDiscussion()">➕ Add Discussion</button>
+    </div>
+  </div>
+
+  <script>
+    // ----- Firebase config -----
+      const firebaseConfig = {
+    apiKey: "AIzaSyAPXYOQk3LPxayuymhac79P4QsX13xvMZA",
+    authDomain: "edu-navigator-cc4a0.firebaseapp.com",
+    projectId: "edu-navigator-cc4a0",
+    storageBucket: "edu-navigator-cc4a0.appspot.com",
+    messagingSenderId: "33607968332",
+    appId: "1:33607968332:web:59cbf34a0aae68375736e9"
+  };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    let currentUser = null;
+    const allowedAdmins = [
+      "jha.esha2024@gmail.com",
+      "eja5980@gmail.com",
+      "eshita.jha@example.com" // replace with your 3rd email
+    ];
+
+    auth.onAuthStateChanged(user => { currentUser = user; });
+
+    let currentClub = null;
+
+    function openClub(club) {
+      currentClub = club;
+      document.getElementById("club-title").innerText = club + " Club";
+      loadDiscussions();
+    }
+
+    function loadDiscussions() {
+      const box = document.getElementById("discussion-box");
+      box.innerHTML = "<p style='text-align:center;color:gray;'>Loading...</p>";
+
+      db.collection("studyClubs").doc(currentClub).collection("discussions")
+        .orderBy("timestamp","asc")
+        .onSnapshot(snapshot => {
+          box.innerHTML = "";
+          if(snapshot.empty){
+            box.innerHTML = "<p style='text-align:center;color:gray;'>No discussions yet. Start one!</p>";
+            return;
+          }
+
+          snapshot.forEach(doc => {
+            const data = doc.data();
+            const div = document.createElement("div");
+            div.className = "discussion";
+
+            // delete button for admins OR owner
+            let deleteBtn = "";
+            if(currentUser && 
+              (allowedAdmins.includes(currentUser.email) || currentUser.email === data.email)){
+              deleteBtn = `<button onclick="deleteDiscussion('${doc.id}')">Delete</button>`;
+            }
+
+            div.innerHTML = `<strong>${data.user}:</strong> <span>${data.text}</span> ${deleteBtn}`;
+            box.appendChild(div);
+          });
+        });
+    }
+
+    function addDiscussion() {
+      if (!currentUser) {
+        Swal.fire({ icon:'error', title:'Login Required', text:'You must be logged in to post!', confirmButtonColor:'teal' });
+        return;
+      }
+      if (!currentClub) { Swal.fire("⚠️ Select a club first!"); return; }
+
+      Swal.fire({
+        title:"New Discussion",
+        input:"text",
+        inputPlaceholder:"Enter your discussion topic...",
+        showCancelButton:true,
+        confirmButtonText:"Add",
+        confirmButtonColor:"teal",
+        background:"rgba(255,255,255,0.95)",
+        imageUrl:"https://i.pinimg.com/originals/59/30/74/593074c302700c41ae6fdfeca3d51563.gif",
+        imageWidth:120,
+        imageHeight:120
+      }).then((result)=>{
+        if(result.isConfirmed && result.value.trim()!==""){
+          db.collection("studyClubs").doc(currentClub).collection("discussions").add({
+            text: result.value.trim(),
+            user: currentUser.displayName || currentUser.email,
+            email: currentUser.email,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+          });
+        }
+      });
+    }
+
+    function deleteDiscussion(id) {
+      if(!currentUser){
+        Swal.fire({ icon:'error', title:'Login Required', text:'You must be logged in to delete!', confirmButtonColor:'teal' });
+        return;
+      }
+      Swal.fire({
+        title:"Are you sure?",
+        text:"This discussion will be deleted.",
+        icon:"warning",
+        showCancelButton:true,
+        confirmButtonColor:"teal",
+        cancelButtonColor:"#d33",
+        confirmButtonText:"Yes, delete it!"
+      }).then((result)=>{
+        if(result.isConfirmed){
+          db.collection("studyClubs").doc(currentClub).collection("discussions").doc(id).delete();
+          Swal.fire("Deleted!","The discussion was removed.","success");
+        }
+      });
+    }
+  </script>
+  <!-- Floating Guide Button -->
+<button id="guideBtn">💡 Guide</button>
+
+<!-- Slide-in Navi Panel -->
+<div id="naviPanel">
+  <div class="panel-content">
+    <button id="closeGuide">Close ✖</button>
+    <iframe src="guide.html"></iframe>
+  </div>
+</div>
+
+<style>
+#guideBtn {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  background: #00bfa6;
+  color: white;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  z-index: 1001;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+#naviPanel {
+  position: fixed;
+  top: 70px;
+  left: -360px;
+  width: 360px;
+  height: calc(100% - 70px);
+  background: #f4f7fb;
+  box-shadow: 4px 0 20px rgba(0,0,0,0.2);
+  transition: left 0.3s ease;
+  z-index: 1000;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  overflow: hidden;
+}
+
+#naviPanel .panel-content {
+  padding: 16px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#naviPanel iframe {
+  border: none;
+  flex: 1;
+  border-radius: 8px;
+}
+
+#closeGuide {
+  background: #009e89;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+</style>
+
+<script>
+const guideBtn = document.getElementById('guideBtn');
+const naviPanel = document.getElementById('naviPanel');
+const closeBtn = document.getElementById('closeGuide');
+
+guideBtn.addEventListener('click', () => {
+  naviPanel.style.left = '0';
+
+  // Send message to iframe to trigger speech
+  const iframe = naviPanel.querySelector('iframe');
+  iframe.contentWindow.postMessage({ action: 'speak', text: "Hi, I am Navi, your Edu Navia guide. What would you like to do?" }, '*');
+});
+
+closeBtn.addEventListener('click', () => {
+  naviPanel.style.left = '-360px';
+});
+</script>
+
+</body>
+</html>
+

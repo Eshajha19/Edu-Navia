@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Edu Navia — Advanced Cutoff Predictor</title>
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+  :root{
+    --teal-900: #004d4d;
+    --teal-700: #006666;
+    --teal-500: #008080;
+    --teal-300: #bfecec;
+    --bg: #f4fdfd;
+    --muted: #6b6b6b;
+    --danger: #ff4d4d;
+    --warning: #ffb84d;
+  }
+  body{
+    margin:0;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background:var(--bg);
+    color:var(--teal-900);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
+
+  /* navbar */
+  .navbar {
+    background: #bfe2dd;
+    padding: 10px 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  .nav-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-size: 26px;
+    font-weight: 700;
+    color: #00a88e;
+  }
+  .logo a {
+    text-decoration: none;
+    color: black;
+  }
+
+  .menu-toggle {
+    display: none;
+    font-size: 26px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: #004d4d;
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+  }
+  .nav-links li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  .nav-links li a:hover {
+    color: #00a88e;
+  }
+  .nav-links select {
+    padding: 6px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+
+  /* layout */
+  .wrap{
+    max-width:1100px;
+    margin:28px auto;
+    padding:18px;
+  }
+  .grid{
+    display:grid;
+    grid-template-columns: 420px 1fr;
+    gap:18px;
+    align-items:start;
+  }
+
+  /* predictor card */
+  .card{
+    background:#fff;
+    border-radius:12px;
+    padding:18px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  }
+  .card h2{ margin:0 0 6px; color:var(--teal-700) }
+  .muted{ color:var(--muted); font-size:13px }
+
+  .form-row{ display:flex; gap:12px; margin-bottom:12px; flex-wrap:wrap; }
+  .field{ display:flex; flex-direction:column; gap:6px; flex:1; }
+  label{ font-weight:600; font-size:13px; color:var(--teal-900) }
+  input[type=number], select{
+    padding:10px 12px;
+    border-radius:8px;
+    border:1px solid #e6f3f3;
+    background: #f8ffff;
+    font-size:14px;
+    outline:none;
+  }
+  input[type=number]::placeholder{ color:#bfcfcf }
+  .btn {
+    display:inline-block;
+    width:100%;
+    padding:12px;
+    border-radius:10px;
+    border:none;
+    background:linear-gradient(90deg,var(--teal-500),var(--teal-700));
+    color:white;
+    font-weight:700;
+    cursor:pointer;
+    margin-top:8px;
+    box-shadow: 0 6px 18px rgba(0,130,130,0.12);
+  }
+  .btn:active{ transform: translateY(1px) }
+
+  /* result column */
+  .result-top{ display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
+  .summary{
+    background: linear-gradient(180deg,#e8fbfb,#f6fffe);
+    padding:12px; border-radius:10px; flex:1;
+    border-left:6px solid var(--teal-500);
+  }
+  .big{ font-size:18px; font-weight:800; color:var(--teal-700) }
+  .small{ font-size:13px; color:var(--muted) }
+
+  .charts{
+    margin-top:12px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:12px;
+  }
+  .chart-card{ padding:10px; background:white; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.04) }
+
+  /* analysis box */
+  .analysis{
+    margin-top:14px;
+    background:#fff;
+    border-radius:10px;
+    padding:14px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.04);
+    font-size:14px;
+    color:#303030;
+    line-height:1.45;
+  }
+
+  footer{ text-align:center; color:var(--muted); margin-top:22px; font-size:13px }
+
+  /* responsive */
+  @media (max-width:980px){
+    .grid{ grid-template-columns: 1fr; }
+    .charts{ grid-template-columns: 1fr; }
+  }
+
+  @media (max-width:720px){
+  .navbar{
+    width:500px;
+  }
+    .menu-toggle {
+      display: block;
+    }
+    .nav-links {
+      flex-direction: column;
+      max-height: 0;
+      overflow: hidden;
+      gap: 16px;
+      background: #e9f7f7;
+      padding: 0;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .nav-links.active {
+      max-height: 500px;
+      padding: 14px;
+    }
+    .nav-links li a {
+      font-size: 16px;
+      display: block;
+      padding: 8px 0;
+    }
+    .nav-links select {
+      margin-top: 10px;
+      padding: 8px;
+      width: 90%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<header class="navbar">
+  <div class="nav-wrapper">
+    <div class="logo">
+      <a href="index.html">🎓 Edu Navia</a>
+    </div>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="p.html">Universities</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="consulting.html">Consulting</a></li>
+        <li><a href="resource.html">Resources</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="profile.html" class="active">Profile</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- Google translate hidden -->
+<div id="google_translate_element" style="display:none;"></div>
+
+<!-- Main Wrap -->
+<div class="wrap">
+  <div class="grid">
+    <!-- LEFT -->
+    <div class="card" aria-labelledby="predictTitle">
+      <h2 id="predictTitle">Advanced Cutoff Predictor</h2>
+      <div class="muted">Enter your profile below. Predictions combine marks, rank & historical cutoffs to give a probability + analysis.</div>
+      <div style="height:12px"></div>
+
+      <div class="form-row">
+        <div class="field">
+          <label for="rank">Rank</label>
+          <input id="rank" type="number" min="0" placeholder="e.g. 1200">
+        </div>
+        <div class="field">
+          <label for="marks">Marks (out of)</label>
+          <input id="marks" type="number" min="0" placeholder="e.g. 450">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="field">
+          <label for="course">Course / Branch</label>
+          <select id="course"></select>
+        </div>
+        <div class="field">
+          <label for="state">State / UT</label>
+          <select id="state"></select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="field">
+          <label for="category">Category</label>
+          <select id="category">
+            <option value="general">General</option>
+            <option value="obc">OBC</option>
+            <option value="sc">SC</option>
+            <option value="st">ST</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="maxMarks">Max Marks</label>
+          <select id="maxMarks">
+            <option value="100">100</option>
+            <option value="200">200</option>
+            <option value="360">360</option>
+            <option value="400">400</option>
+            <option value="450" selected>450</option>
+            <option value="500">500</option>
+          </select>
+        </div>
+      </div>
+
+      <button id="predictBtn" class="btn">Predict Admission</button>
+
+      <div style="height:8px"></div>
+      
+    </div>
+
+    <!-- RIGHT (results) -->
+    <div>
+      <div class="result-top card">
+        <div class="summary">
+          <div class="small">Prediction</div>
+          <div id="predText" class="big">—</div>
+          <div id="probText" class="small">Probability: —</div>
+        </div>
+        <div style="width:240px;">
+          <canvas id="gaugeChart" width="240" height="140"></canvas>
+        </div>
+      </div>
+
+      <div class="charts">
+        <div class="chart-card card">
+          <div style="font-weight:700; margin-bottom:8px">Marks vs Cutoff</div>
+          <canvas id="marksChart" width="400" height="220"></canvas>
+        </div>
+        <div class="chart-card card">
+          <div style="font-weight:700; margin-bottom:8px">Top state cutoffs (same course)</div>
+          <canvas id="topStatesChart" width="400" height="220"></canvas>
+        </div>
+      </div>
+
+      <div id="analysisBox" class="analysis card" style="display:none">
+        <div id="analysisText"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer>Edu Navia</footer>
+</div>
+
+<script>
+/* -------------------------
+   Navbar toggle
+------------------------- */
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+menuToggle.addEventListener("click", () => {
+  navLinks.classList.toggle("active");
+  menuToggle.textContent = navLinks.classList.contains("active") ? "✖" : "☰";
+});
+
+/* -------------------------
+   Predictor JS
+------------------------- */
+const COURSES = ["Engineering","Medical","Management"];
+const CATEGORY_OFFSETS = { general: 0, obc: -4, sc: -8, st: -10 };
+
+let dataset = [];
+let gaugeChart = null;
+let marksChart = null;
+let topChart = null;
+
+async function loadDataset() {
+  try {
+    const res = await fetch("cutoffs.json");
+    const baseData = await res.json();
+    const data = [];
+    for (const state in baseData) {
+      for (const course in baseData[state]) {
+        const base = baseData[state][course];
+        for (const cat in CATEGORY_OFFSETS) {
+          const cutoff = Math.max(45, Math.round(base + CATEGORY_OFFSETS[cat]));
+          data.push({ state, course, category: cat, cutoff });
+        }
+      }
+    }
+    dataset = data;
+    buildDropdowns();
+  } catch (err) {
+    console.error("Error loading cutoffs.json:", err);
+    alert("Failed to load cutoff data.");
+  }
+}
+
+function buildDropdowns(){
+  const stateEl = document.getElementById('state');
+  const courseEl = document.getElementById('course');
+
+  courseEl.innerHTML = "";
+  COURSES.forEach(c=>{
+    const o = document.createElement('option');
+    o.value = c;
+    o.text = c;
+    courseEl.appendChild(o);
+  });
+
+  stateEl.innerHTML = "";
+  const uniqueStates = Array.from(new Set(dataset.map(d=>d.state))).sort();
+  uniqueStates.forEach(s=>{
+    const o = document.createElement('option');
+    o.value = s;
+    o.text = s;
+    stateEl.appendChild(o);
+  });
+
+  if(uniqueStates.length) stateEl.value = uniqueStates[0];
+  courseEl.value = COURSES[0];
+
+  createGauge(10);
+  createMarksChart(0, 0, 100);
+  createTopStatesChart(COURSES[0],'general', uniqueStates[0]);
+}
+
+function findEntry(state, course, category){
+  return dataset.find(d=>d.state===state && d.course===course && d.category===category);
+}
+function logistic(x){ return 1/(1+Math.exp(-x)); }
+function computeProbability({marks, maxMarks, rank, entry}){
+  const cut = entry.cutoff;
+  const markDiff = (marks - cut) / Math.max(1, maxMarks/10);
+  const safeRank = Math.max(100, Math.round((100 - cut) * 80 + 150));
+  let rankRatio = safeRank > 0 ? (safeRank / Math.max(1, rank)) : 0;
+  rankRatio = Math.max(0, Math.min(4, rankRatio));
+  const rawScore = 0.65 * markDiff + 0.35 * (rankRatio - 1);
+  const prob = Math.round(100 * Math.min(0.995, Math.max(0.005, logistic(rawScore * 1.8))));
+  return { prob, safeRank, markDiff, rawScore };
+}
+
+function createGauge(prob){
+  const ctx = document.getElementById('gaugeChart').getContext('2d');
+  if(gaugeChart) gaugeChart.destroy();
+  gaugeChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: { labels: ['Chance','Remaining'],
+      datasets: [{ data: [prob, 100-prob], backgroundColor: [getColorForProb(prob), '#e6f7f7'], borderWidth: 0 }]
+    },
+    options: { cutout: '75%', plugins:{ tooltip:{ enabled:false }, legend:{ display:false } } }
+  });
+}
+function createMarksChart(userMarks, cutoff, maxMarks){
+  const ctx = document.getElementById('marksChart').getContext('2d');
+  if(marksChart) marksChart.destroy();
+  marksChart = new Chart(ctx, {
+    type:'bar',
+    data:{ labels:['Your Marks','Cutoff'], datasets:[{ label:'Score', data:[userMarks, cutoff], backgroundColor:[ '#00b3b3', '#008080' ], borderRadius:8 }] },
+    options:{ indexAxis:'y', scales:{ x:{ beginAtZero:true, max: Math.max(maxMarks, cutoff, userMarks) + 10 } }, plugins:{ legend:{ display:false } } }
+  });
+}
+function createTopStatesChart(course, category, userState){
+  const entries = dataset.filter(d=>d.course===course && d.category===category)
+                         .sort((a,b)=>b.cutoff-a.cutoff).slice(0,8);
+  const labels = entries.map(e=>e.state);
+  const data = entries.map(e=>e.cutoff);
+  const colors = labels.map(s=> s===userState ? '#006666' : '#00b3b3');
+  const ctx = document.getElementById('topStatesChart').getContext('2d');
+  if(topChart) topChart.destroy();
+  topChart = new Chart(ctx, {
+    type:'bar',
+    data:{ labels, datasets:[{ label:'Cutoff', data, backgroundColor:colors, borderRadius:6 }] },
+    options:{ indexAxis:'y', plugins:{ legend:{ display:false } }, scales:{ x:{ beginAtZero:true } } }
+  });
+}
+
+function getColorForProb(p){
+  if(p>=75) return '#00b359';
+  if(p>=50) return '#ffb84d';
+  return '#ff4d4d';
+}
+
+document.getElementById("predictBtn").addEventListener("click", ()=>{
+  const rank = parseInt(document.getElementById('rank').value||0);
+  const marks = parseInt(document.getElementById('marks').value||0);
+  const course = document.getElementById('course').value;
+  const state = document.getElementById('state').value;
+  const category = document.getElementById('category').value;
+  const maxMarks = parseInt(document.getElementById('maxMarks').value);
+
+  if(!marks || !rank){ alert('Enter both rank and marks'); return; }
+
+  const entry = findEntry(state,course,category);
+  if(!entry){ alert('No data for this selection'); return; }
+
+  const {prob,safeRank} = computeProbability({marks,maxMarks,rank,entry});
+
+  document.getElementById('predText').textContent = prob>=50?'Likely':'Unlikely';
+  document.getElementById('probText').textContent = `Probability: ${prob}%`;
+  createGauge(prob);
+  createMarksChart(marks, entry.cutoff, maxMarks);
+  createTopStatesChart(course, category, state);
+
+  document.getElementById('analysisBox').style.display='block';
+  document.getElementById('analysisText').innerHTML =
+    `With <b>${marks}/${maxMarks}</b> marks and a rank of <b>${rank}</b>,
+     your chance in <b>${state}</b> for <b>${course}</b> (${category.toUpperCase()}) is
+     <b style="color:${getColorForProb(prob)}">${prob}%</b>.
+     Typical safe rank ≈ <b>${safeRank}</b>.`;
+});
+
+loadDataset();
+</script>
+
+<!-- Google Translate script -->
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    includedLanguages: 'en,hi,bn,ta,te,ml,gu,mr,kn,pa,ur,or,as',
+    autoDisplay: false
+  }, 'google_translate_element');
+}
+document.getElementById("customTranslate").addEventListener("change", function(){
+  const lang = this.value;
+  if(lang){
+    const iframe = document.querySelector("iframe.goog-te-menu-frame");
+    if(!iframe){ alert("Google Translate not loaded yet."); return; }
+    const innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+    const langEls = innerDoc.querySelectorAll(".goog-te-menu2-item span.text");
+    for(const el of langEls){
+      if(el.innerText.toLowerCase().includes(lang.toLowerCase())){
+        el.click(); break;
+      }
+    }
+  }
+});
+</script>
+</body>
+</html>

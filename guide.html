@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Navi — Edu Navia Guide</title>
+<style>
+  :root {
+    --accent: #00bfa6;
+    --accent-dark: #009e89;
+    --bg: #f4f7fb;
+  }
+  body{
+    font-family: Inter, system-ui, Arial;
+    background: var(--bg);
+    margin:0;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .assistant-wrap{
+    width:360px;
+    background: #fff;
+    border-radius:12px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    padding:18px;
+    text-align:center;
+  }
+  .speech-bubble{
+    background:white;
+    border:2px solid var(--accent);
+    padding:12px 14px;
+    border-radius:10px;
+    display:inline-block;
+    max-width: 320px;
+    font-size:15px;
+    color:#222;
+  }
+  .char {
+    width:96px; height:96px;
+    margin:14px auto;
+    border-radius:50%;
+    background: linear-gradient(135deg,var(--accent),var(--accent-dark));
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-size:40px;
+  }
+  .controls { margin-top:12px; display:flex; gap:8px; justify-content:center; align-items:center; }
+  .mic {
+    background:var(--accent);
+    color:#fff; border:none; padding:10px 14px; border-radius:999px;
+    cursor:pointer; font-size:16px;
+  }
+  .mic.listening { box-shadow: 0 0 0 8px rgba(0,191,166,0.12); animation: pulse 1.2s infinite; }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(0,191,166,0.18);} 70% { box-shadow: 0 0 0 14px rgba(0,191,166,0);} 100% { box-shadow: 0 0 0 0 rgba(0,191,166,0);} }
+  .status { font-size:13px; color:#444; margin-top:8px; min-height:18px; }
+  .text-fallback { margin-top:12px; display:flex; gap:8px; justify-content:center; }
+  .text-fallback input { flex:1; padding:8px 10px; border-radius:8px; border:1px solid #ddd; }
+  .text-fallback button { padding:8px 12px; border-radius:8px; border:none; background:var(--accent); color:#fff; cursor:pointer; }
+  .suggestions { margin-top:12px; display:flex; gap:8px; flex-wrap:wrap; justify-content:center; }
+  .chip { padding:6px 10px; background:#f1f7f5; border-radius:999px; font-size:13px; cursor:pointer; border:1px solid #e6f4f0; }
+</style>
+</head>
+<body>
+
+<div class="assistant-wrap">
+  <div class="speech-bubble" id="speech">👋 Hi — I’m <strong>NavEshrey</strong>, your Edu Navia guide.</div>
+  <div class="char">🧭</div>
+
+  <div class="controls">
+    <button id="micBtn" class="mic">🎤 Talk to NavEshrey</button>
+  </div>
+
+  <div class="status" id="status">Click 'Talk to NavEshrey' to begin.</div>
+
+  <div class="text-fallback">
+    <input id="textCommand" placeholder="Type a command (e.g. 'open courses')" />
+    <button id="textSend">Send</button>
+  </div>
+
+  <div class="suggestions">
+    <div class="chip" data-cmd="universities">Universities</div>
+    <div class="chip" data-cmd="courses">Courses</div>
+    <div class="chip" data-cmd="quiz">Personality Test</div>
+    <div class="chip" data-cmd="forum">Forum</div>
+    <div class="chip" data-cmd="counselling">Counselling</div>
+    <div class="chip" data-cmd="login">Login</div>
+    <div class="chip" data-cmd="signup">Signup</div>
+  </div>
+</div>
+
+<script>
+const speechEl = document.getElementById('speech');
+const statusEl = document.getElementById('status');
+const micBtn = document.getElementById('micBtn');
+const textInput = document.getElementById('textCommand');
+const textSend = document.getElementById('textSend');
+const chipEls = document.querySelectorAll('.chip');
+
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+let recognition = null;
+
+// Command list: **specific first, general later**
+const COMMANDS = [
+  {keys:['login','sign in','log in'], msg:'Opening Login page.', url:'login.html'},
+  {keys:['signup','sign up','register','no account'], msg:'Opening Signup page.', url:'signup.html'},
+  {keys:['university','universities','college','colleges'], msg:'Taking you to Universities.', url:'p.html'},
+  {keys:['course','courses','subject','subjects'], msg:'Opening Courses page.', url:'courses.html'},
+  {keys:['quiz','personality','test'], msg:'Starting Personality Test.', url:'personality_test.html'},
+  {keys:['exam tracker','examtracker','tracker'], msg:'Opening Entrance Exam Tracker.', url:'exam_tracker.html'},
+  {keys:['exam','exams','entrance exam'], msg:'Showing Entrance Exam Info.', url:'examsinfo.html'},
+  {keys:['advance search','search universities','search'], msg:'Opening University Advanced Search.', url:'univeristy-search.html'},
+  {keys:['compare','compare universities'], msg:'Opening Compare Universities page.', url:'compare.html'},
+  {keys:['forum','ask senior','ask','senior'], msg:'Opening Ask Senior Forum.', url:'ask.html'},
+  {keys:['consult','counsel','counselling','counseling'], msg:'Opening Counselling page.', url:'consulting.html'},
+  {keys:['support','chatbot','help','helpdesk','contact'], msg:'Opening Support Chatbot.', url:'CHATBOT.html'},
+  {keys:['dashboard','profile','account','settings'], msg:'Taking you to your Profile.', url:'profile.html'},
+  {keys:['notifications','alerts','messages'], msg:'Opening Notifications page.', url:'notifications.html'},
+  {keys:['webinar','webinars','live class','online session'], msg:'Opening Webinars.', url:'webinar.html'},
+  {keys:['conference','video','conference feature','video session','live session'], msg:'Opening Conference feature.', url:'video.html'},
+  {keys:['club','clubs','study club','studyclub','society'], msg:'Opening Study Clubs.', url:'studyclubs.html'},
+  {keys:['resource','resources','library','books','documents'], msg:'Showing Resources.', url:'resource.html'},
+  {keys:['map','location','explore map','campus map','directions'], msg:'Opening Map Explorer.', url:'map.html'},
+  {keys:['rate','feedback','review'], msg:'Opening Rating modal.', url:'rating.html'},
+  {keys:['admin','admin panel','manage','moderator'], msg:'Opening Admin Panel.', url:'admin.html'},
+  {keys:['home','homepage','main page'], msg:'Taking you to the homepage.', url:'index.html'},
+  {keys:['cutoff','predictor','cutoff predictor','cutoff tool','predictor tool'], msg:'Taking you to the Cutoff Predictor tool.', url:'predictor.html'}
+
+];
+
+// Speak helper
+function speak(text, ondone){
+  speechEl.textContent = text;
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang='en-IN'; u.pitch=1; u.rate=1;
+  u.onend = ()=> ondone && ondone();
+  speechSynthesis.speak(u);
+}
+
+// Match command
+function findCommand(text){
+  text = text.toLowerCase();
+  for(const cmd of COMMANDS){
+    if(cmd.keys.some(k=>text.includes(k))) return cmd;
+  }
+  return null;
+}
+
+// Handle command
+function handleCommand(text){
+  const cmd = findCommand(text);
+  if(cmd){
+    // Speak message
+    speak(cmd.msg, () => {
+      // Open page in new tab, so modal stays
+      window.open(cmd.url, '_blank');
+    });
+  } else {
+    speak("Sorry, I didn't catch that. Try universities, courses, quiz, forum, counselling, login, or signup.");
+  }
+}
+
+
+// Initialize recognition
+function initRecognition(){
+  if(!SpeechRecognition) return;
+  if(recognition) return;
+  recognition = new SpeechRecognition();
+  recognition.lang = 'en-IN';
+  recognition.interimResults=false;
+  recognition.continuous=false;
+  recognition.onstart = ()=> { micBtn.classList.add('listening'); statusEl.textContent="Listening..."; }
+  recognition.onresult = (evt)=> { micBtn.classList.remove('listening'); handleCommand(evt.results[0][0].transcript); }
+  recognition.onerror = ()=> { micBtn.classList.remove('listening'); speak("I couldn't hear you."); }
+  recognition.onend = ()=> { micBtn.classList.remove('listening'); statusEl.textContent="Click 'Talk to Navi' to speak or type a command below."; }
+}
+
+// Mic button — voice only
+micBtn.addEventListener('click', ()=>{
+  speak("Hi, I am NavEshrey, your Edu Navia guide. What would you like to do?", ()=>{
+    initRecognition();
+    recognition.start();
+  });
+});
+
+// Text input — no speech recognition
+textSend.addEventListener('click', ()=>{ 
+  if(textInput.value.trim()) handleCommand(textInput.value.trim()); 
+});
+textInput.addEventListener('keydown', (e)=>{
+  if(e.key==='Enter') textSend.click(); 
+});
+
+// Chip buttons — no speech recognition
+chipEls.forEach(ch=>{
+  ch.addEventListener('click', ()=> handleCommand(ch.dataset.cmd));
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edu Navia Admin Dashboard</title>
+<script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth-compat.js"></script>
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, #e6fafa, #f9fdfc);
+  color: #333;
+  transition: background 0.4s ease;
+}
+
+/* Navbar */
+.navbar {
+  width: 100%;
+  background: linear-gradient(90deg, #008080, #009999);
+  color: #fff;
+  padding: 14px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+.navbar h1 { margin: 0; font-size: 22px; font-weight: 600; white-space: nowrap; }
+.navbar .nav-links { display: flex; gap: 20px; flex-wrap: wrap; }
+.navbar a { color: #fff; text-decoration: none; font-weight: 500; position: relative; transition: color 0.3s; }
+.navbar a::after { content: ""; position: absolute; left: 0; bottom: -4px; width: 100%; height: 2px; background: #d1f2eb; transform: scaleX(0); transition: transform 0.3s ease; }
+.navbar a:hover { color: #d1f2eb; }
+.navbar a:hover::after { transform: scaleX(1); }
+
+/* Layout */
+.container {
+  display: flex;
+  min-height: calc(100vh - 60px);
+  transition: all 0.3s ease;
+  flex-wrap: wrap; /* ensures wrap on small screens */
+}
+
+/* Sidebar */
+.sidebar {
+  width: 240px;
+  background: linear-gradient(180deg, #006666, #004c4c);
+  color: #fff;
+  padding: 20px;
+  position: sticky;
+  top: 60px;
+  height: calc(100vh - 60px);
+  box-shadow: 2px 0 8px rgba(0,0,0,0.2);
+  border-radius: 0 12px 12px 0;
+  transition: all 0.3s ease;
+}
+.sidebar h2 {
+  color: #d1f2eb;
+  font-size: 18px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  padding-bottom: 8px;
+}
+.sidebar a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  margin: 12px 0;
+  padding: 10px 14px;
+  border-radius: 8px;
+  transition: background 0.3s, padding-left 0.3s, transform 0.2s;
+}
+.sidebar a:hover {
+  background: #009999;
+  padding-left: 20px;
+  transform: translateX(4px);
+}
+
+/* Main content */
+.main {
+  flex: 1;
+  padding: 25px;
+  overflow-y: auto;
+  animation: fadeIn 0.5s ease;
+  min-width: 280px; /* ensures content doesn't shrink too much */
+}
+
+/* Cards */
+.card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+.card:hover { transform: translateY(-4px); }
+.cards-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.card-small {
+  flex: 1;
+  min-width: 160px;
+  text-align: center;
+  padding: 18px;
+  background: linear-gradient(135deg, #d9fdf8, #e6f7f5);
+  border-radius: 10px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+.card-small:hover { transform: scale(1.05); }
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+table th, table td { padding: 12px; text-align: center; }
+table th { background: #009688; color: #fff; font-weight: 600; }
+table tr:nth-child(even) { background: #f9fdfc; }
+
+/* Buttons */
+.btn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 14px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 3px 8px rgba(0,0,0,0.15); }
+.edit-btn { background: #28a745; }
+.delete-btn { background: #dc3545; }
+.view-btn { background: #007bff; }
+
+/* Footer */
+.footer {
+  background: linear-gradient(90deg, #008080, #009999);
+  color: #fff;
+  text-align: center;
+  padding: 16px;
+  margin-top: auto;
+  font-size: 14px;
+  box-shadow: 0 -2px 6px rgba(0,0,0,0.15);
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  padding-top: 100px;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.55);
+  animation: fadeIn 0.4s ease;
+}
+.modal-content {
+  background: #fff;
+  margin: auto;
+  padding: 24px;
+  border-radius: 12px;
+  width: 90%; max-width: 500px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+  animation: slideDown 0.4s ease;
+}
+.close {
+  color: #888;
+  float: right;
+  font-size: 26px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: -10px;
+  transition: color 0.3s;
+}
+.close:hover { color: #000; }
+
+/* Animations */
+@keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+@keyframes slideDown { from {transform:translateY(-20px); opacity:0;} to {transform:translateY(0); opacity:1;} }
+
+/* Responsive Media Queries */
+@media(max-width:1024px){
+  .container { flex-direction: column; }
+  .sidebar { width: 100%; height: auto; position: relative; top: 0; border-radius: 0; box-shadow: none; flex-wrap: wrap; justify-content: center; }
+  .sidebar a { margin: 8px; padding: 10px; }
+  .cards-container { flex-direction: column; gap: 15px; }
+}
+
+@media(max-width:768px){
+  .navbar h1 { font-size: 20px; }
+  .navbar .nav-links { flex-direction: column; gap: 10px; width: 100%; }
+  .sidebar h2 { font-size: 16px; }
+  .card, .card-small { padding: 16px; }
+}
+
+@media(max-width:480px){
+  .navbar h1 { font-size: 18px; }
+  .navbar .nav-links a { font-size: 14px; }
+  .sidebar { padding: 14px; }
+  .card, .card-small { padding: 12px; font-size: 14px; }
+  .btn { font-size: 12px; padding: 6px 10px; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+  <div class="logo"><a href="index.html" style="color:white;text-decoration: none;">🎓 Edu Navia</a></div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="profile.html">Profile</a>
+    <a href="login.html" id="logoutBtn">Logout</a>
+  </div>
+</div>
+
+<!-- Container -->
+<div class="container">
+  <!-- Sidebar -->
+   
+  <div class="sidebar">
+    <h2>Admin Panel</h2>
+    <a href="#overview">Overview</a>
+    <a href="#users">Users</a>
+    <a href="#universities">Universities</a>
+    <a href="#feedbacks">Feedback</a>
+    <a href="#questions">Questions</a>
+  </div>
+  
+  <!-- Main -->
+  <div class="main">
+    <div id="overview" class="card"><h3>Loading overview...</h3></div>
+    <div id="users" class="card"><h3>Loading users...</h3></div>
+    <div id="universities" class="card"><h3>Loading universities...</h3></div>
+    <div id="feedbacks" class="card"><h3>Loading feedbacks...</h3></div>
+    <div id="questions" class="card"><h3>Loading questions...</h3></div>
+  </div>
+</div>
+
+<div class="footer">&copy; 2025 Edu Navia. All Rights Reserved.</div>
+
+<!-- Reusable modal -->
+<div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:10000;">
+  <div style="background:#fff; padding:25px; border-radius:12px; width:450px; max-width:95%; position:relative; box-shadow:0 8px 25px rgba(0,0,0,0.3);">
+    <span id="closeModal" style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:20px; font-weight:bold;">&times;</span>
+    <div id="modalBody" style="margin-top:10px; font-size:15px; line-height:1.5;"></div>
+    <div id="modalFooter" style="margin-top:15px; text-align:right;"></div>
+  </div>
+</div>
+<!-- Floating Guide Button -->
+<button id="guideBtn">💡 Guide</button>
+
+<!-- Slide-in Navi Panel -->
+<div id="naviPanel">
+  <div class="panel-content">
+    <button id="closeGuide">Close ✖</button>
+    <iframe src="guide.html"></iframe>
+  </div>
+</div>
+
+<style>
+#guideBtn {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  background: #00bfa6;
+  color: white;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  z-index: 1001;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+#naviPanel {
+  position: fixed;
+  top: 70px;
+  left: -360px;
+  width: 360px;
+  height: calc(100% - 70px);
+  background: #f4f7fb;
+  box-shadow: 4px 0 20px rgba(0,0,0,0.2);
+  transition: left 0.3s ease;
+  z-index: 1000;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  overflow: hidden;
+}
+
+#naviPanel .panel-content {
+  padding: 16px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#naviPanel iframe {
+  border: none;
+  flex: 1;
+  border-radius: 8px;
+}
+
+#closeGuide {
+  background: #009e89;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+</style>
+
+<script>
+const guideBtn = document.getElementById('guideBtn');
+const naviPanel = document.getElementById('naviPanel');
+const closeBtn = document.getElementById('closeGuide');
+
+guideBtn.addEventListener('click', () => {
+  naviPanel.style.left = '0';
+
+  // Send message to iframe to trigger speech
+  const iframe = naviPanel.querySelector('iframe');
+  iframe.contentWindow.postMessage({ action: 'speak', text: "Hi, I am Navi, your Edu Navia guide. What would you like to do?" }, '*');
+});
+
+closeBtn.addEventListener('click', () => {
+  naviPanel.style.left = '-360px';
+});
+</script>
+
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyAPXYOQk3LPxayuymhac79P4QsX13xvMZA",
+    authDomain: "edu-navigator-cc4a0.firebaseapp.com",
+    projectId: "edu-navigator-cc4a0",
+    storageBucket: "edu-navigator-cc4a0.appspot.com",
+    messagingSenderId: "33607968332",
+    appId: "1:33607968332:web:59cbf34a0aae68375736e9"
+  };
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+// Logout
+document.getElementById('logoutBtn').addEventListener('click', ()=>auth.signOut());
+
+// Allowed admins
+const allowedAdmins = [
+  "jha.esha2024@gmail.com",
+  "eja5980@gmail.com",
+  "shreysriv23@gmail.com"
+];
+
+
+
+// Modal elements
+const modal = document.getElementById("modal"); // Reusable modal
+const modalBody = document.getElementById("modalBody");
+const modalFooter = document.getElementById("modalFooter");
+const closeModal = document.getElementById("closeModal");
+
+closeModal.onclick = () => modal.style.display = "none";
+window.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
+// Function to show modal with message or custom content
+function showModal(message, buttons = [], autoClose = true, delay = 2500) {
+  modalBody.innerHTML = message;
+  modalFooter.innerHTML = '';
+
+  buttons.forEach(btn => {
+    const button = document.createElement('button');
+    button.innerText = btn.text;
+    button.className = btn.class || 'btn';
+    button.style.marginLeft = '8px';
+    button.onclick = () => {
+      btn.onClick?.();
+      modal.style.display = "none";
+    };
+    modalFooter.appendChild(button);
+  });
+
+  modal.style.display = "flex";
+
+  // Auto close after delay
+  if (autoClose && buttons.length === 0) {
+    setTimeout(() => {
+      modal.style.display = "none";
+      // Optional: reload page
+      // location.reload();
+    }, delay);
+  }
+}
+
+// View/Edit User
+async function viewUserDetails(userId) {
+  try {
+    const doc = await db.collection("users").doc(userId).get();
+    if (!doc.exists) return Swal.fire('Error', 'User not found!', 'error');
+
+    const d = doc.data();
+    modalBody.innerHTML = `
+      <h3>Edit User: ${d.name || 'User'}</h3>
+      <label>Name:</label><input type="text" id="editName" value="${d.name || ''}" style="width:100%;margin-bottom:10px;">
+      <label>Email:</label><input type="email" id="editEmail" value="${d.email || ''}" disabled style="width:100%;margin-bottom:10px;">
+      <label>Role:</label><input type="text" id="editRole" value="${d.role || ''}" style="width:100%;margin-bottom:10px;">
+      <label>Phone:</label><input type="text" id="editPhone" value="${d.phone || ''}" style="width:100%;margin-bottom:10px;">
+      <label>GitHub:</label><input type="text" id="editGitHub" value="${d.github || ''}" style="width:100%;margin-bottom:10px;">
+      <label>LinkedIn:</label><input type="text" id="editLinkedIn" value="${d.linkedin || ''}" style="width:100%;margin-bottom:10px;">
+    `;
+
+    modalFooter.innerHTML = '';
+    const saveBtn = document.createElement('button');
+    saveBtn.innerText = 'Save Changes';
+    saveBtn.className = 'btn edit-btn';
+    saveBtn.onclick = async () => {
+      try {
+        await db.collection("users").doc(userId).update({
+          name: document.getElementById("editName").value,
+          role: document.getElementById("editRole").value,
+          phone: document.getElementById("editPhone").value,
+          github: document.getElementById("editGitHub").value,
+          linkedin: document.getElementById("editLinkedIn").value
+        });
+        modal.style.display = "none";
+        Swal.fire({ icon: 'success', title: 'Updated!', text: 'User updated successfully.', timer: 2000, showConfirmButton: false });
+        location.reload();
+      } catch (err) {
+        console.error(err);
+        Swal.fire('Error', 'Failed to update user!', 'error');
+      }
+    };
+    modalFooter.appendChild(saveBtn);
+    modal.style.display = "flex";
+
+  } catch (err) {
+    console.error(err);
+    Swal.fire('Error', 'Failed to fetch user data!', 'error');
+  }
+}
+
+// Edit Question
+async function editQuestion(questionId) {
+  try {
+    const doc = await db.collection("questions").doc(questionId).get();
+    if (!doc.exists) return Swal.fire('Error', 'Question not found!', 'error');
+
+    const d = doc.data();
+    modalBody.innerHTML = `
+      <h3>Edit Question</h3>
+      <p><strong>Question:</strong></p>
+      <textarea id="editQuestion" disabled style="width:100%;height:60px;margin-bottom:10px;">${d.question||''}</textarea>
+      <p><strong>Answer:</strong></p>
+      <textarea id="editAnswer" style="width:100%;height:80px;margin-bottom:10px;">${d.answer||''}</textarea>
+      <p><strong>Category:</strong></p>
+      <input type="text" id="editCategory" value="${d.category||''}" style="width:100%;margin-bottom:10px;">
+    `;
+
+    modalFooter.innerHTML = '';
+    const saveBtn = document.createElement('button');
+    saveBtn.innerText = 'Save Changes';
+    saveBtn.className = 'btn edit-btn';
+    saveBtn.onclick = async () => {
+      try {
+        await db.collection("questions").doc(questionId).update({
+          answer: document.getElementById("editAnswer").value,
+          category: document.getElementById("editCategory").value
+        });
+        modal.style.display = "none";
+        Swal.fire({ icon: 'success', title: 'Updated!', text: 'Question updated successfully.', timer: 2000, showConfirmButton: false });
+        location.reload();
+      } catch (err) {
+        console.error(err);
+        Swal.fire('Error', 'Failed to update question!', 'error');
+      }
+    };
+    modalFooter.appendChild(saveBtn);
+    modal.style.display = "flex";
+
+  } catch (err) {
+    console.error(err);
+    Swal.fire('Error', 'Failed to fetch question!', 'error');
+  }
+}
+
+// Edit University
+async function editUniversity(uniId) {
+  try {
+    const doc = await db.collection("colleges").doc(uniId).get();
+    if (!doc.exists) return Swal.fire('Error', 'University not found!', 'error');
+
+    const d = doc.data();
+    modalBody.innerHTML = `
+      <h3>Edit University: ${d.name||''}</h3>
+      <label>Name:</label><input type="text" id="editUniName" value="${d.name||''}" style="width:100%;margin-bottom:10px;">
+      <label>City:</label><input type="text" id="editUniCity" value="${d.city||''}" style="width:100%;margin-bottom:10px;">
+      <label>State:</label><input type="text" id="editUniState" value="${d.state||''}" style="width:100%;margin-bottom:10px;">
+      <label>Location:</label><input type="text" id="editUniLocation" value="${d.location||''}" style="width:100%;margin-bottom:10px;">
+      <label>Type:</label><input type="text" id="editUniType" value="${d.type||''}" style="width:100%;margin-bottom:10px;">
+      <label>Website:</label><input type="text" id="editUniWebsite" value="${d.website||''}" style="width:100%;margin-bottom:10px;">
+      <label>Image URL:</label><input type="text" id="editUniImage" value="${d.image||''}" style="width:100%;margin-bottom:10px;">
+    `;
+
+    modalFooter.innerHTML = '';
+    const saveBtn = document.createElement('button');
+    saveBtn.innerText = 'Save Changes';
+    saveBtn.className = 'btn edit-btn';
+    saveBtn.onclick = async () => {
+      try {
+        await db.collection("colleges").doc(uniId).update({
+          name: document.getElementById("editUniName").value,
+          city: document.getElementById("editUniCity").value,
+          state: document.getElementById("editUniState").value,
+          location: document.getElementById("editUniLocation").value,
+          type: document.getElementById("editUniType").value,
+          website: document.getElementById("editUniWebsite").value,
+          image: document.getElementById("editUniImage").value
+        });
+        modal.style.display = "none";
+        Swal.fire({ icon: 'success', title: 'Updated!', text: 'University updated successfully.', timer: 2000, showConfirmButton: false });
+        location.reload();
+      } catch (err) {
+        console.error(err);
+        Swal.fire('Error', 'Failed to update university!', 'error');
+      }
+    };
+    modalFooter.appendChild(saveBtn);
+    modal.style.display = "flex";
+
+  } catch (err) {
+    console.error(err);
+    Swal.fire('Error', 'Failed to fetch university!', 'error');
+  }
+}
+
+// Fetch & Render all data
+auth.onAuthStateChanged(async user => {
+  if (!user) return Swal.fire('Warning', 'Sign in first!', 'warning').then(()=>window.location.href="login.html");
+  if (!allowedAdmins.includes(user.email)) {
+    auth.signOut();
+    return Swal.fire('Warning', 'Access Denied!', 'warning').then(()=>window.location.href="login.html");
+  }
+
+  try {
+    const [usersSnap, uniSnap, feedbackSnap, questionsSnap] = await Promise.all([
+      db.collection('users').get(),
+      db.collection('colleges').get(),
+      db.collection('ratings').get(),
+      db.collection('questions').get()
+    ]);
+
+    // Overview Cards
+    document.getElementById('overview').innerHTML = `
+      <h3>Overview</h3>
+      <div class="cards-container">
+        <div class="card-small">Total Users: ${usersSnap.size}</div>
+        <div class="card-small">Total Universities: ${uniSnap.size}</div>
+        <div class="card-small">Total Feedbacks: ${feedbackSnap.size}</div>
+        <div class="card-small">Total Questions: ${questionsSnap.size}</div>
+      </div>
+    `;
+
+    // Users Table
+    const usersData = usersSnap.docs.map((doc,i)=>{
+      const d = doc.data();
+      const wishlistCount = Array.isArray(d.courseWishlist)? d.courseWishlist.length : 0;
+      return `<tr>
+        <td>${i+1}</td><td>${d.name||'-'}</td><td>${d.email||'-'}</td><td>${d.role||'-'}</td>
+        <td>${d.phone||'-'}</td>
+        <td>${d.github? `<a href="${d.github}" target="_blank">GitHub</a>` : '-'}</td>
+        <td>${d.linkedin? `<a href="${d.linkedin}" target="_blank">LinkedIn</a>` : '-'}</td>
+        <td>${wishlistCount}</td>
+        <td><button class="btn view-btn" onclick="viewUserDetails('${doc.id}')">View</button></td>
+      </tr>`;
+    }).join('');
+    document.getElementById('users').innerHTML = `
+      <h3>Users / Students</h3>
+      <table>
+        <tr><th>#</th><th>Name</th><th>Email</th><th>Role</th><th>Phone</th><th>GitHub</th><th>LinkedIn</th><th>Wishlist</th><th>Actions</th></tr>
+        ${usersData}
+      </table>
+    `;
+
+    // Universities Table
+    const uniData = uniSnap.docs.map(doc => {
+      const d = doc.data();
+      return `<tr>
+        <td>${d.name||'-'}</td><td>${d.city||'-'}</td><td>${d.state||'-'}</td>
+        <td>${d.location||'-'}</td><td>${d.type||'-'}</td>
+        <td>${d.website ? `<a href="https://${d.website}" target="_blank">Visit</a>` : '-'}</td>
+        <td>${d.image ? `<img src="${d.image}" width="80" height="50">` : '-'}</td>
+        <td><button class="btn edit-btn" onclick="editUniversity('${doc.id}')">Edit</button></td>
+      </tr>`;
+    }).join('');
+    document.getElementById('universities').innerHTML = `
+      <h3>Universities / Colleges</h3>
+      <table>
+        <tr><th>Name</th><th>City</th><th>State</th><th>Location</th><th>Type</th><th>Website</th><th>Image</th><th>Actions</th></tr>
+        ${uniData}
+      </table>
+    `;
+
+    // Feedbacks Table
+    const feedbackData = feedbackSnap.docs.map(doc => {
+      const d = doc.data();
+      return `<tr>
+        <td>${d.userName||'-'}</td>
+        <td>${d.email||'-'}</td>
+        <td>${d.message||'-'}</td>
+        <td>${d.date?.seconds ? new Date(d.date.seconds * 1000).toLocaleDateString() : '-'}</td>
+        <td>${d.status || 'Pending'}</td>
+      </tr>`;
+    }).join('');
+    document.getElementById('feedbacks').innerHTML = `
+      <h3>Feedback / Support</h3>
+      <table>
+        <tr><th>User</th><th>Email</th><th>Message</th><th>Date</th><th>Status</th></tr>
+        ${feedbackData}
+      </table>
+    `;
+
+    // Questions Table
+    const questionsData = questionsSnap.docs.map(doc => {
+      const d = doc.data();
+      return `<tr>
+        <td>${d.question||'-'}</td>
+        <td>${d.answer||'-'}</td>
+        <td>${d.askedBy||'-'}</td>
+        <td>${d.answeredBy||'-'}</td>
+        <td>${d.category||'-'}</td>
+        <td>${d.timestamp?.seconds ? new Date(d.timestamp.seconds * 1000).toLocaleString() : '-'}</td>
+        <td>${d.userId||'-'}</td>
+        <td><button class="btn edit-btn" onclick="editQuestion('${doc.id}')">Edit</button></td>
+      </tr>`;
+    }).join('');
+    document.getElementById('questions').innerHTML = `
+      <h3>Questions</h3>
+      <table>
+        <tr><th>Question</th><th>Answer</th><th>Asked By</th><th>Answered By</th><th>Category</th><th>Timestamp</th><th>User ID</th><th>Actions</th></tr>
+        ${questionsData}
+      </table>
+    `;
+
+  } catch (err) {
+    console.error(err);
+    Swal.fire('Error', 'Failed to fetch dashboard data!', 'error');
+  }
+});
+
+</script>
+</body>
+</html>
