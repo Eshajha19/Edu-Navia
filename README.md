@@ -1,41 +1,87 @@
-# 🎓 Edu Navia - Your Personalized University & Course Navigator
+🎓 Edu Nava - Your Personalized University & Course Navigator
 
-Edu Navia is an AI-powered web platform that helps students, parents, and counselors discover the best-fit universities and courses based on interests, skills, and future goals. It integrates advanced filters, real-time data from Firebase, AI-powered chat support, calendar scheduling, and more.
-
+Edu Nava is a smart web platform that helps students, parents, and counselors explore the best-fit universities and courses based on interests, skills, and career goals. It offers advanced filters, real-time data from Firebase, interactive search tools, chat support, and calendar scheduling to make the decision process simpler and more personalized.
 ---
 
 ## 🚀 Features
 
-- 🔍 **Advanced University & Course Search**
-  - Filter by location, type (public/private), tier, stream, etc.
-  - Smart search with Firebase-backed results
+## 🔍 Find University
+Smart search by location, type, tier, stream, rankings
+Firebase-powered for accurate & fast results
 
-- 📊 **University & Course Comparison**
-  - Side-by-side comparison of key data like placement, fees, etc.
-  - Downloadable PDF report generation (non-html2pdf)
+## 📚 Find Course
+Explore courses by stream, duration, fees, placements
+AI-assisted recommendations
 
-- 💬 **AI Chatbot (Gemini API Integrated)**
-  - Ask anything about Edu Navia features
-  - Only responds to relevant project questions
+## 👤 Profile
+Editable profile (name, role, LinkedIn, GitHub, etc.)
+Motivational quote rotator for engagement
 
-- 📅 **Google Calendar API Integration**
-  - Book consultation calls or reminder slots
-  - Personalized study & application planner
+## 🔑 Login / Signup
+Firebase Authentication with Email, OTP & Google Login
+Real-time validation + loading indicators
 
-- 🔐 **Authentication**
-  - Firebase Auth with Email, OTP & Google Login
-  - Real-time validation, loading indicators, dark mode toggle
+## Dark mode toggle
 
-- 👤 **User Profile & Wishlist**
-  - Editable profile with name, role, LinkedIn, GitHub
-  - Save universities & courses to wishlist
-  - Motivational quote rotator
+## 🎯 Cutoff Predictor
+AI-powered cutoff prediction tool
+Estimate admission chances instantly
+ 
+## 🏫 University Search
+Filter universities by location, type (public/private), tier, stream
+Save to wishlist
 
-- 📝 **Rating System**
-  - Users can rate platforms across categories: courses, tools, consulting, etc.
+## 🗺️ Interactive Map
+Visual exploration of universities across regions
 
-- 🌍 **Responsive Design**
-  - Fully responsive layout with smooth animations and transitions
+## 🤝 Study Clubs
+Connect with peers for group discussions, projects & networking
+
+## 🧑‍💼 Consulting
+Book personalized consultation calls (Google Calendar API)
+Expert guidance for applications & career planning
+
+## 📖 Guide
+Step-by-step study abroad & application guide
+
+## 🤖 AI Chatbot (Gemini API)
+Ask anything about Edunavia features, exams & processes
+Provides relevant, focused responses only
+
+## ⭐ Rating System
+Rate universities, courses & platform tools
+
+## 🧪 Personality Test
+AI-powered test to suggest best-fit courses & universities
+
+## 🎓 Ask Senior
+Connect with seniors for experience sharing & mentorship
+
+## 📄 About Us
+Information about Edunavia’s mission & vision
+
+## ⚙️ Administration Panel
+Manage users, universities, courses & feedback
+
+## 📑 Exam Info
+Access entrance exam details, timelines & resources
+
+## ⏱️ Exam Tracker
+Track exam dates, deadlines & reminders
+
+## 🎥 Webinar
+Host & attend career webinars, workshops & expert talks
+
+## 📊 University & Course Comparison
+Side-by-side comparison of fees, placements, rankings
+Generate downloadable PDF reports
+
+## 📅 Google Calendar API Integration
+Book slots, set reminders & manage planners
+
+## 🌍 Responsive Design
+Fully responsive across devices
+Smooth animations & transitions
 
 ---
 
