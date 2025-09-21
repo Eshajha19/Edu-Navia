@@ -156,7 +156,6 @@ Edu Navia is ICP-ready, even though full deployment on the Internet Computer (IC
 
 ## Current Status:
 ●Live demo hosted on Netlify, showcasing key functionality.
-
 ●dfx.json included for canister configuration and ICP
 compatibility.
 ●Some backend canister source files and environment configurations are missing.
