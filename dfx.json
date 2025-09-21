@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "canisters": {
+    "edu_navigator_backend": {
+      "type": "motoko",
+      "main": "src/edu_navigator_backend/main.mo"
+    },
+    "edu_navigator_frontend": {
+      "type": "assets",
+      "source": [
+        "src/edu_navigator_frontend/assets"
+      ],
+      "dependencies": [
+        "edu_navigator_backend"
+      ]
+    }
+  },
+  "defaults": {
+    "build": {
+      "packtool": "",
+      "args": ""
+    }
+  },
+  "output_env_file": ".env"
+}
