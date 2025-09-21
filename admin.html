@@ -359,15 +359,6 @@ const db = firebase.firestore();
 // Logout
 document.getElementById('logoutBtn').addEventListener('click', ()=>auth.signOut());
 
-// Allowed admins
-const allowedAdmins = [
-  "jha.esha2024@gmail.com",
-  "eja5980@gmail.com",
-  "shreysriv23@gmail.com"
-];
-
-
-
 // Modal elements
 const modal = document.getElementById("modal"); // Reusable modal
 const modalBody = document.getElementById("modalBody");
@@ -663,4 +654,5 @@ auth.onAuthStateChanged(async user => {
 </script>
 </body>
 </html>
+
 
