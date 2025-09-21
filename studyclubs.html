@@ -113,27 +113,12 @@
   </div>
 
   <script>
-    // ----- Firebase config -----
-      const firebaseConfig = {
-    apiKey: "AIzaSyAPXYOQk3LPxayuymhac79P4QsX13xvMZA",
-    authDomain: "edu-navigator-cc4a0.firebaseapp.com",
-    projectId: "edu-navigator-cc4a0",
-    storageBucket: "edu-navigator-cc4a0.appspot.com",
-    messagingSenderId: "33607968332",
-    appId: "1:33607968332:web:59cbf34a0aae68375736e9"
-  };
 
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
     const db = firebase.firestore();
 
     let currentUser = null;
-    const allowedAdmins = [
-      "jha.esha2024@gmail.com",
-      "eja5980@gmail.com",
-      "eshita.jha@example.com" // replace with your 3rd email
-    ];
-
     auth.onAuthStateChanged(user => { currentUser = user; });
 
     let currentClub = null;
@@ -311,4 +296,3 @@ closeBtn.addEventListener('click', () => {
 
 </body>
 </html>
-
