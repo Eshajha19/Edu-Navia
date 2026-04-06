@@ -142,41 +142,7 @@ https://drive.google.com/file/d/1zQD8dLRylcL_qLaz65LKmMcPDis6Sb0f/view?usp=drive
 Pitch Video::
 https://drive.google.com/file/d/1zQ7RfEHVBWrNYyJtlQDkQt_vbziuLUVO/view?usp=drivesdk
 
-## Backend: 
-Python (app.py)
 
-## Internet Computer / DFINITY:
-dfx.json defines canisters & deployment configuration
-
-## Deployment:
-Currently live on Netlify; ICP deployment in progress
-
-## ⚡ ICP-Ready Submission Note
-Edu Navia is ICP-ready, even though full deployment on the Internet Computer (ICP) is not yet complete.
-
-## Current Status:
-●Live demo hosted on Netlify, showcasing key functionality.
-
-●dfx.json included for canister configuration and ICP compatibility.
-
-●Some backend canister source files and environment configurations are missing.
-
-## ICP Readiness:
-Local ICP deployment can be performed with:
-dfx start --background
-dfx deploy
-
-Project structure demonstrates capability to run on ICP once missing files are added.
-
-## 🛠 Setup (Local / ICP)
-## Clone the repository
-git clone https://github.com/Eshajha19/Edu-Navia.git
-cd Edu-Navia
-
-## Start local DFX environment
-dfx start --background
-dfx deploy
-Run frontend locally
 
 
 
