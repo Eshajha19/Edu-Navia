@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Edu Navia | Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="login.css" />
+
+  <!-- Firebase Modular SDK -->
+  <script type="module" src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script type="module" src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+
+    <link rel="stylesheet" href="./global-features.css">
+</head>
+<body>
+  <!-- 🌗 Dark Mode Toggle -->
+  <button class="dark-toggle" onclick="toggleDarkMode()">🌙</button>
+
+  <!-- 🔐 Main Container -->
+  <div class="container">
+    <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" class="login-icon" alt="login" />
+    <h1>Welcome Back!</h1>
+
+    <!-- 🔐 Login Form -->
+    <form id="login-form">
+      <input type="email" id="email" placeholder="Email" required />
+
+      <div class="password-wrap">
+        <input type="password" id="password" placeholder="Password" required />
+        <span class="toggle-password" onclick="togglePassword()">👁️</span>
+      </div>
+
+      <label class="remember-wrap">
+        <input type="checkbox" id="rememberMe" /> Remember Me
+      </label>
+
+      <button type="submit" id="loginBtn">
+        Log In <span id="spinner" class="hidden">⏳</span>
+      </button>
+
+      <button type="button" class="google-btn" onclick="googleLogin()">Continue with Google</button>
+
+      <!-- Forgot Password Link -->
+      <p class="forgot-link">
+        <a href="#" id="forgot-password">Forgot Password?</a>
+      </p>
+
+      <!-- Signup Link -->
+      <p class="signup-link">
+        Don’t have an account? <a href="signup.html">Sign Up</a>
+      </p>
+
+      <div class="error-message" id="error"></div>
+      <div class="success-message" id="success">✅ Login successful! Redirecting...</div>
+    </form>
+    
+    <!-- 🔁 Reset Password Section (hidden initially) -->
+    <div id="reset-password-form" class="hidden">
+      <h3>Reset Your Password</h3>
+      <br>
+      <input type="email" id="reset-email" placeholder="Enter your email" required />
+      <button type="button" id="send-reset-link">Send Reset Link</button>
+      <p id="reset-message" class="status-message"></p>
+      <p><a href="login.html" id="back-to-login">← Back to Login</a></p>
+    </div>
+
+    <p class="support-msg">Need help? <a href="mailto:support@edunav.com">Contact Support</a></p>
+  </div>
+<!-- Floating Guide Button -->
+<button id="guideBtn">💡 Guide</button>
+
+<!-- Slide-in Navi Panel -->
+<div id="naviPanel">
+  <div class="panel-content">
+    <button id="closeGuide">Close ✖</button>
+    <iframe src="guide.html"></iframe>
+  </div>
+</div>
+
+<style>
+#guideBtn {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  background: #00bfa6;
+  color: white;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  z-index: 1001;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+#naviPanel {
+  position: fixed;
+  top: 70px;
+  left: -360px;
+  width: 360px;
+  height: calc(100% - 70px);
+  background: #f4f7fb;
+  box-shadow: 4px 0 20px rgba(0,0,0,0.2);
+  transition: left 0.3s ease;
+  z-index: 1000;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  overflow: hidden;
+}
+
+#naviPanel .panel-content {
+  padding: 16px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#naviPanel iframe {
+  border: none;
+  flex: 1;
+  border-radius: 8px;
+}
+
+#closeGuide {
+  background: #009e89;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+</style>
+
+<script>
+const guideBtn = document.getElementById('guideBtn');
+const naviPanel = document.getElementById('naviPanel');
+const closeBtn = document.getElementById('closeGuide');
+
+guideBtn.addEventListener('click', () => {
+  naviPanel.style.left = '0';
+
+  // Send message to iframe to trigger speech
+  const iframe = naviPanel.querySelector('iframe');
+  iframe.contentWindow.postMessage({ action: 'speak', text: "Hi, I am Navi, your Edu Navia guide. What would you like to do?" }, '*');
+});
+
+closeBtn.addEventListener('click', () => {
+  naviPanel.style.left = '-360px';
+});
+</script>
+
+  <!-- 🔌 Main Logic -->
+  <script type="module" src="login.js"></script>
+
+    <script src="./global-features.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ask Seniors - Edu Navia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <!-- SweetAlert2 CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<link href="ask.css" rel="stylesheet">
+link href="translate.css" type="stylesheet">
+  <script src="translate.js"></script>
+  <style>
+  
+  </style>
+
+    <link rel="stylesheet" href="./global-features.css">
+</head>
+<body>
+
+<!-- ✅ Navbar -->
+<header class="navbar">
+   <div class="logo"><a href="index.html" style="color:black;text-decoration: none;">🎓 Edu Navia</a></div>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <nav>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="p.html">Universities</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="consulting.html">Consulting</a></li>
+      <li><a href="resource.html">Resources</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="profile.html">Profile</a></li>
+      <!-- Put this in the navbar where you want the custom control -->
+<li><select id="customTranslate" style="display:none;" disabled>
+  <option value="">🌐 Select Language</option>
+  <option value="en">English</option>
+  <option value="hi">Hindi</option>
+  <option value="bn">Bengali</option>
+  <option value="ta">Tamil</option>
+  <option value="te">Telugu</option>
+  <option value="ml">Malayalam</option>
+  <option value="gu">Gujarati</option>
+  <option value="mr">Marathi</option>
+  <option value="kn">Kannada</option>
+  <option value="pa">Punjabi</option>
+  <option value="ur">Urdu</option>
+  <option value="or">Odia</option>
+  <option value="as">Assamese</option>
+</select>
+
+<!-- Keep this hidden container (required by Google) -->
+<div id="google_translate_element" style="display:none;"></div>
+</li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ✅ Main Content -->
+<main class="forum-container">
+  <h1>Ask Seniors</h1>
+
+  <div class="question-form">
+    <label for="category">Select Category:</label>
+    <select id="category">
+  <option>Hostel Life</option>
+  <option>Placements</option>
+  <option>Campus Culture</option>
+  <option>Faculty</option>
+  <option>Any other...</option>
+</select>
+
+<br>
+<br>
+    <label for="question">Your Question:</label>
+    <textarea id="question" placeholder="e.g. How are placements for CSE in SRM?" rows="4"></textarea>
+
+    <button id="submitQuestionBtn" onclick="submitQuestion()">Submit Question</button>
+  </div>
+
+  <div class="questions-list" id="questionsList"></div>
+</main>
+
+<!-- ✅ Footer -->
+<footer>
+  <div class="footer-container">
+    <p>&copy; 2025 Edu Navia. All Rights Reserved.</p>
+  </div>
+
+    <div style="margin-top: 15px; text-align: center;">
+        <a href="privacy.html" style="color: #00bfa6; text-decoration: none; font-size: 0.95rem; margin-right: 15px; font-weight: 500;">Privacy Policy</a>
+        <a href="terms.html" style="color: #00bfa6; text-decoration: none; font-size: 0.95rem; font-weight: 500;">Terms & Conditions</a>
+    </div>
+</footer>
+<!-- Beautiful Login Required Popup -->
+<div id="loginPopup" class="popup-overlay">
+  <div class="popup-box">
+    <h2>Login Required</h2>
+    <p>You need to login to ask or answer questions.</p>
+    <button id="loginNowBtn">Login Now</button>
+  </div>
+</div>
+
+<!-- ✅ Toast -->
+<div class="toast" id="toast">Submitted!</div>
+<!-- Floating Guide Button -->
+<button id="guideBtn">💡 Guide</button>
+
+<!-- Slide-in Navi Panel -->
+<div id="naviPanel">
+  <div class="panel-content">
+    <button id="closeGuide">Close ✖</button>
+    <iframe src="guide.html"></iframe>
+  </div>
+</div>
+
+<style>
+#guideBtn {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  background: #00bfa6;
+  color: white;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  z-index: 1001;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+#naviPanel {
+  position: fixed;
+  top: 70px;
+  left: -360px;
+  width: 360px;
+  height: calc(100% - 70px);
+  background: #f4f7fb;
+  box-shadow: 4px 0 20px rgba(0,0,0,0.2);
+  transition: left 0.3s ease;
+  z-index: 1000;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  overflow: hidden;
+}
+
+#naviPanel .panel-content {
+  padding: 16px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#naviPanel iframe {
+  border: none;
+  flex: 1;
+  border-radius: 8px;
+}
+
+#closeGuide {
+  background: #009e89;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+</style>
+
+<script>
+const guideBtn = document.getElementById('guideBtn');
+const naviPanel = document.getElementById('naviPanel');
+const closeBtn = document.getElementById('closeGuide');
+
+guideBtn.addEventListener('click', () => {
+  naviPanel.style.left = '0';
+
+  // Send message to iframe to trigger speech
+  const iframe = naviPanel.querySelector('iframe');
+  iframe.contentWindow.postMessage({ action: 'speak', text: "Hi, I am Navi, your Edu Navia guide. What would you like to do?" }, '*');
+});
+
+closeBtn.addEventListener('click', () => {
+  naviPanel.style.left = '-360px';
+});
+</script>
+
+<!-- ✅ Firebase Logic -->
+<script type="module" src="ask.js">
+
+
+</script>
+<!-- Load Google script (keep this AFTER the googleTranslateElementInit function) -->
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+
+    <script src="./global-features.js" defer></script>
+</body>
+</html>
+

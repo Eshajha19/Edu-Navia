@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edu Navia ChatBot</title>
+  <link rel="stylesheet" href="chatbot.css" />
+  
+
+    <link rel="stylesheet" href="./global-features.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="navbar">
+    <div class="logo"><a href="index.html" style="color:black;text-decoration: none;">🎓 Edu Navia</a></div>
+    <nav>
+      <pre><a href="p.html" style="color:black;text-decoration: none;">Universities</a>  <a href="courses.html" style="color:black;text-decoration: none;">Courses</a>  <a href="consulting.html" style="color:black;text-decoration: none;">Consulting</a>  <a href="resource.html" style="color:black;text-decoration: none;">Resources</a>     
+      </pre>
+    </nav>
+  </header>
+
+  <!-- ChatBot Container -->
+  <main>
+
+    
+    <div id="chatbot-container" class="hidden">
+      <div id="chatbot-header">
+        How Can I Help You Today?
+        <button id="close-btn">×</button>
+      </div>
+      <div id="chatbot-body">
+        <div id="chatbot-messages"></div>
+      </div>
+      <div id="chatbot-input-container">
+        <input type="text" id="chatbot-input" placeholder="Ask me anything..." />
+        <button id="send-btn">Send</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Chat Icon -->
+  <div id="chatbot-icon">💬</div>
+
+  <script src="chatbot.js"></script>
+  <!--<script>
+  firebase.auth().onAuthStateChanged((user) => {
+    if (!user) {
+      alert("Access denied. Please log in.");
+      window.location.href = "index.html";
+    }
+  });
+</script>-->
+<!-- Floating Guide Button -->
+<button id="guideBtn">💡 Guide</button>
+
+<!-- Slide-in Navi Panel -->
+<div id="naviPanel">
+  <div class="panel-content">
+    <button id="closeGuide">Close ✖</button>
+    <iframe src="guide.html"></iframe>
+  </div>
+</div>
+
+<style>
+#guideBtn {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  background: #00bfa6;
+  color: white;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  z-index: 1001;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+#naviPanel {
+  position: fixed;
+  top: 70px;
+  left: -360px;
+  width: 360px;
+  height: calc(100% - 70px);
+  background: #f4f7fb;
+  box-shadow: 4px 0 20px rgba(0,0,0,0.2);
+  transition: left 0.3s ease;
+  z-index: 1000;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  overflow: hidden;
+}
+
+#naviPanel .panel-content {
+  padding: 16px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#naviPanel iframe {
+  border: none;
+  flex: 1;
+  border-radius: 8px;
+}
+
+#closeGuide {
+  background: #009e89;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+</style>
+
+<script>
+const guideBtn = document.getElementById('guideBtn');
+const naviPanel = document.getElementById('naviPanel');
+const closeBtn = document.getElementById('closeGuide');
+
+guideBtn.addEventListener('click', () => {
+  naviPanel.style.left = '0';
+
+  // Send message to iframe to trigger speech
+  const iframe = naviPanel.querySelector('iframe');
+  iframe.contentWindow.postMessage({ action: 'speak', text: "Hi, I am Navi, your Edu Navia guide. What would you like to do?" }, '*');
+});
+
+closeBtn.addEventListener('click', () => {
+  naviPanel.style.left = '-360px';
+});
+</script>
+
+
+    <script src="./global-features.js" defer></script>
+</body>
+</html>

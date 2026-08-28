@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Exam Tracker</title>
+  <link rel="stylesheet" href="project.css" />
+  <link rel="stylesheet" href="exam_tracker.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="./global-features.css">
+</head>
+<body>
+
+<header>
+  <div class="logo"><a href="index.html" style="color:black;text-decoration: none;">🎓 Edu Navia</a></div>
+  <nav>
+    <a href="p.html">Universities</a>
+    <a href="courses.html">Courses</a>
+    <a href="consulting.html">Consulting</a>
+    <a href="resource.html">Resources</a>
+    <!-- Put this in the navbar where you want the custom control -->
+<select id="customTranslate" style="display:none;" disabled>
+  <option value="">🌐 Select Language</option>
+  <option value="en">English</option>
+  <option value="hi">Hindi</option>
+  <option value="bn">Bengali</option>
+  <option value="ta">Tamil</option>
+  <option value="te">Telugu</option>
+  <option value="ml">Malayalam</option>
+  <option value="gu">Gujarati</option>
+  <option value="mr">Marathi</option>
+  <option value="kn">Kannada</option>
+  <option value="pa">Punjabi</option>
+  <option value="ur">Urdu</option>
+  <option value="or">Odia</option>
+  <option value="as">Assamese</option>
+</select>
+
+<!-- Keep this hidden container (required by Google) -->
+<div id="google_translate_element" style="display:none;"></div>
+  </nav>
+  <!--<div class="auth-buttons">
+    <button class="login"><a href="login.html" style="color:black;text-decoration: none;">Login</a></button>
+      <button class="signup"><a href="signup.html" style="color:white;text-decoration: none;">Sign Up</a></button>
+  </div>-->
+</header>
+<main>
+  <h1 style="text-align:center;">Exam Tracker</h1>
+  <div id="examCards"></div>
+</main>
+
+  <footer>
+    <div class="footer-container">
+      <!--<div class="footer-logo">
+        <img src="logo.jpg" alt="EduNavigator Logo" height="80" width="80" />
+      </div>-->
+      <div class="social-icons">
+        <a href="https://www.instagram.com" target="_blank" class="social-icon">📷</a>
+        <a href="mailto:info@edunavia.com" target="_blank" class="social-icon">✉️</a>
+        <a href="tel:+1234567890" target="_blank" class="social-icon">📞</a>
+        <a href="https://www.linkedin.com" target="_blank" class="social-icon">🔗</a>
+        <a href="https://www.facebook.com" target="_blank" class="social-icon">📘</a>
+        <a href="https://wa.me/+1234567890" target="_blank" class="social-icon">💬</a>
+      </div>
+      
+      <div class="footer-links" style="margin-top: 25px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+        <a href="privacy.html" style="color: #00a88e; text-decoration: none; font-size: 0.95rem; font-weight: 600; padding: 8px 16px; border-radius: 20px; background: rgba(0, 168, 142, 0.05); transition: all 0.3s ease;">Privacy Policy</a>
+        <a href="terms.html" style="color: #00a88e; text-decoration: none; font-size: 0.95rem; font-weight: 600; padding: 8px 16px; border-radius: 20px; background: rgba(0, 168, 142, 0.05); transition: all 0.3s ease;">Terms & Conditions</a>
+      </div>
+      <div class="contact-info">
+        <p>&copy; 2025 Edu Navia. All Rights Reserved.</p>
+        <p>Follow us on social media for updates!</p>
+      </div>
+    </div>
+  </footer>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script src="translate.js"></script>
+  <script src="exam-tracker.js"></script>
+  <!-- Floating Guide Button -->
+<button id="guideBtn">💡 Guide</button>
+
+<!-- Slide-in Navi Panel -->
+<div id="naviPanel">
+  <div class="panel-content">
+    <button id="closeGuide">Close ✖</button>
+    <iframe src="guide.html"></iframe>
+  </div>
+</div>
+
+<style>
+#guideBtn {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  background: #00bfa6;
+  color: white;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  z-index: 1001;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+#naviPanel {
+  position: fixed;
+  top: 70px;
+  left: -360px;
+  width: 360px;
+  height: calc(100% - 70px);
+  background: #f4f7fb;
+  box-shadow: 4px 0 20px rgba(0,0,0,0.2);
+  transition: left 0.3s ease;
+  z-index: 1000;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  overflow: hidden;
+}
+
+#naviPanel .panel-content {
+  padding: 16px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#naviPanel iframe {
+  border: none;
+  flex: 1;
+  border-radius: 8px;
+}
+
+#closeGuide {
+  background: #009e89;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+</style>
+
+<script>
+const guideBtn = document.getElementById('guideBtn');
+const naviPanel = document.getElementById('naviPanel');
+const closeBtn = document.getElementById('closeGuide');
+
+guideBtn.addEventListener('click', () => {
+  naviPanel.style.left = '0';
+
+  // Send message to iframe to trigger speech
+  const iframe = naviPanel.querySelector('iframe');
+  iframe.contentWindow.postMessage({ action: 'speak', text: "Hi, I am Navi, your Edu Navia guide. What would you like to do?" }, '*');
+});
+
+closeBtn.addEventListener('click', () => {
+  naviPanel.style.left = '-360px';
+});
+</script>
+
+
+    <script src="./global-features.js" defer></script>
+</body>
+</html>

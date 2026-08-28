@@ -1,0 +1,501 @@
+ body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+    /* ─── HEADER ─── */
+header {
+  background: #d0ebe6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #00695c;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+nav a {
+  margin: 0 1rem;
+  color: #004d40;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #009688;
+}
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+    .card {
+  background: linear-gradient(145deg, #ffffff, #f0f0f0);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-left: 6px solid teal;
+}
+
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+}
+
+    
+    .card h2 {
+      margin: 0 0 0.5rem;
+      color: teal;
+      font-size: 1.2rem;
+    }
+    .card p {
+      margin-bottom: 1rem;
+    }
+    .card button {
+      background: teal;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .card button:hover {
+      background-color: #00796b;
+    }
+    .tool-section {
+      padding: 2rem;
+      display: none;
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    }
+    .tool-section.active {
+      display: block;
+    }
+    .tool-section input,
+    .tool-section textarea {
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 0.6rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .tool-section button {
+      background: teal;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      margin-right: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .tool-section button:hover {
+      background: #00796b;
+    }
+    #resumeOutput, #cgpaResult {
+      margin-top: 2rem;
+      padding: 1rem;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    /* ─── FOOTER ─── */
+footer {
+  background-color: #00a88e;
+  color: #fff;
+  padding: 50px 20px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-logo img {
+  max-width: 120px;
+  margin-bottom: 20px;
+}
+
+.social-icons {
+  margin: 25px 0;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.social-icon {
+  font-size: 32px;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.social-icon:hover {
+  transform: scale(1.3);
+}
+
+.social-icon.instagram:hover { color: #e4405f; }
+.social-icon.mail:hover { color: #d44638; }
+.social-icon.telephone:hover { color: #34b7f1; }
+.social-icon.linkedin:hover { color: #0077b5; }
+.social-icon.facebook:hover { color: #3b5998; }
+.social-icon.whatsapp:hover { color: #25d366; }
+
+.contact-info {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #ccc;
+}
+
+.contact-info a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-info a:hover {
+  color: #f1c40f;
+}
+
+@media (max-width: 1024px) {
+  .tool-section {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .tool-section {
+    padding: 1rem;
+  }
+
+  .resource-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    padding: 1rem;
+  }
+
+  .card h2 {
+    font-size: 1rem;
+  }
+
+  .card p {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  .tool-section input,
+  .tool-section textarea {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+
+  .tool-section button,
+  .card button {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+#resumeOutput {
+  font-family: 'Segoe UI', sans-serif;
+  background: #fff;
+  padding: 2rem;
+  margin-top: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  color: #333;
+  line-height: 1.6;
+}
+
+#resumeOutput a {
+  color: #00796b;
+  text-decoration: none;
+}
+
+#resumeOutput h1, 
+#resumeOutput h2 {
+  margin-bottom: 0.5rem;
+}
+
+#resumeOutput ul {
+  padding-left: 20px;
+}
+
+.tool-section {
+  transition: all 0.3s ease-in-out;
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+.tool-section.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tool-section h2 {
+  color: #00796b;
+  margin-bottom: 1rem;
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tool-section input,
+.tool-section textarea,
+.tool-section select {
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: box-shadow 0.2s;
+}
+
+.tool-section input:focus,
+.tool-section textarea:focus {
+  box-shadow: 0 0 5px teal;
+  outline: none;
+}
+
+.tool-section button {
+  background: #00796b;
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.tool-section button:hover {
+  background: #004d40;
+  transform: scale(1.05);
+}
+
+#cgpaResult, #resumeOutput {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: #f0fdf4;
+  border-left: 6px solid #00a88e;
+  border-radius: 12px;
+  font-size: 1.1rem;
+}
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes floatUp {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes typewriter {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blinkCaret {
+  50% { border-color: transparent; }
+}
+
+.resource-grid .card {
+  animation: floatUp 0.6s ease-in-out forwards;
+  opacity: 0;
+}
+
+.resource-grid .card:nth-child(1) { animation-delay: 0.1s; }
+.resource-grid .card:nth-child(2) { animation-delay: 0.2s; }
+.resource-grid .card:nth-child(3) { animation-delay: 0.3s; }
+.resource-grid .card:nth-child(4) { animation-delay: 0.4s; }
+.resource-grid .card:nth-child(5) { animation-delay: 0.5s; }
+
+.tool-section h2 {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid teal;
+  animation:
+    typewriter 2.5s steps(40, end),
+    blinkCaret 0.75s step-end infinite;
+  width: 100%;
+}
+
+.card button {
+  animation: pulse 2s infinite;
+}
+
+header .logo {
+  animation: fadeInDown 1s ease-in-out;
+}
+
+#loadingSpinner {
+  display: none;
+  margin: 1rem auto;
+  width: 50px;
+  height: 50px;
+  border: 6px solid #eee;
+  border-top: 6px solid teal;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.feature-cards {
+  margin-top: 40px;
+}
+
+.resource-card {
+  background: linear-gradient(135deg, #ffffff, #f2fdfb);
+  border-radius: 16px;
+  padding: 22px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+.resource-card i {
+  font-size: 2.4rem;
+  color: #00bfa6;
+  margin-bottom: 12px;
+}
+
+.resource-card h3 {
+  margin: 10px 0 6px;
+}
+
+.resource-card p {
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+.resource-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 16px 30px rgba(0,191,166,0.25);
+}
+
+/* =========================================================
+   🌙 DARK MODE OVERRIDES FOR RESOURCE.HTML
+========================================================= */
+[data-theme="dark"] body {
+  background: #121212;
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] header {
+  background: #1a2a29;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+[data-theme="dark"] nav a {
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] nav a:hover {
+  color: #00bfa6;
+}
+
+[data-theme="dark"] .logo {
+  color: #00bfa6 !important;
+}
+
+[data-theme="dark"] .card {
+  background: linear-gradient(145deg, #1e1e1e, #1a1e24);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .card h2 {
+  color: #00bfa6;
+}
+
+[data-theme="dark"] .card p {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .tool-section {
+  background: #1e1e1e;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .tool-section input,
+[data-theme="dark"] .tool-section textarea {
+  background: #121212;
+  color: #e2e8f0;
+  border-color: #333;
+}
+
+[data-theme="dark"] #resumeOutput, 
+[data-theme="dark"] #cgpaResult {
+  background: #1a2a29;
+  color: #e2e8f0;
+  border-left-color: #00bfa6;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
+[data-theme="dark"] footer, 
+[data-theme="dark"] .footer-container {
+  background-color: #121212 !important;
+  color: #94a3b8;
+  border-top: 1px solid #333;
+}
+
+[data-theme="dark"] .resource-card {
+  background: linear-gradient(135deg, #1e1e1e, #1a2a29);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+[data-theme="dark"] .resource-card p {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .resource-card h3 {
+  color: #e2e8f0;
+}

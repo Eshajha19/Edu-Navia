@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Privacy Policy - Edu Navia</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="policy.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./global-features.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="navbar-left">
+      <div class="logo">
+        <a href="index.html" style="color:black; text-decoration: none;">🎓 Edu Navia</a>
+      </div>
+    </div>
+    <nav>
+      <a href="p.html">Universities</a>
+      <a href="courses.html">Courses</a>
+      <a href="consulting.html">Consulting</a>
+      <a href="resource.html">Resources</a>
+    </nav>
+  </div>
+
+  <!-- Content -->
+  <div class="policy-container">
+    <h1>Privacy Policy</h1>
+    <p>Last updated: October 2025</p>
+
+    <h2>1. Introduction</h2>
+    <p>Welcome to Edu Navia. We respect your privacy and are committed to protecting your personal data. This Privacy Policy outlines how we collect, use, and safeguard your information when you interact with our platform.</p>
+
+    <h2>2. Information We Collect</h2>
+    <p>We may collect personal identification information from Users in a variety of ways, including, but not limited to:</p>
+    <ul>
+      <li>When Users visit our site.</li>
+      <li>When Users register on the site or book a consulting session.</li>
+      <li>When Users subscribe to our newsletter or access our AI tools.</li>
+    </ul>
+
+    <h2>3. How We Use Collected Information</h2>
+    <p>Edu Navia may collect and use Users' personal information for the following purposes:</p>
+    <ul>
+      <li><strong>To improve customer service:</strong> Information you provide helps us respond to your customer service requests and support needs more efficiently.</li>
+      <li><strong>To personalize user experience:</strong> We may use information in the aggregate to understand how our Users as a group use the services and resources provided on our Site.</li>
+      <li><strong>To process payments:</strong> We may use the information Users provide about themselves when placing an order only to provide service to that order.</li>
+      <li><strong>To send periodic emails:</strong> We may use the email address to send User information and updates pertaining to their order.</li>
+    </ul>
+
+    <h2>4. How We Protect Your Information</h2>
+    <p>We adopt appropriate data collection, storage and processing practices and security measures to protect against unauthorized access, alteration, disclosure or destruction of your personal information, username, password, transaction information and data stored on our Site.</p>
+
+    <h2>5. Changes to This Privacy Policy</h2>
+    <p>Edu Navia has the discretion to update this privacy policy at any time. When we do, we will revise the updated date at the bottom of this page. We encourage Users to frequently check this page for any changes.</p>
+
+    <h2>6. Contacting Us</h2>
+    <p>If you have any questions about this Privacy Policy, the practices of this site, or your dealings with this site, please contact us at <strong>info@edunavia.com</strong>.</p>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="social-icons">
+        <a href="https://www.instagram.com" target="_blank" class="social-icon">📷</a>
+        <a href="mailto:info@edunavia.com" target="_blank" class="social-icon">✉️</a>
+        <a href="tel:+1234567890" target="_blank" class="social-icon">📞</a>
+        <a href="https://www.linkedin.com" target="_blank" class="social-icon">🔗</a>
+        <a href="https://www.facebook.com" target="_blank" class="social-icon">📘</a>
+        <a href="https://wa.me/+1234567890" target="_blank" class="social-icon">💬</a>
+      </div>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms and Conditions</a>
+      </div>
+      <div class="contact-info">
+        <p>&copy; 2025 Edu Navia. All Rights Reserved.</p>
+        <p>Follow us on social media for updates!</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Global Features -->
+  <button id="guideBtn">💡 Guide</button>
+  <div id="naviPanel">
+    <div class="panel-content">
+      <button id="closeGuide">Close ✖</button>
+      <iframe src="guide.html"></iframe>
+    </div>
+  </div>
+
+  <style>
+  #guideBtn {
+    position: fixed; left: 20px; bottom: 20px; background: #00bfa6; color: white;
+    border: none; padding: 12px 16px; border-radius: 30px; cursor: pointer; z-index: 1001; box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+  #naviPanel {
+    position: fixed; top: 70px; left: -360px; width: 360px; height: calc(100% - 70px);
+    background: #f4f7fb; box-shadow: 4px 0 20px rgba(0,0,0,0.2); transition: left 0.3s ease;
+    z-index: 1000; border-top-right-radius: 8px; border-bottom-right-radius: 8px; overflow: hidden;
+  }
+  #naviPanel .panel-content { padding: 16px; height: 100%; display: flex; flex-direction: column; }
+  #naviPanel iframe { border: none; flex: 1; border-radius: 8px; }
+  #closeGuide { background: #009e89; color: white; border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; margin-bottom: 12px; }
+  </style>
+  <script>
+  const guideBtn = document.getElementById('guideBtn');
+  const naviPanel = document.getElementById('naviPanel');
+  const closeBtn = document.getElementById('closeGuide');
+  guideBtn.addEventListener('click', () => { naviPanel.style.left = '0'; });
+  closeBtn.addEventListener('click', () => { naviPanel.style.left = '-360px'; });
+  </script>
+  <script src="./global-features.js" defer></script>
+</body>
+</html>

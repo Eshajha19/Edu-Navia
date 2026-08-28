@@ -1,0 +1,9 @@
+{
+  "canisters": {
+    "edu_navigator_frontend": {
+      "type": "assets",
+      "source": ["src/edu_navigator_assets"]
+    }
+  }
+}
+

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Signup | Edu Navia</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="signup.css" />
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <link rel="stylesheet" href="./global-features.css">
+</head>
+<body>
+  <main class="hero">
+    <section class="signup-wrapper fade-in">
+      <!-- Left promo side -->
+      <aside class="signup-left">
+        <h1 class="headline">Join Edu Navia Today!</h1>
+        <p class="intro-text">
+          We're thrilled to welcome you! Create an account now to unlock full
+          access and begin your learning journey.
+        </p>
+        <a href="login.html" class="btn btn-outline">Already have an account? Sign in</a>
+      </aside>
+
+      <!-- Right signup form side -->
+      <section class="signup-right slide-up" aria-labelledby="signupTitle">
+        <h2 id="signupTitle" class="form-title">Create Your Account</h2>
+        <form id="signup-form" novalidate>
+          <label for="full-name" class="sr-only">Full Name</label>
+          <input
+            type="text"
+            id="full-name"
+            name="fullName"
+            placeholder="Full Name"
+            autocomplete="name"
+            required
+          />
+
+          <label for="signup-email" class="sr-only">Email Address</label>
+          <input
+            type="email"
+            id="signup-email"
+            name="email"
+            placeholder="Email Address"
+            autocomplete="email"
+            required
+          />
+
+          <label for="signup-password" class="sr-only">Password</label>
+          <input
+            type="password"
+            id="signup-password"
+            name="password"
+            placeholder="Password"
+            autocomplete="new-password"
+            required
+          />
+
+          <label for="signup-confirm" class="sr-only">Confirm Password</label>
+          <input
+            type="password"
+            id="signup-confirm"
+            name="confirmPassword"
+            placeholder="Confirm Password"
+            autocomplete="new-password"
+            required
+          />
+
+          <button type="submit" class="btn btn-primary full-width">Sign Up</button>
+        </form>
+
+        <p class="alt-signup-text">Or sign up with</p>
+        <div class="social-icons" role="list" aria-label="Social signup options">
+          <a href="#" id="google" role="listitem" aria-label="Sign up with Google">
+            <img
+              src="https://img.icons8.com/color/48/google-logo.png"
+              alt="Google Logo"
+              width="32"
+              height="32"
+            />
+          </a>
+        </div>
+      </section>
+    </section>
+
+
+    <!-- Success Modal -->
+    <div id="welcomeModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDesc">
+      <div class="modal-content">
+        <div class="checkmark" aria-hidden="true">
+          <div class="checkmark-circle"></div>
+          <div class="checkmark-stem"></div>
+          <div class="checkmark-kick"></div>
+        </div>
+        <h2 id="modalTitle">Welcome to Edu Navia!</h2>
+        <p id="modalDesc">Your account has been created successfully.</p>
+        <button id="closeModal">Continue</button>
+      </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div
+      id="errorModal"
+      class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
+      role="alertdialog"
+      aria-modal="true"
+      aria-labelledby="errorTitle"
+      aria-describedby="errorDesc"
+    >
+      <div class="bg-white rounded-lg shadow-lg p-6 w-80 text-center">
+        <h2 id="errorTitle" class="text-xl font-bold text-red-600 mb-4">
+          Account Exists
+        </h2>
+        <p id="errorDesc" class="text-gray-700 mb-6">
+          This account already exists. Please login or signup with a new account.
+        </p>
+        <button
+          id="errorClose"
+          class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Firebase + Auth script -->
+  <script type="module" src="signup.js"></script>
+  <!-- Firebase Libraries -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+<!-- Floating Guide Button -->
+<button id="guideBtn">💡 Guide</button>
+
+<!-- Slide-in Navi Panel -->
+<div id="naviPanel">
+  <div class="panel-content">
+    <button id="closeGuide">Close ✖</button>
+    <iframe src="guide.html"></iframe>
+  </div>
+</div>
+
+<style>
+#guideBtn {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  background: #00bfa6;
+  color: white;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  z-index: 1001;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+#naviPanel {
+  position: fixed;
+  top: 70px;
+  left: -360px;
+  width: 360px;
+  height: calc(100% - 70px);
+  background: #f4f7fb;
+  box-shadow: 4px 0 20px rgba(0,0,0,0.2);
+  transition: left 0.3s ease;
+  z-index: 1000;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  overflow: hidden;
+}
+
+#naviPanel .panel-content {
+  padding: 16px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#naviPanel iframe {
+  border: none;
+  flex: 1;
+  border-radius: 8px;
+}
+
+#closeGuide {
+  background: #009e89;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+</style>
+
+<script>
+const guideBtn = document.getElementById('guideBtn');
+const naviPanel = document.getElementById('naviPanel');
+const closeBtn = document.getElementById('closeGuide');
+
+guideBtn.addEventListener('click', () => {
+  naviPanel.style.left = '0';
+
+  // Send message to iframe to trigger speech
+  const iframe = naviPanel.querySelector('iframe');
+  iframe.contentWindow.postMessage({ action: 'speak', text: "Hi, I am Navi, your Edu Navia guide. What would you like to do?" }, '*');
+});
+
+closeBtn.addEventListener('click', () => {
+  naviPanel.style.left = '-360px';
+});
+</script>
+
+  <!-- Global Search Logic -->
+  <script src="globalSearch.js"></script>
+
+    <script src="./global-features.js" defer></script>
+</body>
+</html> 

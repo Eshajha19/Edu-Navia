@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduNavia AI Predictor</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../global-features.css">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family: 'Inter', sans-serif; }
+body { background: linear-gradient(135deg, #abede3, #b5dac4); min-height:100vh; display:flex; justify-content:center; align-items:center; padding:20px; }
+.container { background:#fff; border-radius:25px; padding:40px; max-width:600px; width:100%; box-shadow:0 20px 50px rgba(0,0,0,0.2); transition:0.3s ease; }
+.container:hover { transform: translateY(-5px); }
+h2 { text-align:center; color:#00c6a7; font-size:2rem; margin-bottom:30px; font-weight:700; }
+label { display:block; margin-top:20px; font-weight:600; color:#333; }
+input, select { width:100%; padding:14px; margin-top:8px; border-radius:12px; border:1px solid #ccc; font-size:1rem; transition: all 0.3s ease; }
+input:hover, select:hover { border-color:#00c6a7; box-shadow:0 0 8px rgba(0,198,167,0.3); }
+input:focus, select:focus { border-color:#00c6a7; outline:none; box-shadow:0 0 12px rgba(0,198,167,0.4); }
+button { margin-top:30px; width:100%; padding:16px; background: linear-gradient(135deg, #00c6a7, #2ed573); color:#fff; font-weight:600; font-size:1.1rem; border:none; border-radius:12px; cursor:pointer; transition: all 0.3s ease; box-shadow:0 8px 20px rgba(0,0,0,0.15); }
+button:hover { transform: translateY(-3px); box-shadow:0 12px 25px rgba(0,0,0,0.2); background: linear-gradient(135deg, #2ed573, #00c6a7); }
+
+.results { margin-top:30px; display:flex; flex-direction:column; gap:20px; }
+.explanation-card { background: #eafff5; border-left: 5px solid #00c6a7; padding: 20px; border-radius: 10px; font-weight: 500; color: #2c3e50; line-height:1.6; }
+
+.result-card { background:#f9f9f9; padding:20px; border-radius:15px; box-shadow:0 8px 25px rgba(0,0,0,0.1); transition:0.3s ease; }
+.result-card:hover { transform: translateY(-3px); box-shadow:0 12px 30px rgba(0,0,0,0.15); }
+.result-card h3 { color:#00c6a7; margin-bottom:15px; font-size:1.3rem; font-weight:600; }
+.result-card ul { list-style-type: none; padding-left:0; color:#333; }
+.result-card ul li { margin-bottom:15px; font-weight: 500; }
+.bar-container { background:#d8f3dc; height:12px; border-radius:10px; overflow:hidden; margin-top:8px; }
+.bar { height:12px; border-radius:10px; background: linear-gradient(90deg, #00c6a7, #2ed573); width:0%; transition:width 1s cubic-bezier(0.4, 0, 0.2, 1); }
+
+@media(max-width:600px){ .container { padding:30px; } button { padding:14px; font-size:1rem; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>EduNavia AI Predictor</h2>
+
+  <label>Gender</label>
+  <select id="gender" required>
+    <option value="" disabled selected>Select Gender</option>
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+    <option value="other">Other</option>
+  </select>
+
+  <label>Stream</label>
+  <select id="stream" required>
+    <option value="" disabled selected>Select Stream</option>
+    <option value="science">Science</option>
+    <option value="commerce">Commerce</option>
+    <option value="arts">Humanities / Arts</option>
+    <option value="engineering">Engineering</option>
+    <option value="medical">Medical</option>
+    <option value="law">Law</option>
+    <option value="design">Design</option>
+  </select>
+
+  <label>Core Subject Interest</label>
+  <input type="text" id="subject" placeholder="e.g. Physics, Marketing, Psychology" required>
+
+  <label>Cumulative Marks (%)</label>
+  <input type="number" id="marks" min="0" max="100" placeholder="Enter Marks (0-100)" required>
+
+  <button onclick="getRecommendation()" id="submitBtn">Generate AI Recommendations</button>
+
+  <div class="results" id="results"></div>
+</div>
+
+<script>
+async function getRecommendation() {
+  const btn = document.getElementById("submitBtn");
+  
+  const data = {
+    gender: document.getElementById("gender").value,
+    stream: document.getElementById("stream").value,
+    subject: document.getElementById("subject").value,
+    marks: parseFloat(document.getElementById("marks").value)
+  };
+
+  // Validation
+  for (let key in data) {
+    if (!data[key] && data[key] !== 0) {
+      alert("Please fill all fields!");
+      return;
+    }
+  }
+
+  btn.innerText = "Analyzing neural patterns...";
+  btn.style.opacity = "0.8";
+
+  try {
+    const response = await fetch("/predict", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+
+    if (!response.ok) {
+        const err = await response.json();
+        alert("Server Error: " + (err.detail || response.statusText));
+        btn.innerText = "Generate AI Recommendations";
+        btn.style.opacity = "1";
+        return;
+    }
+
+    const result = await response.json();
+    let html = "";
+
+    // 1. AI Explanation Display
+    if(result.explanations && result.explanations.length > 0) {
+        html += `<div class="explanation-card">
+            <strong>🤖 AI Insight:</strong><br>
+            ${result.explanations.join(" ")}
+        </div>`;
+    }
+
+    // 2. Course Predictions
+    if(result.recommended_courses) {
+        html += `<div class="result-card"><h3>📚 Top Recommended Courses</h3><ul>`;
+        for(let i=0; i<result.recommended_courses.length; i++) {
+            let name = result.recommended_courses[i];
+            let percent = result.confidence_scores.courses[i];
+            
+            html += `<li>${name} <span style="float:right; color:#00c6a7; font-weight:700;">${percent}% Match</span>
+                        <div class="bar-container">
+                          <div class="bar" data-width="${percent}%"></div>
+                        </div>
+                     </li>`;
+        }
+        html += "</ul></div>";
+    }
+
+    // 3. University Predictions
+    if(result.recommended_universities) {
+        html += `<div class="result-card"><h3>🏛️ Best University Matches</h3><ul>`;
+        for(let i=0; i<result.recommended_universities.length; i++) {
+            let name = result.recommended_universities[i];
+            let percent = result.confidence_scores.universities[i];
+            
+            html += `<li>${name} <span style="float:right; color:#2ed573; font-weight:700;">${percent}%</span>
+                        <div class="bar-container">
+                          <div class="bar" data-width="${percent}%" style="background: linear-gradient(90deg, #2ed573, #0bc461);"></div>
+                        </div>
+                     </li>`;
+        }
+        html += "</ul></div>";
+    }
+
+    document.getElementById("results").innerHTML = html;
+
+    // Trigger beautiful bar animations gracefully 
+    setTimeout(() => {
+        const bars = document.querySelectorAll(".bar");
+        bars.forEach(bar => { bar.style.width = bar.dataset.width; });
+    }, 100);
+
+  } catch (err) {
+    alert("Could not connect to localhost:8000. Is the FastAPI server running?");
+  } finally {
+    btn.innerText = "Generate AI Recommendations";
+    btn.style.opacity = "1";
+  }
+}
+</script>
+
+<script src="../global-features.js" defer></script>
+</body>
+</html>

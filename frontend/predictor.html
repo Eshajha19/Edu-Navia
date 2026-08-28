@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edu Navia | AI Cutoff Intelligence</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Edu Navia's advanced AI-powered cutoff predictor utilizes neural networks to provide high-accuracy admission simulations based on historical data.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./global-features.css">
+    
+    <style>
+        :root {
+            --primary-glow: #00ffcc;
+            --primary-dim: #00bfa6;
+            --secondary-glow: #7c3aed;
+            --accent-glow: #f43f5e;
+            --bg-deep: #050b18;
+            --card-glass: rgba(15, 23, 42, 0.6);
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+        }
+
+        [data-theme="light"] {
+            --bg-deep: #f0f4f8;
+            --card-glass: rgba(255, 255, 255, 0.82);
+            --border-glass: rgba(0, 0, 0, 0.06);
+            --text-main: #0f172a;
+            --text-dim: #475569;
+            --primary-glow: #0d9488;
+            --primary-dim: #0f766e;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-deep) !important;
+            color: var(--text-main) !important;
+            margin: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+            transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s ease;
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(0, 255, 204, 0.06) 0%, transparent 40%),
+                radial-gradient(circle at 100% 100%, rgba(124, 58, 237, 0.06) 0%, transparent 40%) !important;
+        }
+
+        [data-theme="light"] body {
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(13, 148, 136, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 100% 100%, rgba(124, 58, 237, 0.08) 0%, transparent 40%) !important;
+        }
+
+        .predictor-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 120px 20px 60px;
+        }
+
+        .predictor-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        .predictor-header h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-glow), #4f46e5);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+            letter-spacing: -1px;
+        }
+        .predictor-header p {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            margin-top: 15px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .predictor-grid {
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 40px;
+        }
+
+        /* SIDEBAR INPUTS */
+        .input-sidebar {
+            background: var(--card-glass);
+            backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 35px;
+            border: 1px solid var(--border-glass);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+        .input-sidebar h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .field-group { margin-bottom: 25px; }
+        .field-group label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--primary-dim);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        .field-group input, .field-group select {
+            width: 100%;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid #334155;
+            padding: 15px 20px;
+            border-radius: 15px;
+            color: white;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+        .field-group input:focus { border-color: var(--primary-glow); outline: none; box-shadow: 0 0 15px rgba(0,255,204,0.15); }
+
+        #runPrediction {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--primary-glow), var(--primary-dim));
+            color: var(--bg-deep);
+            border: none;
+            border-radius: 18px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+        #runPrediction:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,255,204,0.2); }
+
+        /* ANALYTICS */
+        .analytics-main { display: flex; flex-direction: column; gap: 30px; }
+
+        .ai-status-bar {
+            background: rgba(0, 255, 204, 0.05);
+            border: 1px solid rgba(0, 255, 204, 0.1);
+            padding: 15px 30px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 0.9rem;
+            color: var(--primary-glow);
+        }
+        .pulse-dot { width: 10px; height: 10px; background: var(--primary-glow); border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+
+        .metrics-row {
+            display: grid;
+            grid-template-columns: 280px 280px 1fr;
+            gap: 25px;
+        }
+        .glass-card {
+            background: var(--card-glass);
+            padding: 35px;
+            border-radius: 35px;
+            border: 1px solid var(--border-glass);
+            backdrop-filter: blur(10px);
+        }
+        .prob-value { font-size: 4rem; font-weight: 800; line-height: 1; margin-bottom: 10px; }
+        .cutoff-value { font-size: 2.5rem; font-weight: 700; color: #fbbf24; margin-bottom: 5px; }
+        .prob-label { font-size: 0.75rem; letter-spacing: 2px; color: var(--text-dim); text-transform: uppercase; }
+
+        .verdict-box h3 { font-size: 1.5rem; margin-bottom: 20px; color: var(--primary-glow); }
+        .verdict-text { font-size: 1.1rem; line-height: 1.7; color: #cbd5e1; }
+
+        .logic-card { background: rgba(124, 58, 237, 0.05); border-color: rgba(124, 58, 237, 0.2); }
+        .logic-card h4 { color: #a78bfa; margin-bottom: 15px; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 2px; }
+
+        .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+        .chart-card { padding: 25px; }
+        .chart-card h5 { color: var(--text-dim); margin-bottom: 15px; font-weight: 500; font-size: 0.8rem; letter-spacing: 1px; }
+
+        /* LOADING */
+        #loadingOverlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(5, 11, 24, 0.98);
+            z-index: 10000;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .loader { width: 80px; height: 80px; border: 4px solid rgba(0, 255, 204, 0.1); border-top-color: var(--primary-glow); border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* NAVBAR */
+        .navbar { background: rgba(15, 23, 42, 0.9) !important; backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-glass); padding: 5px 0 !important; }
+        .logo a { font-weight: 800; color: var(--primary-glow) !important; font-family: 'Space Grotesk' !important; }
+
+        @media (max-width: 1100px) {
+            .predictor-grid { grid-template-columns: 1fr; }
+            .metrics-row { grid-template-columns: 1fr; }
+            .chart-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+      <div class="container nav-wrapper">
+        <div class="logo"><a href="index.html" style="text-decoration: none;">EDU NAVIA AI</a></div>
+        <nav class="nav-container">
+          <ul class="nav-links">
+            <li><a href="p.html">Universities</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="consulting.html">Consulting</a></li>
+            <li><a href="predictor.html" class="active" style="color:var(--primary-glow);">Predictor</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <div id="loadingOverlay">
+        <div class="loader"></div>
+        <h3 id="loaderText" style="margin-top: 30px; letter-spacing: 4px; color: var(--primary-glow);">SYNERGIZING NEURAL NODES</h3>
+    </div>
+
+    <main class="predictor-container">
+        <header class="predictor-header">
+            <h1>AI Cutoff Intelligence</h1>
+            <p>Neural Admission Strategy Engine</p>
+        </header>
+
+        <div class="predictor-grid">
+            <aside class="input-sidebar">
+                <h2><i class="fa-solid fa-microchip"></i> Vector Data</h2>
+                <div class="field-group">
+                    <label>All India Rank (AIR)</label>
+                    <input type="number" id="userRank" placeholder="e.g. 15000">
+                </div>
+                <div class="field-group">
+                    <label>Aggregate Marks (%)</label>
+                    <input type="number" id="userMarks" placeholder="e.g. 92.5">
+                </div>
+                <div class="field-group">
+                    <label>Academic Domain</label>
+                    <select id="userCourse">
+                        <option value="Computer Science">Computer Science & AI</option>
+                        <option value="Medical">Medical Science (MBBS)</option>
+                        <option value="Engineering">Core Engineering (IIT/NIT)</option>
+                        <option value="Management">Global Management (MBA)</option>
+                        <option value="Law">Integrated Law</option>
+                    </select>
+                </div>
+                <div class="field-group">
+                    <label>Social Category</label>
+                    <select id="userCategory">
+                        <option value="General">General (Unreserved)</option>
+                        <option value="OBC">OBC-NCL</option>
+                        <option value="SC">Scheduled Caste</option>
+                        <option value="ST">Scheduled Tribe</option>
+                        <option value="EWS">Economically Weaker Section</option>
+                    </select>
+                </div>
+                <div class="field-group">
+                    <label>Target Region</label>
+                    <select id="userState">
+                        <option value="Maharashtra">Maharashtra</option>
+                        <option value="Delhi">Delhi NCR</option>
+                        <option value="Karnataka">Karnataka</option>
+                        <option value="Tamil Nadu">Tamil Nadu</option>
+                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    </select>
+                </div>
+                <button id="runPrediction">EXECUTE AI ANALYSIS</button>
+            </aside>
+
+            <section class="analytics-main" id="analyticsArea" style="display: none;">
+                <div class="ai-status-bar">
+                    <div class="pulse-dot"></div>
+                    <span>AI LIVE: Synchronized with Admission Vectors</span>
+                </div>
+
+                <div class="metrics-row">
+                    <div class="glass-card" style="text-align: center;">
+                        <div class="prob-value" id="finalProb" style="color: var(--primary-glow);">0%</div>
+                        <div class="prob-label">Eligibility Index</div>
+                    </div>
+                    <div class="glass-card" style="text-align: center;">
+                        <div class="cutoff-value" id="projectedCutoff">0</div>
+                        <div class="prob-label">Projected Cutoff</div>
+                    </div>
+                    <div class="glass-card verdict-box">
+                        <h3 id="verdictTitle">NEURAL READY</h3>
+                        <p class="verdict-text" id="verdictBody">Processing historical variance data...</p>
+                    </div>
+                </div>
+
+                <div class="glass-card logic-card" id="logicBox">
+                    <h4><i class="fa-solid fa-brain"></i> Intelligence Logic Breakdown</h4>
+                    <p class="verdict-text" id="logicBody" style="font-size: 0.95rem;"></p>
+                </div>
+
+                <div class="chart-grid">
+                    <div class="glass-card chart-card">
+                        <h5>RANK DISTRIBUTION VENTILE</h5>
+                        <canvas id="rankChart" height="220"></canvas>
+                    </div>
+                    <div class="glass-card chart-card">
+                        <h5>VOLATILITY INDEX</h5>
+                        <canvas id="volatilityChart" height="220"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="initialState" style="background: rgba(30, 41, 59, 0.2); border-radius: 40px; border: 2px dashed rgba(255,255,255,0.05); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 100px 40px; text-align: center;">
+                <i class="fa-solid fa-atom fa-spin-slow" style="font-size: 4rem; color: #1e293b; margin-bottom: 30px;"></i>
+                <h3 style="color: var(--text-dim);">Neural Engine Standby</h3>
+                <p style="color: #475569; max-width: 400px;">Please provide academic parameters to initialize the prediction sequence.</p>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        let rChart = null;
+        let vChart = null;
+
+        document.getElementById('runPrediction').addEventListener('click', async function() {
+            const rank = document.getElementById('userRank').value;
+            const marks = document.getElementById('userMarks').value;
+            const course = document.getElementById('userCourse').value;
+            const category = document.getElementById('userCategory').value;
+            const state = document.getElementById('userState').value;
+
+            if (!rank || !marks) {
+                alert("Rank and Marks are required for deep neural modeling.");
+                return;
+            }
+
+            const overlay = document.getElementById('loadingOverlay');
+            overlay.style.display = 'flex';
+            
+            try {
+                const response = await fetch('/cutoff-predict', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ rank, marks, course, category, state })
+                });
+                
+                const data = await response.json();
+                
+                overlay.style.display = 'none';
+                document.getElementById('initialState').style.display = 'none';
+                document.getElementById('analyticsArea').style.display = 'flex';
+                
+                // Animate Values
+                animateValue("finalProb", 0, Math.round(data.eligibility_probability), 2000, "%");
+                animateValue("projectedCutoff", 0, data.projected_cutoff, 2000, "");
+                
+                // Update UI Texts
+                const prob = data.eligibility_probability;
+                const title = document.getElementById('verdictTitle');
+                if (prob > 80) title.innerHTML = "ELITE CLUSTER MATCH <i class='fa-solid fa-circle-check'></i>";
+                else if (prob > 45) title.innerHTML = "COMPETITIVE OPPORTUNITY <i class='fa-solid fa-chart-line'></i>";
+                else title.innerHTML = "VOLATILE RISK FACTOR <i class='fa-solid fa-triangle-exclamation'></i>";
+                
+                document.getElementById('verdictBody').innerText = data.verdict;
+                document.getElementById('logicBody').innerHTML = data.detailed_logic;
+
+                renderCharts(prob, rank, data.metrics.volatility);
+
+            } catch (error) {
+                console.error("AI Error:", error);
+                overlay.style.display = 'none';
+                alert("AI Node Connection Failed. Please try again.");
+            }
+        });
+
+        function animateValue(id, start, end, duration, suffix = "") {
+            const obj = document.getElementById(id);
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerText = Math.floor(progress * (end - start) + start) + suffix;
+                if (progress < 1) window.requestAnimationFrame(step);
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        function renderCharts(prob, rank, volatility) {
+            const ctx1 = document.getElementById('rankChart').getContext('2d');
+            const ctx2 = document.getElementById('volatilityChart').getContext('2d');
+
+            if (rChart) rChart.destroy();
+            if (vChart) vChart.destroy();
+
+            Chart.defaults.color = '#94a3b8';
+            Chart.defaults.font.family = "'Outfit', sans-serif";
+
+            rChart = new Chart(ctx1, {
+                type: 'bar',
+                data: {
+                    labels: ['TIER 1', 'TIER 2', 'TIER 3', 'YOU'],
+                    datasets: [{
+                        data: [1000, 5000, 15000, rank],
+                        backgroundColor: (c) => c.index === 3 ? '#00ffcc' : 'rgba(255,255,255,0.05)',
+                        borderRadius: 15
+                    }]
+                },
+                options: { 
+                    plugins: { legend: { display: false } },
+                    scales: { y: { display: false }, x: { grid: { display : false } } }
+                }
+            });
+
+            vChart = new Chart(ctx2, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Predict'],
+                    datasets: [{
+                        data: [15, 22, 28, volatility],
+                        borderColor: '#7c3aed',
+                        backgroundColor: 'rgba(124, 58, 237, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: { 
+                    plugins: { legend: { display: false } }, 
+                    scales: { y: { display: false }, x: { grid: { display : false } } }
+                }
+            });
+        }
+    </script>
+    <script src="/global-features.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rate Edu Navia</title>
+  <link rel="stylesheet" href="rating.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+<!-- Your script: module needed for env vars -->
+<script type="module" src="rating.js" defer></script>
+<!-- Floating Guide Button -->
+<button id="guideBtn">💡 Guide</button>
+
+<!-- Slide-in Navi Panel -->
+<div id="naviPanel">
+  <div class="panel-content">
+    <button id="closeGuide">Close ✖</button>
+    <iframe src="guide.html"></iframe>
+  </div>
+</div>
+
+<style>
+#guideBtn {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  background: #00bfa6;
+  color: white;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  z-index: 1001;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+#naviPanel {
+  position: fixed;
+  top: 70px;
+  left: -360px;
+  width: 360px;
+  height: calc(100% - 70px);
+  background: #f4f7fb;
+  box-shadow: 4px 0 20px rgba(0,0,0,0.2);
+  transition: left 0.3s ease;
+  z-index: 1000;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  overflow: hidden;
+}
+
+#naviPanel .panel-content {
+  padding: 16px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#naviPanel iframe {
+  border: none;
+  flex: 1;
+  border-radius: 8px;
+}
+
+#closeGuide {
+  background: #009e89;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+</style>
+
+<script>
+const guideBtn = document.getElementById('guideBtn');
+const naviPanel = document.getElementById('naviPanel');
+const closeBtn = document.getElementById('closeGuide');
+
+guideBtn.addEventListener('click', () => {
+  naviPanel.style.left = '0';
+
+  // Send message to iframe to trigger speech
+  const iframe = naviPanel.querySelector('iframe');
+  iframe.contentWindow.postMessage({ action: 'speak', text: "Hi, I am Navi, your Edu Navia guide. What would you like to do?" }, '*');
+});
+
+closeBtn.addEventListener('click', () => {
+  naviPanel.style.left = '-360px';
+});
+</script>
+
+
+    <link rel="stylesheet" href="./global-features.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container nav-wrapper">
+      <div class="logo">
+        <div class="logo-text">🎓 Edu Navia</div>
+      </div>
+      <nav></nav>
+
+    </div>
+  </header>
+
+  <!-- Main Rating Section -->
+  <div class="rating-container">
+    <h2>Rate Edu Navia Features</h2>
+    <div id="rating-sections">
+      <!-- Dynamic categories will be added here -->
+    </div>
+    <button id="submitAllBtn">Submit All Ratings</button>
+    <p id="submitMsg" class="hidden">Thanks for your feedback!</p>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="social-icons">
+        <a href="https://www.instagram.com" target="_blank" class="social-icon">📷</a>
+        <a href="mailto:info@edunavia.com" target="_blank" class="social-icon">✉️</a>
+        <a href="tel:+1234567890" target="_blank" class="social-icon">📞</a>
+        <a href="https://www.linkedin.com" target="_blank" class="social-icon">🔗</a>
+        <a href="https://www.facebook.com" target="_blank" class="social-icon">📘</a>
+        <a href="https://wa.me/+1234567890" target="_blank" class="social-icon">💬</a>
+      </div>
+      
+      <div class="footer-links" style="margin-top: 25px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+        <a href="privacy.html" style="color: #00a88e; text-decoration: none; font-size: 0.95rem; font-weight: 600; padding: 8px 16px; border-radius: 20px; background: rgba(0, 168, 142, 0.05); transition: all 0.3s ease;">Privacy Policy</a>
+        <a href="terms.html" style="color: #00a88e; text-decoration: none; font-size: 0.95rem; font-weight: 600; padding: 8px 16px; border-radius: 20px; background: rgba(0, 168, 142, 0.05); transition: all 0.3s ease;">Terms & Conditions</a>
+      </div>
+      <div class="contact-info">
+        <p>&copy; 2025 Edu Navia. All Rights Reserved.</p>
+        <p>Follow Us on Social Media for Updates!</p>
+      </div>
+    </div>
+  </footer>
+<!-- ✨ Beautiful Modal -->
+<div id="customModal" class="custom-modal">
+  <div class="custom-modal-content">
+    <h3 id="modalTitle">Notice</h3>
+    <p id="modalMessage">Something went wrong.</p>
+    <input type="text" id="userNameInput" placeholder="Enter your name" style="display:none;" />
+    <div class="modal-buttons">
+      <button id="modalCancel" style="display:none;">Cancel</button>
+      <button id="modalOk">OK</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+    <script src="./global-features.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+[
+  {
+    "type": "Free",
+    "phone": "8989",
+    "counselor": "General",
+    "timestamp": "2025-07-02T16:50:54.238000+00:00",
+    "name": "ej",
+    "notes": "college",
+    "email": "jha.esha2024@gmail.com",
+    "mode": "Chat",
+    "datetime": "2025-07-20T16:50:00.000Z",
+    "collegeId": "ej"
+  },
+  {
+    "type": "Free",
+    "phone": "08707086509",
+    "counselor": "General",
+    "timestamp": "2025-08-05T18:11:26.176000+00:00",
+    "name": "Esha jha",
+    "notes": "f",
+    "email": "jha.esha2024@gmail.com",
+    "mode": "Chat",
+    "datetime": "2025-08-30T18:11:00.000Z",
+    "collegeId": "haZJ6s6SpRTFrBFhydEeE4KxVmJ2"
+  },
+  {
+    "type": "Free",
+    "phone": "7570998943",
+    "counselor": "General",
+    "timestamp": "2025-07-05T07:12:03.562000+00:00",
+    "name": "Shreyshi Sriwastav",
+    "notes": "",
+    "email": "shreyshisriwastav@gmail.com",
+    "mode": "Chat",
+    "datetime": "2025-07-15T07:11:00.000Z",
+    "collegeId": "shreyshi_sriwastav"
+  }
+]

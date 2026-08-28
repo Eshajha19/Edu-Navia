@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Meet the Developers | Edu Navia</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="about.css">
+
+    <link rel="stylesheet" href="./global-features.css">
+</head>
+<body>
+  <!-- ABOUT US SECTION -->
+<section class="about-us-section">
+
+  <div class="about-header">
+    <h2>About Edu Navia</h2>
+    <p>
+      Edu Navia is a student-focused academic guidance platform designed to
+      eliminate confusion and help learners navigate their educational journey
+      with clarity and confidence.
+    </p>
+  </div>
+
+  <div class="about-cards">
+
+    <div class="about-card">
+      <span>🎯</span>
+      <h3>Our Mission</h3>
+      <p>
+        To simplify academic decision-making through smart tools, curated
+        resources, and personalized guidance for every student.
+      </p>
+    </div>
+
+    <div class="about-card">
+      <span>🌱</span>
+      <h3>Our Vision</h3>
+      <p>
+        To become India’s most trusted digital companion for students exploring
+        careers, colleges, and future opportunities.
+      </p>
+    </div>
+
+    <div class="about-card">
+      <span>💡</span>
+      <h3>Why Edu Navia?</h3>
+      <p>
+        Built by students, for students — Edu Navia understands real challenges
+        and delivers clarity where it matters most.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+<!-- ABOUT + STORY SECTION -->
+<section class="about-glass">
+
+  <h2 class="about-title">Our Story</h2>
+  <p class="about-desc">
+    Edu Navia was born from a simple yet powerful realization — students struggle
+    not because they lack talent, but because they lack clarity.
+  </p>
+
+  <!-- IMPRESSIVE TIMELINE -->
+<div class="timeline-modern">
+
+  <div class="timeline-line"></div>
+
+  <div class="timeline-row reveal">
+    <div class="timeline-dot">🚀</div>
+    <div class="timeline-card glass">
+      <h3>The Problem</h3>
+      <p>
+        Students face overwhelming choices in colleges, courses, and exams,
+        often without proper guidance or clarity.
+      </p>
+    </div>
+  </div>
+
+  <div class="timeline-row reveal">
+    <div class="timeline-dot">💡</div>
+    <div class="timeline-card glass">
+      <h3>The Idea</h3>
+      <p>
+        As students ourselves, we experienced this confusion firsthand —
+        inspiring the creation of Edu Navia.
+      </p>
+    </div>
+  </div>
+
+  <div class="timeline-row reveal">
+    <div class="timeline-dot">🛠️</div>
+    <div class="timeline-card glass">
+      <h3>Building Edu Navia</h3>
+      <p>
+        We built student-friendly tools like university discovery,
+        comparisons, guidance systems, and clean UI.
+      </p>
+    </div>
+  </div>
+
+  <div class="timeline-row reveal">
+    <div class="timeline-dot">🌱</div>
+    <div class="timeline-card glass">
+      <h3>Early Stage Growth</h3>
+      <p>
+        Currently tested with 10 students and covering 873 universities —
+        continuously improving through feedback.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="stats-section">
+
+  <div class="stat-box reveal">
+    <h3 class="counter" data-target="10">0</h3>
+    <p>Students Tested (Early Users)</p>
+  </div>
+
+  <div class="stat-box reveal">
+    <h3 class="counter" data-target="873">0</h3>
+    <p>Universities Covered</p>
+  </div>
+
+  <div class="stat-box reveal">
+    <h3 class="counter" data-target="1">0</h3>
+    <p>Student-First Platform</p>
+  </div>
+
+</div>
+<br>
+<br>
+
+  <section class="team-section">
+    <h1 class="section-title"><span id="typingText"></span></h1>     
+      <!-- Developer Grid -->
+<div class="team-container">
+
+  <!-- Developer Card -->
+  <div class="developer-card" onclick="openModal('eshita')">
+    <img src="eshita.jpg" alt="Eshita Jha" />
+    <h2>Eshita Jha</h2>
+    <p>Frontend Specialist & UI Designer</p>
+  </div>
+
+  <div class="developer-card" onclick="openModal('esha')">
+    <img src="esha.png" alt="Esha Jha" />
+    <h2>Esha Jha</h2>
+    <p>Backend Developer & Firebase Expert</p>
+  </div>
+
+  <div class="developer-card" onclick="openModal('shreyshi')">
+    <img src="shreyshi.jpg" alt="Shreyshi Sriwastav" />
+    <h2>Shreyshi Sriwastav</h2>
+    <p>Frontend Developer & Layout Specialist</p>
+  </div>
+
+</div>
+
+<!-- Modal Template -->
+<div id="devModal" class="modal hidden">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <div id="modalBody"></div>
+  </div>
+</div>
+<!-- Floating Guide Button -->
+<button id="guideBtn">💡 Guide</button>
+
+<!-- Slide-in Navi Panel -->
+<div id="naviPanel">
+  <div class="panel-content">
+    <button id="closeGuide">Close ✖</button>
+    <iframe src="guide.html"></iframe>
+  </div>
+</div>
+
+<style>
+#guideBtn {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  background: #00bfa6;
+  color: white;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  z-index: 1001;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+#naviPanel {
+  position: fixed;
+  top: 70px;
+  left: -360px;
+  width: 360px;
+  height: calc(100% - 70px);
+  background: #f4f7fb;
+  box-shadow: 4px 0 20px rgba(0,0,0,0.2);
+  transition: left 0.3s ease;
+  z-index: 1000;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  overflow: hidden;
+}
+
+#naviPanel .panel-content {
+  padding: 16px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#naviPanel iframe {
+  border: none;
+  flex: 1;
+  border-radius: 8px;
+}
+
+#closeGuide {
+  background: #009e89;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+/* =====================
+   DARK MODE VARIABLES
+===================== */
+:root {
+  --bg-main: #f4f7fb;
+  --bg-card: #ffffff;
+  --text-main: #111827;
+  --text-muted: #6b7280;
+  --accent: #00bfa6;
+  --glass-bg: rgba(255, 255, 255, 0.7);
+}
+
+body.dark {
+  --bg-main: #0f172a;
+  --bg-card: #111827;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --accent: #00e0c6;
+  --glass-bg: rgba(17, 24, 39, 0.75);
+}
+
+body {
+  background: var(--bg-main);
+  color: var(--text-main);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Cards + Panels */
+.about-card,
+.timeline-card,
+.developer-card,
+.stat-box,
+.modal-content,
+#naviPanel {
+  background: var(--bg-card);
+  color: var(--text-main);
+}
+
+/* Glass upgrade */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* =====================
+   TOGGLE BUTTON
+===================== */
+#themeToggle {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: var(--accent);
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 2000;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+#themeToggle:hover {
+  transform: scale(1.1);
+}
+
+</style>
+
+<script>
+const guideBtn = document.getElementById('guideBtn');
+const naviPanel = document.getElementById('naviPanel');
+const closeBtn = document.getElementById('closeGuide');
+
+guideBtn.addEventListener('click', () => {
+  naviPanel.style.left = '0';
+
+  // Send message to iframe to trigger speech
+  const iframe = naviPanel.querySelector('iframe');
+  iframe.contentWindow.postMessage({ action: 'speak', text: "Hi, I am NavEshrey, your Edu Navia guide. What would you like to do?" }, '*');
+});
+
+closeBtn.addEventListener('click', () => {
+  naviPanel.style.left = '-360px';
+});
+</script>
+<!-- Dark Mode Toggle (Font Awesome) -->
+<button id="themeToggle" aria-label="Toggle Dark Mode">
+  <i class="fa-solid fa-moon"></i>
+</button>
+
+
+  <script src="about.js"></script>
+  
+
+    <script src="./global-features.js" defer></script>
+</body>
+</html>

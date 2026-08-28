@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrance Exams Info | Edu Navia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css"> <!-- Link to main styles for navbar consistency -->
+    <link rel="stylesheet" href="examinfo.css">
+    <link rel="stylesheet" href="./global-features.css">
+    <style>
+        /* EXAM GRID UI - PREMIUM CARDS */
+        #examGrid {
+            max-width: 1200px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 0 20px;
+        }
+        .exam-card-premium {
+            background: #fff;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: left;
+        }
+        .exam-card-premium:hover {
+            transform: translateY(-5px);
+            border-color: #0d9488;
+            box-shadow: 0 10px 25px rgba(13, 148, 136, 0.1);
+        }
+        .exam-card-premium h2 { margin: 0 0 10px 0; color: #0d9488; font-size: 1.25rem; font-weight: 700; }
+        .exam-card-premium .summary { color: #64748b; font-size: 0.9rem; line-height: 1.5; margin-bottom: 0; }
+        .details-box {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #cbd5e1;
+            font-size: 0.85rem;
+            color: #334155;
+        }
+        .details-box p { margin: 6px 0; }
+        .details-box strong { color: #0f172a; display: inline-block; width: 90px; }
+
+        /* STANDARDIZED GUIDE STYLES */
+        #guideBtn { position: fixed; left: 20px; bottom: 20px; background: #00bfa6; color: white; border: none; padding: 12px 16px; border-radius: 30px; cursor: pointer; z-index: 1001; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); }
+        #naviPanel { position: fixed; top: 70px; left: -360px; width: 360px; height: calc(100% - 70px); background: #f4f7fb; box-shadow: 4px 0 20px rgba(0, 0, 0, 0.2); transition: left 0.3s ease; z-index: 1000; border-top-right-radius: 8px; border-bottom-right-radius: 8px; overflow: hidden; }
+        #naviPanel .panel-content { padding: 16px; height: 100%; display: flex; flex-direction: column; }
+        #naviPanel iframe { border: none; flex: 1; border-radius: 8px; }
+        #closeGuide { background: #009e89; color: white; border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; margin-bottom: 12px; }
+    </style>
+</head>
+<body>
+    <!-- STANDARD NAVBAR FROM INDEX -->
+    <header class="navbar">
+      <div class="container nav-wrapper">
+        <div class="logo">
+          <a href="index.html" style="color:black; text-decoration: none;">🎓 Edu Navia</a>
+        </div>
+        <nav class="nav-container">
+          <ul class="nav-links">
+            <li><a href="p.html">Universities</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="consulting.html">Consulting</a></li>
+            <li><a href="resource.html">Resources</a></li>
+            <li><a href="about.html">About Us</a></li>
+          </ul>
+        </nav>
+        <button id="darkModeToggle" style="margin-left: 20px; background:none; border:none; cursor:pointer; font-size:1.2rem;">🌙</button>
+      </div>
+    </header>
+
+    <header class="info" style="padding: 60px 20px; text-align: center; background: linear-gradient(to right, #e1f7f4, #f4f9ff);">
+        <h1 style="font-size: 2.5rem; color: #1e293b; margin: 0; font-weight: 800;">Indian Entrance Exams</h1>
+        <p style="color: #64748b; font-size: 1.1rem; margin-top: 10px;">The most comprehensive guide to competitive exams for Indian students.</p>
+    </header>
+
+    <section id="examGrid">
+        <!-- ALL ORIGINAL CONTENT RESTORED -->
+        <div class="exam-card-premium" onclick="toggleDetails(this)">
+            <h2>JEE (Joint Entrance Examination)</h2>
+            <p class="summary">National-level engineering entrance exam.</p>
+            <div class="details-box">
+                <p><strong>Eligibility:</strong> 12th pass with PCM</p>
+                <p><strong>Duration:</strong> 3 hours</p>
+                <p><strong>Mode:</strong> Computer-based</p>
+                <p><strong>Purpose:</strong> Admission to IITs, NITs, and engineering colleges</p>
+            </div>
+        </div>
+
+        <div class="exam-card-premium" onclick="toggleDetails(this)">
+            <h2>NEET (National Eligibility Entrance Test)</h2>
+            <p class="summary">Medical entrance exam for MBBS, BDS, etc.</p>
+            <div class="details-box">
+                <p><strong>Eligibility:</strong> 12th pass with PCB</p>
+                <p><strong>Duration:</strong> 3 hours 20 minutes</p>
+                <p><strong>Mode:</strong> Pen-paper based</p>
+                <p><strong>Purpose:</strong> Admission to medical courses</p>
+            </div>
+        </div>
+
+        <div class="exam-card-premium" onclick="toggleDetails(this)">
+            <h2>SSC (Staff Selection Commission)</h2>
+            <p class="summary">Government job recruitment exam.</p>
+            <div class="details-box">
+                <p><strong>Eligibility:</strong> Varies by post</p>
+                <p><strong>Duration:</strong> 60 min (Tier 1), 120 min (Tier 2)</p>
+                <p><strong>Mode:</strong> Computer-based</p>
+                <p><strong>Purpose:</strong> Recruitment for government jobs</p>
+            </div>
+        </div>
+
+        <div class="exam-card-premium" onclick="toggleDetails(this)">
+            <h2>CAT (Common Admission Test)</h2>
+            <p class="summary">MBA entrance exam for IIMs.</p>
+            <div class="details-box">
+                <p><strong>Eligibility:</strong> Graduation (min 50% marks)</p>
+                <p><strong>Duration:</strong> 2 hours</p>
+                <p><strong>Mode:</strong> Computer-based</p>
+                <p><strong>Purpose:</strong> Admission to IIMs and business schools</p>
+            </div>
+        </div>
+
+        <div class="exam-card-premium" onclick="toggleDetails(this)">
+            <h2>CUET (Common University Entrance Test)</h2>
+            <p class="summary">Entrance exam for central university admissions.</p>
+            <div class="details-box">
+                <p><strong>Eligibility:</strong> 12th pass</p>
+                <p><strong>Duration:</strong> 3 hours</p>
+                <p><strong>Mode:</strong> Computer-based</p>
+                <p><strong>Purpose:</strong> Admission to central universities</p>
+            </div>
+        </div>
+
+        <div class="exam-card-premium" onclick="toggleDetails(this)">
+            <h2>UPSC (Union Public Service Commission)</h2>
+            <p class="summary">Exam for civil services like IAS, IPS, IFS.</p>
+            <div class="details-box">
+                <p><strong>Eligibility:</strong> Graduate in any stream</p>
+                <p><strong>Duration:</strong> Prelims (2 hrs), Mains (3 hrs)</p>
+                <p><strong>Mode:</strong> Pen-paper based</p>
+                <p><strong>Purpose:</strong> Recruitment for India's civil services</p>
+            </div>
+        </div>
+
+        <div class="exam-card-premium" onclick="toggleDetails(this)">
+            <h2>NDA (National Defence Academy)</h2>
+            <p class="summary">Defense services entrance exam.</p>
+            <div class="details-box">
+                <p><strong>Eligibility:</strong> 12th pass (PCM for AF & Navy)</p>
+                <p><strong>Duration:</strong> 2.5 hours per section</p>
+                <p><strong>Mode:</strong> Pen-paper based</p>
+                <p><strong>Purpose:</strong> Entry into Armed Forces</p>
+            </div>
+        </div>
+
+        <div class="exam-card-premium" onclick="toggleDetails(this)">
+            <h2>GATE (Grad Aptitude Test in Engg)</h2>
+            <p class="summary">Postgraduate engineering entrance exam.</p>
+            <div class="details-box">
+                <p><strong>Eligibility:</strong> Engineering graduates</p>
+                <p><strong>Duration:</strong> 3 hours</p>
+                <p><strong>Mode:</strong> Computer-based</p>
+                <p><strong>Purpose:</strong> Higher studies & PSU jobs</p>
+            </div>
+        </div>
+
+        <div class="exam-card-premium" onclick="toggleDetails(this)">
+            <h2>AMCAT (Aspiring Minds Test)</h2>
+            <p class="summary">Employability assessment test for job placements.</p>
+            <div class="details-box">
+                <p><strong>Eligibility:</strong> Graduation</p>
+                <p><strong>Duration:</strong> 2 hours</p>
+                <p><strong>Mode:</strong> Computer-based</p>
+                <p><strong>Purpose:</strong> Private sector job placements</p>
+            </div>
+        </div>
+
+        <div class="exam-card-premium" onclick="toggleDetails(this)">
+            <h2>CLAT (Common Law Admission Test)</h2>
+            <p class="summary">Law entrance exam for NLUs.</p>
+            <div class="details-box">
+                <p><strong>Eligibility:</strong> 12th Pass (UG)</p>
+                <p><strong>Duration:</strong> 2 hours</p>
+                <p><strong>Mode:</strong> Computer-based</p>
+                <p><strong>Purpose:</strong> Admission to law programs</p>
+            </div>
+        </div>
+
+        <div class="exam-card-premium" onclick="toggleDetails(this)">
+            <h2>CDS (Combined Defence Services)</h2>
+            <p class="summary">Exam for joining Army, Navy, Air Force.</p>
+            <div class="details-box">
+                <p><strong>Eligibility:</strong> Graduation</p>
+                <p><strong>Duration:</strong> 6 hours total</p>
+                <p><strong>Mode:</strong> Pen-paper based</p>
+                <p><strong>Purpose:</strong> Entry into Indian Armed Forces</p>
+            </div>
+        </div>
+
+        <div class="exam-card-premium" onclick="toggleDetails(this)">
+            <h2>NATA (Nat Aptitude Test in Arch)</h2>
+            <p class="summary">Exam for B.Arch admissions.</p>
+            <div class="details-box">
+                <p><strong>Eligibility:</strong> 12th pass with Math</p>
+                <p><strong>Duration:</strong> 3 hours</p>
+                <p><strong>Mode:</strong> Computer-based</p>
+                <p><strong>Purpose:</strong> Admission to Architecture</p>
+            </div>
+        </div>
+
+        <div class="exam-card-premium" onclick="toggleDetails(this)">
+            <h2>NIFT (Inst of Fashion Tech)</h2>
+            <p class="summary">Exam for fashion & design courses.</p>
+            <div class="details-box">
+                <p><strong>Eligibility:</strong> 12th/Graduation</p>
+                <p><strong>Duration:</strong> 3 hours</p>
+                <p><strong>Mode:</strong> Online & Offline</p>
+                <p><strong>Purpose:</strong> Entry to Fashion Design</p>
+            </div>
+        </div>
+
+        <div class="exam-card-premium" onclick="toggleDetails(this)">
+            <h2>AIIMS Entrance Exam</h2>
+            <p class="summary">Medical exam for AIIMS institutions.</p>
+            <div class="details-box">
+                <p><strong>Eligibility:</strong> 12th pass with PCB</p>
+                <p><strong>Duration:</strong> 3.5 hours</p>
+                <p><strong>Mode:</strong> Computer-based</p>
+                <p><strong>Purpose:</strong> Admission into AIIMS MBBS</p>
+            </div>
+        </div>
+
+        <div class="exam-card-premium" onclick="toggleDetails(this)">
+            <h2>MAT (Management Aptitude Test)</h2>
+            <p class="summary">Exam for MBA admissions.</p>
+            <div class="details-box">
+                <p><strong>Eligibility:</strong> Graduation</p>
+                <p><strong>Duration:</strong> 2.5 hours</p>
+                <p><strong>Mode:</strong> CBT or Pen-Paper</p>
+                <p><strong>Purpose:</strong> Admission into management</p>
+            </div>
+        </div>
+
+        <div class="exam-card-premium" onclick="toggleDetails(this)">
+            <h2>AILET (All India Law Entrance Test)</h2>
+            <p class="summary">Law entrance exam for NLU Delhi.</p>
+            <div class="details-box">
+                <p><strong>Eligibility:</strong> 12th pass for UG</p>
+                <p><strong>Duration:</strong> 1.5 hours</p>
+                <p><strong>Mode:</strong> Pen-paper based</p>
+                <p><strong>Purpose:</strong> Admission to NLU Delhi</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- STANDARD FOOTER -->
+    <footer style="background:#7eccc3; color:black; padding: 40px 20px; text-align:center; margin-top: 40px;">
+        <p>&copy; 2025 Edu Navia | Empowering Every Student</p>
+        <div style="margin-top: 10px;">
+            <a href="privacy.html" style="color: #00695c; text-decoration: none; margin-right: 15px; font-weight:600;">Privacy Policy</a>
+            <a href="terms.html" style="color: #00695c; text-decoration: none; font-weight:600;">Terms & Conditions</a>
+        </div>
+    </footer>
+
+    <!-- Floating Guide Button -->
+    <button id="guideBtn">💡 Guide</button>
+    <div id="naviPanel">
+      <div class="panel-content">
+        <button id="closeGuide">Close ✖</button>
+        <iframe src="guide.html"></iframe>
+      </div>
+    </div>
+
+    <script>
+        function toggleDetails(card) {
+            const details = card.querySelector('.details-box');
+            details.style.display = (details.style.display === 'block') ? 'none' : 'block';
+        }
+
+        const guideBtn = document.getElementById('guideBtn');
+        const naviPanel = document.getElementById('naviPanel');
+        const closeBtn = document.getElementById('closeGuide');
+
+        guideBtn.addEventListener('click', () => {
+          naviPanel.style.left = '0';
+          // Send message to iframe to trigger speech
+          const iframe = naviPanel.querySelector('iframe');
+          iframe.contentWindow.postMessage({ action: 'speak', text: "Hi, I am Navi, your Edu Navia guide. What would you like to do?" }, '*');
+        });
+
+        closeBtn.addEventListener('click', () => {
+          naviPanel.style.left = '-360px';
+        });
+
+        document.getElementById('darkModeToggle').addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+        });
+    </script>
+    <script src="public/global-features.js" defer></script>
+</body>
+</html>

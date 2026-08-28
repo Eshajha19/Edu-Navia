@@ -1,0 +1,251 @@
+/* ==============================================================
+   GLOBAL FEATURES: CSS VARIABLES & THEMING
+============================================================== */
+:root {
+  /* Default Light Mode Variables (fallback/baseline) */
+  --bg-color: #f4f9ff;
+  --text-color: #222222;
+  --card-bg: #ffffff;
+  --nav-bg: #bfe2dd;
+  --border-color: #e2e8f0;
+  --btn-primary-bg: #00a88e;
+  --btn-primary-text: #ffffff;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --input-bg: #ffffff;
+  --input-text: #333333;
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --footer-bg: #00a88e;
+}
+
+[data-theme="dark"] {
+  /* Dark Mode Variables */
+  --bg-color: #0f172a;
+  --text-color: #e2e8f0;
+  --card-bg: #1e293b;
+  --nav-bg: #0f172a;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --btn-primary-bg: #00a88e;
+  /* Brand color */
+  --btn-primary-text: #ffffff;
+  --shadow-color: rgba(0, 0, 0, 0.6);
+  --input-bg: #0f172a;
+  --input-text: #e2e8f0;
+  --glass-bg: rgba(15, 23, 42, 0.85);
+  --footer-bg: #0f172a;
+}
+
+/* Base Body Application */
+[data-theme="dark"] body {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+}
+
+/* Basic backgrounds for dark mode */
+[data-theme="dark"] nav,
+[data-theme="dark"] header,
+[data-theme="dark"] .navbar {
+  background: var(--nav-bg) !important;
+  box-shadow: 0 4px 12px var(--shadow-color) !important;
+}
+
+[data-theme="dark"] .nav-links li a,
+[data-theme="dark"] .navbar a,
+[data-theme="dark"] nav a,
+[data-theme="dark"] header a,
+[data-theme="dark"] .logo a,
+[data-theme="dark"] .logo {
+  color: var(--text-color) !important;
+}
+
+[data-theme="dark"] .card,
+[data-theme="dark"] .tool-card,
+[data-theme="dark"] .stat-box,
+[data-theme="dark"] .about-card,
+[data-theme="dark"] .timeline-card,
+[data-theme="dark"] .developer-card,
+[data-theme="dark"] .question-card,
+[data-theme="dark"] .glass,
+[data-theme="dark"] .university-card,
+[data-theme="dark"] .step-card,
+[data-theme="dark"] .step,
+[data-theme="dark"] .highlight,
+[data-theme="dark"] .results>div,
+[data-theme="dark"] .course-card {
+  background: var(--card-bg) !important;
+  color: var(--text-color) !important;
+  box-shadow: 0 10px 25px var(--shadow-color) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+[data-theme="dark"] table,
+[data-theme="dark"] th,
+[data-theme="dark"] td {
+  background: transparent !important;
+  color: var(--text-color) !important;
+  border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] thead th {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+[data-theme="dark"] .tool-card.green,
+[data-theme="dark"] .tool-card.blue {
+  background: var(--card-bg) !important;
+}
+
+[data-theme="dark"] .tool-card h3,
+[data-theme="dark"] .tool-card p,
+[data-theme="dark"] .card p,
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] p,
+[data-theme="dark"] span,
+[data-theme="dark"] li {
+  color: var(--text-color) !important;
+}
+
+[data-theme="dark"] a:not(.btn-primary):not(.btn-outline):not(.card-button) {
+  color: #38bdf8;
+}
+
+[data-theme="dark"] a:hover:not(.btn-primary):not(.btn-outline):not(.card-button) {
+  color: #22d3ee;
+}
+
+/* Sections & containers */
+[data-theme="dark"] section,
+[data-theme="dark"] main,
+[data-theme="dark"] aside {
+  background: transparent !important;
+}
+
+[data-theme="dark"] .hero,
+[data-theme="dark"] .tools-section,
+[data-theme="dark"] .container,
+[data-theme="dark"] .slider-container {
+  background: transparent !important;
+}
+
+[data-theme="dark"] footer,
+[data-theme="dark"] .footer-container {
+  background: var(--footer-bg) !important;
+  border-top: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] footer * {
+  color: var(--text-color) !important;
+}
+
+/* Inputs and Forms */
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+  background-color: var(--input-bg) !important;
+  color: var(--input-text) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Modals & Panels */
+[data-theme="dark"] .modal,
+[data-theme="dark"] .modal-content,
+[data-theme="dark"] #naviPanel,
+[data-theme="dark"] .panel-content {
+  background: var(--card-bg) !important;
+  color: var(--text-color) !important;
+  box-shadow: 0 4px 20px var(--shadow-color) !important;
+}
+
+[data-theme="dark"] iframe {
+  background: var(--bg-color) !important;
+}
+
+[data-theme="dark"] .btn-outline {
+  border-color: var(--border-color) !important;
+  color: var(--text-color) !important;
+}
+
+/* ==============================================================
+   GLOBAL FLOATING BUTTONS
+============================================================== */
+
+/* Theme Toggle Button (Bottom-Left) */
+.global-theme-toggle {
+  position: fixed;
+  bottom: 84px;
+  left: 24px;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #111111;
+  border: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  z-index: 99999;
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.global-theme-toggle:hover {
+  transform: scale(1.1) translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .global-theme-toggle {
+  background: #1e293b;
+  color: #f8fafc;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Scroll To Top Button (Bottom-Right) */
+.global-scroll-top {
+  position: fixed;
+  bottom: 84px;
+  right: 24px;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00a88e, #008d78);
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 4px 15px rgba(0, 168, 142, 0.4);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  z-index: 99999;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease;
+}
+
+.global-scroll-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.global-scroll-top:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 168, 142, 0.6);
+}
+
+/* Hide legacy theme toggle buttons to prevent overlap */
+#themeToggle,
+.theme-toggle {
+  display: none !important;
+}

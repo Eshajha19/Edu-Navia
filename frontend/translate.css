@@ -1,0 +1,67 @@
+/* Keep navbar original color — do not set background here */
+
+/* Google Translate Dropdown beside profile */
+.translate-dropdown {
+  display: inline-block;
+  margin-left: 8px;
+}
+
+/* Hide extra text from Google widget */
+.goog-te-gadget {
+  font-size: 0 !important;
+}
+
+/* Style dropdown to match navbar */
+.goog-te-gadget select {
+  padding: 5px 8px;
+  border: none;
+  border-radius: 4px;
+  
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Hover effect */
+.goog-te-gadget select:hover {
+  opacity: 0.8;
+}
+
+/* Dropdown options */
+.goog-te-gadget select option {
+  background: white;
+  color: black;
+}
+/* Color for Google Translate select box */
+.goog-te-gadget select {
+  background-color: #008080; /* background of select */
+  color: #000000; /* text color */
+}
+
+/* Color for dropdown options */
+.goog-te-gadget select option {
+  background-color: #f4f4f4; /* light grey */
+  color: #000000; /* black text */
+}
+/* Force styles inside Google Translate select */
+.goog-te-gadget .goog-te-combo {
+  background-color: #ffffff !important; /* change to your color */
+  color: #000000 !important; /* text color */
+  border-radius: 4px;
+  padding: 4px 6px;
+}
+/* Custom dropdown style - adjust colors to match your navbar */
+#customTranslate {
+  background-color: #008080;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+#customTranslate:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

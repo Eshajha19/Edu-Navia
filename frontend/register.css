@@ -1,0 +1,309 @@
+/* ─── Base Styles ─── */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+body {
+  font-family: 'Poppins', 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8fafc;
+  color: #0f172a;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Navbar ─── */
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background-color: #d0ebe6;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-left .logo a {
+  font-weight: 700;
+  font-size: 24px;
+  color: #0f172a !important;
+  text-decoration: none;
+}
+
+.navbar nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+}
+
+.navbar nav a {
+  margin: 0 10px;
+  color: #475569;
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.navbar nav a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background: #00bfa6;
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+.navbar nav a:hover {
+  color: #00bfa6;
+}
+
+.navbar nav a:hover::after {
+  width: 100%;
+}
+
+/* ─── Registration Form ─── */
+.registration-container {
+  max-width: 550px;
+  margin: 60px auto;
+  padding: 40px;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.registration-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.registration-container h2 {
+  text-align: center;
+  color: #00a88e;
+  margin-top: 0;
+  margin-bottom: 30px;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.registration-container input,
+.registration-container select {
+  width: 100%;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  background: #f8fafc;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: #0f172a;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.registration-container input:focus,
+.registration-container select:focus {
+  border-color: #00bfa6;
+  outline: none;
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(0, 191, 166, 0.15);
+}
+
+.registration-container button {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #00bfa6 0%, #00a88e 100%);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 16px rgba(0, 191, 166, 0.25);
+  margin-top: 10px;
+}
+
+.registration-container button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 20px rgba(0, 191, 166, 0.3);
+  background: linear-gradient(135deg, #00d1b2 0%, #00967a 100%);
+}
+
+#msg {
+  color: #059669;
+  text-align: center;
+  margin-top: 20px;
+  font-weight: 500;
+  display: none;
+  padding: 12px;
+  background: #d1fae5;
+  border-radius: 8px;
+  border: 1px solid #10b981;
+}
+
+/* ─── Footer ─── */
+footer {
+  background-color: #d0ebe6 !important;
+  padding: 60px 20px;
+  text-align: center;
+  margin-top: 60px;
+  color: #333;
+}
+
+.footer-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.social-icons {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.social-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #000;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.social-icon:hover {
+  transform: translateY(-3px);
+  background: #00a88e;
+  color: #fff;
+}
+
+.contact-info p {
+  margin: 8px 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.footer-links {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.footer-links a {
+  color: #00a88e;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* ─── Media Queries ─── */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .navbar nav {
+    width: 100%;
+    margin-top: 15px;
+    justify-content: flex-start;
+  }
+  .registration-container {
+    margin: 30px 20px;
+    padding: 30px 20px;
+  }
+}
+
+/* 🌙 DARK MODE OVERRIDES */
+[data-theme="dark"] body {
+  background: #0b1120;
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .navbar {
+  background: rgba(11, 17, 32, 0.85);
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .navbar-left .logo a {
+  background: linear-gradient(135deg, #f8fafc 0%, #cbd5e1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme="dark"] .navbar nav a {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .navbar nav a:hover {
+  color: #00bfa6;
+}
+
+[data-theme="dark"] .registration-container {
+  background: #1e293b;
+  border-color: #334155;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+[data-theme="dark"] .registration-container:hover {
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+[data-theme="dark"] .registration-container h2 {
+  color: #00bfa6;
+}
+
+[data-theme="dark"] .registration-container input,
+[data-theme="dark"] .registration-container select {
+  background: #0f172a;
+  border-color: #334155;
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .registration-container input:focus,
+[data-theme="dark"] .registration-container select:focus {
+  border-color: #00bfa6;
+  background: #1e293b;
+}
+
+[data-theme="dark"] footer {
+  background-color: #020617 !important;
+  color: #94a3b8;
+  border-top: 1px solid #1e293b;
+}
+
+[data-theme="dark"] .social-icon {
+  background: rgba(255, 255, 255, 0.1);
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .social-icon:hover {
+  background: #00bfa6;
+}
+
+[data-theme="dark"] .contact-info p {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .footer-links a {
+  color: #00bfa6;
+}

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduNavia Recommendation</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family: 'Inter', sans-serif; }
+body { background: linear-gradient(135deg, #abede3, #b5dac4); min-height:100vh; display:flex; justify-content:center; align-items:center; padding:20px; }
+.container { background:#fff; border-radius:25px; padding:40px; max-width:600px; width:100%; box-shadow:0 20px 50px rgba(0,0,0,0.2); transition:0.3s ease; }
+.container:hover { transform: translateY(-5px); }
+h2 { text-align:center; color:#00c6a7; font-size:2rem; margin-bottom:30px; font-weight:700; }
+label { display:block; margin-top:20px; font-weight:600; color:#333; }
+input, select { width:100%; padding:14px; margin-top:8px; border-radius:12px; border:1px solid #ccc; font-size:1rem; transition: all 0.3s ease; }
+input:hover, select:hover { border-color:#00c6a7; box-shadow:0 0 8px rgba(0,198,167,0.3); }
+input:focus, select:focus { border-color:#00c6a7; outline:none; box-shadow:0 0 12px rgba(0,198,167,0.4); }
+button { margin-top:30px; width:100%; padding:16px; background: linear-gradient(135deg, #00c6a7, #2ed573); color:#fff; font-weight:600; font-size:1.1rem; border:none; border-radius:12px; cursor:pointer; transition: all 0.3s ease; box-shadow:0 8px 20px rgba(0,0,0,0.15); }
+button:hover { transform: translateY(-3px); box-shadow:0 12px 25px rgba(0,0,0,0.2); background: linear-gradient(135deg, #2ed573, #00c6a7); }
+.results { margin-top:30px; display:grid; gap:20px; }
+.result-card { background:#f9f9f9; padding:20px; border-radius:15px; box-shadow:0 8px 25px rgba(0,0,0,0.1); transition:0.3s ease; }
+.result-card:hover { transform: translateY(-3px); box-shadow:0 12px 30px rgba(0,0,0,0.15); }
+.result-card h3 { color:#00c6a7; margin-bottom:15px; font-size:1.3rem; font-weight:600; }
+.result-card ul { list-style-type: disc; padding-left:20px; color:#333; }
+.result-card ul li { margin-bottom:8px; }
+.bar-container { background:#d8f3dc; height:10px; border-radius:10px; overflow:hidden; margin-top:5px; }
+.bar { height:10px; border-radius:10px; background:#00c6a7; width:0%; transition:width 0.6s ease; }
+@media(max-width:600px){ .container { padding:30px; } button { padding:14px; font-size:1rem; } }
+</style>
+
+    <link rel="stylesheet" href="../global-features.css">
+</head>
+<body>
+<div class="container">
+  <h2>EduNavia Recommendation</h2>
+
+  <label>Entrance Exam</label>
+  <select id="entrance_exam" required>
+    <option value="" disabled selected>Select Exam</option>
+    <option>JEE Main</option>
+    <option>JEE Advanced</option>
+    <option>NEET</option>
+    <option>CUET</option>
+    <option>Other</option>
+  </select>
+
+  <label>Stream</label>
+  <select id="stream" required>
+    <option value="" disabled selected>Select Stream</option>
+    <option>Engineering</option>
+    <option>Science</option>
+    <option>Commerce</option>
+    <option>Arts</option>
+    <option>Law</option>
+    <option>Management</option>
+  </select>
+
+  <label>Category</label>
+  <select id="category" required>
+    <option value="" disabled selected>Select Category</option>
+    <option>General</option>
+    <option>OBC</option>
+    <option>SC</option>
+    <option>ST</option>
+    <option>Other</option>
+  </select>
+
+  <label>Quota</label>
+  <select id="quota" required>
+    <option value="" disabled selected>Select Quota</option>
+    <option>All India</option>
+    <option>State</option>
+    <option>Management</option>
+    <option>Other</option>
+  </select>
+
+  <label>State</label>
+<select id="state" required>
+  <option value="" disabled selected>Select State</option>
+  <option>Andhra Pradesh</option>
+  <option>Arunachal Pradesh</option>
+  <option>Assam</option>
+  <option>Bihar</option>
+  <option>Chhattisgarh</option>
+  <option>Goa</option>
+  <option>Gujarat</option>
+  <option>Haryana</option>
+  <option>Himachal Pradesh</option>
+  <option>Jharkhand</option>
+  <option>Karnataka</option>
+  <option>Kerala</option>
+  <option>Madhya Pradesh</option>
+  <option>Maharashtra</option>
+  <option>Manipur</option>
+  <option>Meghalaya</option>
+  <option>Mizoram</option>
+  <option>Nagaland</option>
+  <option>Odisha</option>
+  <option>Punjab</option>
+  <option>Rajasthan</option>
+  <option>Sikkim</option>
+  <option>Tamil Nadu</option>
+  <option>Telangana</option>
+  <option>Tripura</option>
+  <option>Uttar Pradesh</option>
+  <option>Uttarakhand</option>
+  <option>West Bengal</option>
+  <!-- Union Territories -->
+  <option>Andaman and Nicobar Islands</option>
+  <option>Chandigarh</option>
+  <option>Dadra and Nagar Haveli and Daman & Diu</option>
+  <option>Delhi</option>
+  <option>Ladakh</option>
+  <option>Puducherry</option>
+  <option>Jammu and Kashmir</option>
+  <option>Lakshadweep</option>
+</select>
+
+
+  <label>12th Marks</label>
+  <input type="number" id="class12_marks" min="0" max="100" placeholder="Enter 12th Marks" required>
+
+  <label>Entrance Score</label>
+  <input type="number" id="entrance_score" min="0" placeholder="Enter Entrance Score" required>
+
+  <label>Rank</label>
+  <input type="number" id="rank" min="0" placeholder="Enter Rank" required>
+
+  <button onclick="getRecommendation()">Get Recommendation</button>
+
+  <div class="results" id="results"></div>
+</div>
+
+<script>
+async function getRecommendation() {
+  const data = {
+    entrance_exam: document.getElementById("entrance_exam").value,
+    stream: document.getElementById("stream").value,
+    category: document.getElementById("category").value,
+    quota: document.getElementById("quota").value,
+    state: document.getElementById("state").value,
+    class12_marks: parseFloat(document.getElementById("class12_marks").value),
+    entrance_score: parseFloat(document.getElementById("entrance_score").value),
+    rank: parseInt(document.getElementById("rank").value)
+  };
+
+  // Validation
+  for (let key in data) {
+    if (!data[key] && data[key] !== 0) {
+      alert("Please fill all fields!");
+      return;
+    }
+  }
+
+  try {
+    const response = await fetch("https://edu-navia-backend-3.onrender.com/recommend", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+
+    if (!response.ok) {
+      const err = await response.json();
+      alert("Error: " + (err.error || response.statusText));
+      return;
+    }
+
+    const result = await response.json();
+    let html = "";
+
+    for (let key in result) {
+      let entries = result[key];
+      if(entries.length === 0) {
+        html += `<div class="result-card"><h3>${key}:</h3><p>No results found</p></div>`;
+        continue;
+      }
+      entries.sort((a,b) => b[1]-a[1]);
+      html += `<div class="result-card"><h3>Top ${key}:</h3><ul>`;
+      entries.forEach(([name, prob]) => {
+        html += `<li>${name} (${(prob*100).toFixed(2)}%)
+                    <div class="bar-container">
+                      <div class="bar" data-width="${(prob*100)}%"></div>
+                    </div>
+                 </li>`;
+      });
+      html += "</ul></div>";
+    }
+    document.getElementById("results").innerHTML = html;
+
+    // Animate bars
+    const bars = document.querySelectorAll(".bar");
+    bars.forEach(bar => setTimeout(() => { bar.style.width = bar.dataset.width; }, 100));
+
+  } catch (err) {
+    alert("Error connecting to server: " + err);
+  }
+}
+</script>
+
+    <script src="../global-features.js" defer></script>
+</body>
+</html>

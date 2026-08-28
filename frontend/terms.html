@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Terms and Conditions - Edu Navia</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="policy.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./global-features.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="navbar-left">
+      <div class="logo">
+        <a href="index.html" style="color:black; text-decoration: none;">🎓 Edu Navia</a>
+      </div>
+    </div>
+    <nav>
+      <a href="p.html">Universities</a>
+      <a href="courses.html">Courses</a>
+      <a href="consulting.html">Consulting</a>
+      <a href="resource.html">Resources</a>
+    </nav>
+  </div>
+
+  <!-- Content -->
+  <div class="policy-container">
+    <h1>Terms and Conditions</h1>
+    <p>Last updated: October 2025</p>
+
+    <h2>1. Introduction</h2>
+    <p>By accessing and using Edu Navia, you accept and agree to be bound by the terms and provision of this agreement. Any participation in this service will constitute acceptance of this agreement.</p>
+
+    <h2>2. Intellectual Property Rights</h2>
+    <p>Other than the content you own, under these Terms, Edu Navia and/or its licensors own all the intellectual property rights and materials contained in this Website. You are granted limited license only for purposes of viewing the material contained on this Website.</p>
+
+    <h2>3. Restrictions</h2>
+    <p>You are specifically restricted from all of the following:</p>
+    <ul>
+      <li>Publishing any Website material in any other media without proper accreditation.</li>
+      <li>Selling, sublicensing and/or otherwise commercializing any Website material.</li>
+      <li>Using this Website in any way that is or may be damaging to this Website.</li>
+      <li>Using this Website in any way that impacts user access to this Website.</li>
+      <li>Engaging in any data mining, data harvesting, data extracting or any other similar activity in relation to this Website.</li>
+    </ul>
+
+    <h2>4. Your Privacy</h2>
+    <p>Please read our <a href="privacy.html" style="color: #00bfa6;">Privacy Policy</a>.</p>
+
+    <h2>5. No warranties</h2>
+    <p>This Website is provided "as is," with all faults, and Edu Navia express no representations or warranties, of any kind related to this Website or the materials contained on this Website. Also, nothing contained on this Website shall be interpreted as advising you.</p>
+
+    <h2>6. Governing Law & Jurisdiction</h2>
+    <p>These Terms will be governed by and interpreted in accordance with the laws of India, and you submit to the non-exclusive jurisdiction of the state and federal courts located in India for the resolution of any disputes.</p>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="social-icons">
+        <a href="https://www.instagram.com" target="_blank" class="social-icon">📷</a>
+        <a href="mailto:info@edunavia.com" target="_blank" class="social-icon">✉️</a>
+        <a href="tel:+1234567890" target="_blank" class="social-icon">📞</a>
+        <a href="https://www.linkedin.com" target="_blank" class="social-icon">🔗</a>
+        <a href="https://www.facebook.com" target="_blank" class="social-icon">📘</a>
+        <a href="https://wa.me/+1234567890" target="_blank" class="social-icon">💬</a>
+      </div>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms and Conditions</a>
+      </div>
+      <div class="contact-info">
+        <p>&copy; 2025 Edu Navia. All Rights Reserved.</p>
+        <p>Follow us on social media for updates!</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Global Features -->
+  <button id="guideBtn">💡 Guide</button>
+  <div id="naviPanel">
+    <div class="panel-content">
+      <button id="closeGuide">Close ✖</button>
+      <iframe src="guide.html"></iframe>
+    </div>
+  </div>
+
+  <style>
+  #guideBtn {
+    position: fixed; left: 20px; bottom: 20px; background: #00bfa6; color: white;
+    border: none; padding: 12px 16px; border-radius: 30px; cursor: pointer; z-index: 1001; box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+  #naviPanel {
+    position: fixed; top: 70px; left: -360px; width: 360px; height: calc(100% - 70px);
+    background: #f4f7fb; box-shadow: 4px 0 20px rgba(0,0,0,0.2); transition: left 0.3s ease;
+    z-index: 1000; border-top-right-radius: 8px; border-bottom-right-radius: 8px; overflow: hidden;
+  }
+  #naviPanel .panel-content { padding: 16px; height: 100%; display: flex; flex-direction: column; }
+  #naviPanel iframe { border: none; flex: 1; border-radius: 8px; }
+  #closeGuide { background: #009e89; color: white; border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; margin-bottom: 12px; }
+  </style>
+  <script>
+  const guideBtn = document.getElementById('guideBtn');
+  const naviPanel = document.getElementById('naviPanel');
+  const closeBtn = document.getElementById('closeGuide');
+  guideBtn.addEventListener('click', () => { naviPanel.style.left = '0'; });
+  closeBtn.addEventListener('click', () => { naviPanel.style.left = '-360px'; });
+  </script>
+  <script src="./global-features.js" defer></script>
+</body>
+</html>

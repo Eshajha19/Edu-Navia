@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Discover Your Future</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="translate.js"></script>
+  <link rel="stylesheet" href="./global-features.css">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="container nav-wrapper">
+      <!-- Logo -->
+      <div class="logo">
+        <a href="index.html" style="color:black; text-decoration: none;">🎓 Edu Navia</a>
+      </div>
+
+      <!-- Navbar links + language -->
+      <nav class="nav-container">
+        <ul class="nav-links">
+          <li><a href="p.html">Universities</a></li>
+          <li><a href="courses.html">Courses</a></li>
+          <li><a href="consulting.html">Consulting</a></li>
+          <li><a href="resource.html">Resources</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="profile.html" class="active">Profile</a></li>
+        </ul>
+
+        <!-- Language selector -->
+        <div class="lang-select">
+          <select id="customTranslate">
+            <option value="">🌐 Select Language</option>
+            <option value="en">English</option>
+            <option value="hi">Hindi</option>
+            <option value="bn">Bengali</option>
+            <option value="ta">Tamil</option>
+            <option value="te">Telugu</option>
+            <option value="ml">Malayalam</option>
+            <option value="gu">Gujarati</option>
+            <option value="mr">Marathi</option>
+            <option value="kn">Kannada</option>
+            <option value="pa">Punjabi</option>
+            <option value="ur">Urdu</option>
+            <option value="or">Odia</option>
+            <option value="as">Assamese</option>
+          </select>
+        </div>
+
+        <!-- Hidden Google Translate container -->
+        <div id="google_translate_element" style="display:none;"></div>
+      </nav>
+
+      <!-- CTA buttons -->
+      <div class="cta-buttons" id="auth-buttons">
+        <a href="login.html" class="btn-outline">Login</a>
+        <a href="signup.html" class="btn-primary">Sign Up</a>
+      </div>
+    </div>
+  </header>
+
+
+
+  <!-- Hero Section -->
+  <section class="hero fade-in">
+    <div class="container hero-content">
+      <div class="text-content">
+        <h1>
+          <span id="typingText"></span><br />
+          <span class="second-text">with Edu Navia</span>
+        </h1>
+        <p>
+          Explore <span class="highlight">universities</span>, <span class="highlight">courses</span>, and personalized
+          <span class="highlight">pathways</span> to achieve your <span class="highlight">educational goals</span> with
+          confidence.
+        </p>
+
+
+        <div class="search-bar">
+          <input type="text" id="siteSearch" placeholder="Search for tools, features, pages..."
+            oninput="filterResults()" />
+          <div id="searchResults" class="results-box"></div>
+        </div>
+
+
+
+        <div class="stats">
+          <div><strong>873+</strong><br />Universities Mapped</div>
+          <div><strong>Structured</strong><br />Academic Data</div>
+          <div><strong>Live</strong><br />Pilot Platform</div>
+        </div>
+
+
+      </div>
+
+      <div class="card-actions slide-up">
+        <a href="p.html" class="card-button protected">🎓 Find Universities</a>
+        <a href="courses.html" class="card-button protected">📘 Browse Courses</a>
+        <a href="CHATBOT.html" class="card-button ">💬 Get Support</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Smart Tools Section -->
+  <!-- Smart Tools Section -->
+  <section class="tools-section fade-in">
+    <div class="container">
+
+      <h2 class="section-title">
+        Make Confident College Decisions with <span>Edu Navia</span>
+      </h2>
+      <p class="section-subtitle">
+        A guided platform for career decisions combining
+        <span>structured data</span>,
+        <span>AI insights</span>, and
+        <span>expert support</span>.
+      </p>
+
+
+
+      <!-- ================= CORE DECISION TOOLS ================= -->
+      <h3 class="tools-heading">🎯 Core Admission Decision Tools</h3>
+      <div class="tools-grid">
+
+        <div class="tool-card highlight">
+          <div class="tool-icon">🎯</div>
+          <h3>University Finder</h3>
+          <p>Shortlists best-fit universities using profile, exam scores, budget, and preferences.</p>
+          <a href="p.html">Find Universities →</a>
+        </div>
+
+        <div class="tool-card highlight">
+          <div class="tool-icon">📘</div>
+          <h3>Course Finder</h3>
+          <p>Helps students identify suitable courses aligned with interests and career goals.</p>
+          <a href="courses.html">Find Courses →</a>
+        </div>
+
+        <div class="tool-card highlight">
+          <div class="tool-icon">📊</div>
+          <h3>Cutoff Predictor</h3>
+          <p>Estimates admission chances using historical cutoffs and trends.</p>
+          <a href="predictor.html">Try Predictor →</a>
+        </div>
+
+        <div class="tool-card highlight">
+          <div class="tool-icon">⏳</div>
+          <h3>Entrance Exam Tracker</h3>
+          <p>Keeps students aligned with key entrance exams and deadlines.</p>
+          <a href="exam_tracker.html">Track Exams →</a>
+        </div>
+
+        <div class="tool-card highlight">
+          <div class="tool-icon">🤖</div>
+          <h3>AI Recommendations</h3>
+          <p>Combines all inputs to suggest optimal college options.</p>
+          <a href="ai.html">Get Recommendations →</a>
+        </div>
+
+      </div>
+
+      <!-- ================= GUIDANCE & SUPPORT ================= -->
+      <h3 class="tools-heading">🧠 Guidance & Decision Support</h3>
+      <div class="tools-grid">
+
+        <div class="tool-card highlight">
+          <div class="tool-icon">🤝</div>
+          <h3>Counselling</h3>
+          <p>One-on-one expert guidance to validate and finalize decisions.</p>
+          <a href="consulting.html">Get Guidance →</a>
+        </div>
+
+        <div class="tool-card highlight">
+          <div class="tool-icon">💬</div>
+          <h3>Ask Senior Forum</h3>
+          <p>Insights from seniors who have already navigated admissions.</p>
+          <a href="ask.html">Go to Forum →</a>
+        </div>
+
+        <div class="tool-card highlight">
+          <div class="tool-icon">🧠</div>
+          <h3>Personality Test</h3>
+          <p>Helps unsure students discover suitable academic directions.</p>
+          <a href="personality_test.html">Take the Test →</a>
+        </div>
+
+      </div>
+
+      <!-- ================= DATA & DISCOVERY ================= -->
+      <h3 class="tools-heading">📊 Data & Discovery Layer</h3>
+      <div class="tools-grid">
+
+        <div class="tool-card highlight">
+          <div class="tool-icon">🔍</div>
+          <h3>Advanced University Search</h3>
+          <p>Filter universities by state, tier, cost, and intake.</p>
+          <a href="univeristy-search.html">Explore →</a>
+        </div>
+
+        <div class="tool-card highlight">
+          <div class="tool-icon">⚖️</div>
+          <h3>Compare Universities</h3>
+          <p>Side-by-side comparison on rankings, cost, and eligibility.</p>
+          <a href="compare.html">Compare →</a>
+        </div>
+
+        <div class="tool-card highlight">
+          <div class="tool-icon">🎓</div>
+          <h3>Entrance Exams Info</h3>
+          <p>Centralised information for major Indian entrance exams.</p>
+          <a href="examsinfo.html">View Exams →</a>
+        </div>
+
+        <div class="tool-card highlight">
+          <div class="tool-icon">🗺️</div>
+          <h3>Explore Universities by Location</h3>
+          <p>Discover universities across India using an interactive map.</p>
+          <a href="map.html">Open Map →</a>
+        </div>
+
+      </div>
+
+      <!-- ================= COMMUNITY ================= -->
+      <h3 class="tools-heading">🎓 Community & Learning</h3>
+      <div class="tools-grid">
+
+        <div class="tool-card highlight">
+          <div class="tool-icon">🎥</div>
+          <h3>Educational Webinars</h3>
+          <p>Expert-led sessions on admissions, courses, and careers.</p>
+          <a href="webinar.html">Explore →</a>
+        </div>
+
+        <div class="tool-card highlight">
+          <div class="tool-icon">💬</div>
+          <h3>Study Clubs</h3>
+          <p>Peer learning and experience sharing communities.</p>
+          <a href="studyclubs.html">Join →</a>
+        </div>
+
+        <div class="tool-card highlight">
+          <div class="tool-icon">🎥</div>
+          <h3>Conference</h3>
+          <p>Live interactions with mentors, alumni, and peers.</p>
+          <a href="video.html">Join →</a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="admission-services">
+    <h2 class="main-title">
+      Explore Our <span class="highlight">Admission Services</span>
+    </h2>
+    <p class="subtitle">
+      Built to simplify <span class="highlight">choices</span>, reduce <span class="highlight">confusion</span>, and
+      guide students towards the right academic future.
+    </p>
+
+
+    <div class="service-grid">
+
+      <div class="tool-card highlight">
+        <span class="bg-text" data-desktop="SEARCH" data-tablet="EXPLORE" data-mobile="DISCOVER"></span>
+
+        <div class="icon">🎓</div>
+        <h3>University Discovery</h3>
+        <p class="main-text">
+          Find universities that truly match your academic profile.
+        </p>
+        <p class="support-text">
+          Search using ranking, location, eligibility, and course-level filters to avoid random choices.
+        </p>
+      </div>
+
+      <div class="tool-card highlight">
+        <span class="bg-text">COURSE</span>
+        <div class="icon">📘</div>
+        <h3>Course-Centric Guidance</h3>
+        <p class="main-text">
+          Choose programs aligned with your interests and career goals.
+        </p>
+        <p class="support-text">
+          Curated courses mapped to university requirements ensure smoother admissions.
+        </p>
+      </div>
+
+      <div class="tool-card highlight">
+        <span class="bg-text">DECIDE</span>
+        <div class="icon">🧭</div>
+        <h3>Decision Support</h3>
+        <p class="main-text">
+          Compare, analyze, and decide with confidence.
+        </p>
+        <p class="support-text">
+          Structured insights help students avoid confusion and make informed academic decisions.
+        </p>
+      </div>
+
+      <div class="tool-card highlight">
+        <span class="bg-text">ADMIT</span>
+        <div class="icon">🚀</div>
+        <h3>Admission Pathway</h3>
+        <p class="main-text">
+          From exploration to enrollment — all in one place.
+        </p>
+        <p class="support-text">
+          Edu Navia bridges the gap between shortlisting and successful college entry.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <div class="slider-container">
+    <button class="nav-button left" id="prevBtn">&#8592;</button>
+    <div class="card-slider" id="cardSlider"></div>
+    <button class="nav-button right" id="nextBtn">&#8594;</button>
+  </div>
+
+  <div class="buttons">
+    <button class="explore">Explore More +</button>
+    <button class="guidance">Get Expert Guidance &#9881;</button>
+  </div>
+
+  <!-- F`ooter Section -->
+  <footer>
+    <div class="footer-container">
+      <!--<div class="footer-logo">
+        <img src="logo.jpg" alt="EduNavigator Logo" height="100" width="100px" />
+      </div>-->
+
+      <div class="social-icons">
+        <a href="https://www.instagram.com" target="_blank" class="social-icon instagram">📷</a>
+        <a href="mailto:info@edunavia.com" target="_blank" class="social-icon mail">✉️</a>
+        <a href="tel:+1234567890" target="_blank" class="social-icon telephone">📞</a>
+        <a href="https://www.linkedin.com" target="_blank" class="social-icon linkedin">🔗</a>
+        <a href="https://www.facebook.com" target="_blank" class="social-icon facebook">📘</a>
+        <a href="https://wa.me/+1234567890" target="_blank" class="social-icon whatsapp">💬</a>
+      </div>
+
+
+      <div class="footer-links"
+        style="margin-top: 25px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+        <a href="privacy.html"
+          style="color: #00a88e; text-decoration: none; font-size: 0.95rem; font-weight: 600; padding: 8px 16px; border-radius: 20px; background: rgba(0, 168, 142, 0.05); transition: all 0.3s ease;">Privacy
+          Policy</a>
+        <a href="terms.html"
+          style="color: #00a88e; text-decoration: none; font-size: 0.95rem; font-weight: 600; padding: 8px 16px; border-radius: 20px; background: rgba(0, 168, 142, 0.05); transition: all 0.3s ease;">Terms
+          & Conditions</a>
+      </div>
+      <div class="contact-info">
+        <p>&copy; 2025 Edu Navia. All Rights Reserved.</p>
+        <p>Follow Us on Social Media for Updates!</p>
+      </div>
+    </div>
+  </footer>
+  <!-- 🔐 Beautiful Login Required Modal -->
+  <div id="login-popup" class="popup-overlay">
+    <div class="popup-box">
+      <h2>🔒 Access Restricted</h2>
+      <p>Please log in to explore this section of Edu Navia.</p>
+      <button id="popup-close-btn">Got it</button>
+    </div>
+  </div>
+
+  <!-- ⭐ Floating Rate Us Button -->
+  <button id="rateUsBtn">⭐ Rate Us</button>
+
+  <!-- 🪟 Rating Modal -->
+  <div id="ratingModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" id="closeRatingModal">&times;</span>
+      <h2>Rate Your Edu Navia Experience</h2>
+      <iframe src="rating.html" width="100%" height="500px" style="border: none; border-radius: 10px;"></iframe>
+    </div>
+  </div>
+
+  <!-- Floating Guide Button -->
+  <button id="guideBtn">💡 Guide</button>
+
+  <!-- Slide-in Navi Panel -->
+  <div id="naviPanel">
+    <div class="panel-content">
+      <button id="closeGuide">Close ✖</button>
+      <iframe src="guide.html"></iframe>
+    </div>
+  </div>
+
+  <style>
+    /* Container styling */
+    .admission-services {
+      padding: 90px 20px;
+      background: linear-gradient(180deg, #f8fafc, #f1f5f9);
+      text-align: center;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .main-title {
+      font-size: clamp(2rem, 5vw, 2.7rem);
+      font-weight: 700;
+      color: #0f172a;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.5px;
+    }
+
+    .subtitle {
+      max-width: 740px;
+      margin: 14px auto 55px;
+      color: #64748b;
+      font-size: clamp(0.95rem, 2vw, 1.02rem);
+      line-height: 1.6;
+      letter-spacing: 0.3px;
+    }
+
+    /* Highlighted teal words */
+    .highlight {
+      color: #14b8a6;
+      /* teal color */
+      font-weight: 600;
+      /* optional: slightly bolder */
+    }
+
+    /* Optional hover effect for main title */
+    .main-title:hover {
+      color: #1e40af;
+      /* subtle accent color on hover */
+    }
+
+    /* Service grid improvements */
+    .service-grid {
+      display: grid;
+      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      padding-top: 40px;
+    }
+
+    /* Optional: add subtle card effect inside grid */
+    .service-grid>div {
+      background: #ffffff;
+      padding: 25px 20px;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .service-grid>div:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    }
+
+
+    .bg-text::before {
+      content: attr(data-desktop);
+    }
+
+    /* Tablet */
+    @media (max-width: 1024px) {
+      .bg-text::before {
+        content: attr(data-tablet);
+      }
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      .bg-text::before {
+        content: attr(data-mobile);
+      }
+    }
+
+    /* Watermark */
+    .bg-text {
+      position: absolute;
+      top: 18px;
+      right: -22px;
+      font-weight: 800;
+      letter-spacing: 6px;
+      color: rgba(15, 118, 110, 0.06);
+      pointer-events: none;
+      white-space: nowrap;
+
+      /* 🔥 KEY FIX */
+      font-size: clamp(3.2rem, 5vw, 4.2rem);
+    }
+
+    /* Icon */
+    .icon {
+      font-size: 2.7rem;
+      margin-bottom: 16px;
+      color: #14b8a6;
+      /* teal main accent */
+    }
+
+    /* Title */
+    .service-card h3 {
+      font-size: 1.38rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #0f172a;
+    }
+
+    /* Highlight line */
+    .main-text {
+      font-size: 0.98rem;
+      font-weight: 500;
+      color: #0f766e;
+      /* darker teal */
+      margin-bottom: 10px;
+    }
+
+    /* Supporting description */
+    .support-text {
+      font-size: 0.92rem;
+      color: #475569;
+      line-height: 1.65;
+    }
+
+    .section-subtitle {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      max-width: 720px;
+      margin: 12px auto 40px;
+      text-align: center;
+      color: #4a5568;
+      /* calm slate gray */
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
+
+    /* Highlight key ideas subtly */
+    .section-subtitle span {
+      color: #0f766e;
+      /* premium teal */
+      font-weight: 600;
+    }
+
+    /* Soft entrance animation */
+    .fade-in .section-subtitle {
+      animation: subtitleFade 0.8s ease-in-out;
+    }
+
+    @keyframes subtitleFade {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .tools-heading {
+      margin: 60px 0 20px;
+      font-size: 22px;
+      font-weight: 600;
+      color: #0f766e;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+    }
+
+    .tool-card.highlight {
+      border: 2px solid #14b8a6;
+      background: #f0fdfa;
+    }
+
+    #guideBtn {
+      position: fixed;
+      left: 20px;
+      bottom: 20px;
+      background: #00bfa6;
+      color: white;
+      border: none;
+      padding: 12px 16px;
+      border-radius: 30px;
+      cursor: pointer;
+      z-index: 1001;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    #naviPanel {
+      position: fixed;
+      top: 70px;
+      left: -360px;
+      width: 360px;
+      height: calc(100% - 70px);
+      background: #f4f7fb;
+      box-shadow: 4px 0 20px rgba(0, 0, 0, 0.2);
+      transition: left 0.3s ease;
+      z-index: 1000;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+      overflow: hidden;
+    }
+
+    #naviPanel .panel-content {
+      padding: 16px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #naviPanel iframe {
+      border: none;
+      flex: 1;
+      border-radius: 8px;
+    }
+
+    #closeGuide {
+      background: #009e89;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-bottom: 12px;
+    }
+  </style>
+
+  <script>
+    const guideBtn = document.getElementById('guideBtn');
+    const naviPanel = document.getElementById('naviPanel');
+    const closeBtn = document.getElementById('closeGuide');
+
+    guideBtn.addEventListener('click', () => {
+      naviPanel.style.left = '0';
+
+      // Send message to iframe to trigger speech
+      const iframe = naviPanel.querySelector('iframe');
+      iframe.contentWindow.postMessage({ action: 'speak', text: "Hi, I am Navi, your Edu Navia guide. What would you like to do?" }, '*');
+    });
+
+    closeBtn.addEventListener('click', () => {
+      naviPanel.style.left = '-360px';
+    });
+  </script>
+
+
+
+
+  <!-- Firebase scripts -->
+  <script type="module">
+    // Import Firebase modules
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.9.0/firebase-auth.js";
+
+    // Your Firebase config securely from env variables
+    const firebaseConfig = {
+      apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+      authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+      projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+      storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+      messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+      appId: import.meta.env.VITE_FIREBASE_APP_ID
+    };
+
+    if (!firebaseConfig.apiKey) {
+      console.error("Firebase API Key is missing! Check your .env file.");
+    }
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const authButtonsDiv = document.getElementById("auth-buttons");
+
+    // 👇 Reference to Admin Panel (may be null if element doesn't exist on this page)
+    const adminPanel = document.getElementById("admin-panel");
+
+    // ✅ Allowed admin emails
+    const allowedAdmins = [
+      "jha.esha2024@gmail.com",
+      "eja5980@gmail.com",
+      "shreysriv23@gmail.com"
+    ];
+
+    // Helper function to get a safe display name
+    function getSafeName(user) {
+      const name = user.displayName;
+      const email = user.email;
+      if (name && name !== "null" && name !== "undefined") {
+        return name;
+      } else if (email && email !== "null" && email !== "undefined") {
+        return email;
+      } else {
+        return "User";
+      }
+    }
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in
+        const displayName = getSafeName(user);
+
+        authButtonsDiv.innerHTML = `
+      <span class="user-info">Hello, ${displayName}</span>
+      <button id="logoutBtn" class="btn-logout">Logout</button>
+    `;
+
+        // ✅ Show Admin Panel only for allowed admins (null-guarded)
+        if (adminPanel) {
+          if (allowedAdmins.includes(user.email.toLowerCase())) {
+            adminPanel.style.display = "block";
+          } else {
+            adminPanel.style.display = "none";
+          }
+        }
+
+        // ✅ Attach logout listener AFTER the button is injected into DOM
+        document.getElementById("logoutBtn").addEventListener("click", () => {
+          signOut(auth)
+            .then(() => {
+              // Session cleared — redirect to login
+              window.location.href = "login.html";
+            })
+            .catch((error) => {
+              console.error("Logout error:", error);
+              alert("Error logging out: " + error.message);
+            });
+        });
+
+      } else {
+        // No user signed in — show login/signup links
+        authButtonsDiv.innerHTML = `
+      <a href="login.html" class="btn-outline">Login</a>
+      <a href="signup.html" class="btn-primary">Sign Up</a>
+    `;
+
+        // ✅ Hide Admin Panel if not logged in (null-guarded)
+        if (adminPanel) {
+          adminPanel.style.display = "none";
+        }
+      }
+    });
+
+
+    // 🚫 Block navigation for unauthenticated users
+    document.addEventListener("DOMContentLoaded", () => {
+      const protectedLinks = document.querySelectorAll("a.protected");
+      const loginPopup = document.getElementById("login-popup");
+      const closePopupBtn = document.getElementById("popup-close-btn");
+
+      closePopupBtn.addEventListener("click", () => {
+        loginPopup.classList.remove("show");
+      });
+
+      auth.onAuthStateChanged((user) => {
+        if (!user) {
+          protectedLinks.forEach(link => {
+            link.addEventListener("click", (e) => {
+              e.preventDefault();
+              loginPopup.classList.add("show");
+            });
+          });
+        }
+      });
+    });
+  </script>
+
+  <script>
+    window.onload = function () {
+      const rateBtn = document.getElementById("rateUsBtn");
+      const modal = document.getElementById("ratingModal");
+      const closeBtn = document.getElementById("closeRatingModal");
+
+      // ✅ Show modal on button click
+      rateBtn.onclick = () => {
+        modal.style.display = "flex";
+      };
+
+      // ❌ Close modal when clicking the close button
+      closeBtn.onclick = () => {
+        modal.style.display = "none";
+      };
+
+      // ❌ Close modal if clicked outside content
+      window.onclick = (event) => {
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      };
+
+      // ⏱️ Auto show after 10 seconds (once per session)
+      const shown = sessionStorage.getItem("ratingPopupShown");
+      if (!shown) {
+        setTimeout(() => {
+          modal.style.display = "flex";
+          sessionStorage.setItem("ratingPopupShown", "true");
+        }, 10000); // 10 seconds
+      }
+    };
+  </script>
+
+
+
+  <script src="script.js"></script>
+  <!-- 🌍 Multilingual Welcome Banner -->
+  <div id="welcomeBanner" class="banner-popup">
+    <span id="bannerText">🌍 Welcome to Edu Navia!</span>
+    <button onclick="closeBanner()" class="banner-close">✖</button>
+  </div>
+
+  <style>
+    .banner-popup {
+      position: fixed;
+      top: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      max-width: 95%;
+      background: linear-gradient(90deg, #0f766e, #14b8a6);
+      color: white;
+      padding: 14px 24px;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 500;
+      font-family: 'Poppins', sans-serif;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      animation: fadeSlideDown 0.5s ease-in-out;
+    }
+
+    .banner-close {
+      background: rgba(255, 255, 255, 0.15);
+      border: none;
+      color: white;
+      font-size: 16px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .banner-close:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    @keyframes fadeSlideDown {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -50px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+    }
+  </style>
+
+  <script>
+    const greetings = [
+      "🌍 Welcome to Edu Navia!",
+      "🙏 Edu Navia में आपका स्वागत है!",
+      "👋 Edu Navia இல் வரவேற்கிறோம்!",
+      "🙌 Edu Navia-এ আপনাকে স্বাগতম!",
+      "🎉 Edu Navia मध्ये आपले स्वागत आहे!",
+      "✨ Edu Navia కి స్వాగతం!",
+      "🌸 Edu Naviaলৈ স্বাগতম!",
+      "🌼 Edu Navia में स्वागत छ!"
+    ];
+
+    let index = 0;
+    const bannerText = document.getElementById('bannerText');
+
+    function cycleBannerText() {
+      bannerText.textContent = greetings[index];
+      index = (index + 1) % greetings.length;
+    }
+
+    setInterval(cycleBannerText, 2500);
+
+    function closeBanner() {
+      document.getElementById('welcomeBanner').style.display = 'none';
+    }
+  </script>
+  <!-- Load Google script (keep this AFTER the googleTranslateElementInit function) -->
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <script src="/global-features.js" defer></script>
+</body>
+
+</html>

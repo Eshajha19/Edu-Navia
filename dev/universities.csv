@@ -1,0 +1,50 @@
+gender,stream,subject,marks,course,university
+male,science,physics,48,btech,KIIT University
+male,science,chemistry,58,bsc,Christ University
+female,commerce,math,78,bsc,Osmania University
+male,science,physics,47,btech,Graphic Era University
+male,commerce,economics,46,bcom,Indian Institute of Science Bangalore
+female,commerce,math,97,bsc,Vellore Institute of Technology (VIT)
+female,science,chemistry,67,btech,KIIT University
+female,science,physics,76,btech,Mumbai University
+female,humanities,history,67,ba,SRM Institute of Science & Technology
+male,science,physics,47,btech,Jamia Millia Islamia
+male,commerce,math,79,bsc,Jamia Millia Islamia
+male,humanities,history,90,ba,Manipal Academy of Higher Education
+female,science,physics,98,btech,Birla Institute of Technology Mesra
+female,commerce,economics,96,bcom,Kalinga University
+male,science,physics,46,btech,Manipal Academy of Higher Education
+male,humanities,history,78,ba,Indian Institute of Technology Madras
+female,science,chemistry,89,bsc,Birla Institute of Technology & Science (BITS Pilani)
+male,science,physics,77,btech,Indian Institute of Technology Bombay
+female,science,physics,67,btech,Manipal Academy of Higher Education
+male,science,chemistry,57,bsc,Amrita Vishwa Vidyapeetham
+female,commerce,math,75,bsc,Symbiosis International University
+male,commerce,math,85,bsc,PSG College of Technology
+female,humanities,history,59,ba,Indian Institute of Technology Bombay
+male,science,physics,57,btech,Vellore Institute of Technology (VIT)
+male,commerce,math,52,bsc,National Institute of Technology Warangal
+female,commerce,economics,53,bcom,Banaras Hindu University (BHU)
+female,humanities,history,62,ba,Birla Institute of Technology & Science (BITS Pilani)
+female,humanities,history,79,ba,Amrita Vishwa Vidyapeetham
+female,commerce,math,83,bsc,Amity University
+female,commerce,economics,53,bcom,MIT World Peace University
+male,humanities,history,72,ba,Chandigarh University
+male,humanities,history,63,btech,Galgotias University
+female,science,physics,68,btech,Jain University
+male,science,physics,72,btech,Jadavpur University
+male,science,chemistry,73,bsc,Osmania University
+male,science,chemistry,73,btech,SR University
+male,science,physics,63,btech,Amrita Vishwa Vidyapeetham
+female,science,physics,53,btech,Indian Institute of Technology Madras
+female,humanities,history,92,ba,Thapar Institute of Engineering & Technology
+female,commerce,economics,91,bcom,Indian Institute of Technology Guwahati
+female,commerce,math,64,bsc,Vellore Institute of Technology (VIT)
+female,commerce,math,69,bsc,Jawaharlal Nehru University (JNU)
+male,humanities,history,67,ba,KIIT University
+female,humanities,history,66,ba,Savitribai Phule Pune University
+female,science,physics,55,btech,Indian Institute of Technology Kanpur
+female,science,physics,88,btech,Amity University
+male,commerce,economics,99,bcom,University of Hyderabad
+female,commerce,math,77,bsc,UPES Dehradun
+female,science,physics,55,btech,Jawaharlal Nehru University (JNU)
