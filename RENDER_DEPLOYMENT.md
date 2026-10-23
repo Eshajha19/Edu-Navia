@@ -26,7 +26,10 @@ GEMINI_API_KEY=your_gemini_api_key_here
 PYTHON_VERSION=3.10.0
 ```
 
-Additional optional variables:
+Firebase variables required for Firebase-backed frontend features:
+
+Copy these values from Firebase Console → Project settings → Your apps → Web app configuration. Use the Web API key, not an Admin SDK service-account key. Vite embeds these values during the frontend build, so after adding or changing them, trigger a new Render deploy/rebuild.
+
 ```
 VITE_FIREBASE_API_KEY=your_firebase_key
 VITE_FIREBASE_AUTH_DOMAIN=your_firebase_domain

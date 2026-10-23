@@ -20,6 +20,11 @@ export default defineConfig(({ mode }) => {
     ...process.env
   };
 
+  const firebaseApiKey = envWithProcess.VITE_FIREBASE_API_KEY?.trim();
+  if (mode === 'production' && !firebaseApiKey) {
+    throw new Error('VITE_FIREBASE_API_KEY is missing. Set it in the deployment environment and rebuild the frontend.');
+  }
+
   // On Render, VITE_API_URL should be empty to use relative paths (same domain)
   // For local dev with separate backend, use http://127.0.0.1:8000
   const apiUrl = mode === 'production' ? '' : 'http://127.0.0.1:8000';
@@ -29,7 +34,7 @@ export default defineConfig(({ mode }) => {
 
   return {
     define: {
-      'import.meta.env.VITE_FIREBASE_API_KEY': JSON.stringify(envWithProcess.VITE_FIREBASE_API_KEY || ''),
+      'import.meta.env.VITE_FIREBASE_API_KEY': JSON.stringify(firebaseApiKey || ''),
       'import.meta.env.VITE_FIREBASE_AUTH_DOMAIN': JSON.stringify(envWithProcess.VITE_FIREBASE_AUTH_DOMAIN || ''),
       'import.meta.env.VITE_FIREBASE_PROJECT_ID': JSON.stringify(envWithProcess.VITE_FIREBASE_PROJECT_ID || ''),
       'import.meta.env.VITE_FIREBASE_STORAGE_BUCKET': JSON.stringify(envWithProcess.VITE_FIREBASE_STORAGE_BUCKET || ''),
