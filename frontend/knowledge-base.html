@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f5f7f3" />
+  <title>Knowledge Base | Edu Navia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="knowledge-base.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">EN</span><span>Edu Navia</span></a>
+    <nav aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="p.html">Universities</a>
+      <a class="active" href="knowledge-base.html" aria-current="page">Knowledge Base</a>
+    </nav>
+    <a class="profile-link" href="profile.html">My profile</a>
+  </header>
+
+  <main class="page-shell">
+    <section class="intro">
+      <p class="eyebrow">A CLEARER WAY THROUGH ADMISSIONS</p>
+      <h1>Good decisions start<br /><span>with good information.</span></h1>
+      <p class="intro-copy">Straightforward answers for choosing courses, understanding admissions, planning applications, and finding funding.</p>
+      <label class="search-box">
+        <span aria-hidden="true">⌕</span>
+        <span class="visually-hidden">Search knowledge articles</span>
+        <input id="articleSearch" type="search" placeholder="Search topics, questions, or tools" autocomplete="off" />
+        <kbd>/</kbd>
+      </label>
+    </section>
+
+    <section class="browse-section" aria-labelledby="browseHeading">
+      <div class="browse-heading">
+        <div><p class="eyebrow">BROWSE THE LIBRARY</p><h2 id="browseHeading">Guides and answers</h2></div>
+        <label class="topic-filter"><span class="visually-hidden">Filter articles by topic</span>
+          <select id="topicFilter">
+            <option value="all">All topics</option>
+            <option value="choices">Course & university choices</option>
+            <option value="admissions">Admissions</option>
+            <option value="planning">Application planning</option>
+            <option value="funding">Funding</option>
+          </select>
+        </label>
+      </div>
+      <div class="result-line"><span id="articleCount" aria-live="polite"></span><button type="button" id="clearSearch" class="clear-button">Clear filters</button></div>
+      <div class="article-grid" id="articleGrid"></div>
+      <div class="empty-state" id="emptyState" hidden>
+        <h3>No matching articles</h3>
+        <p>Try a different search or clear the topic filter.</p>
+      </div>
+    </section>
+
+    <aside class="source-note">
+      <span class="note-symbol" aria-hidden="true">i</span>
+      <p><strong>Use official sources for final decisions.</strong> Admissions rules, deadlines, fees, and scholarship eligibility change. Confirm current details with the university, exam authority, or official scheme portal.</p>
+      <a href="examsinfo.html">Browse exam information <span aria-hidden="true">→</span></a>
+    </aside>
+  </main>
+  <script type="module" src="knowledge-base.js"></script>
+</body>
+</html>

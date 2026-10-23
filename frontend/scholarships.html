@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f5f7f3" />
+  <title>Scholarship Finder | Edu Navia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="scholarships.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">EN</span><span>Edu Navia</span></a>
+    <nav aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="p.html">Universities</a>
+      <a class="active" href="scholarships.html" aria-current="page">Scholarships</a>
+    </nav>
+    <a class="profile-link" href="profile.html">My profile</a>
+  </header>
+
+  <main class="page-shell">
+    <section class="intro">
+      <p class="eyebrow">FUNDING YOUR NEXT STEP</p>
+      <h1>Find scholarships<br /><span>from official sources.</span></h1>
+      <p class="intro-copy">Start with trusted government portals, then confirm eligibility and open dates in the current official notification.</p>
+      <div class="source-note"><span class="source-dot" aria-hidden="true"></span><span>We link to official sources and do not estimate awards or deadlines.</span></div>
+    </section>
+
+    <section class="finder" aria-labelledby="finderHeading">
+      <div class="finder-heading">
+        <div><p class="eyebrow">NARROW YOUR SEARCH</p><h2 id="finderHeading">Where to look</h2></div>
+        <p>Choose your study level and area to find relevant portals.</p>
+      </div>
+      <div class="filters">
+        <label>Study level
+          <select id="levelFilter">
+            <option value="all">Any level</option>
+            <option value="school">School</option>
+            <option value="diploma">Diploma</option>
+            <option value="undergraduate">Undergraduate</option>
+            <option value="postgraduate">Postgraduate</option>
+          </select>
+        </label>
+        <label>Area of study
+          <select id="areaFilter">
+            <option value="all">Any area</option>
+            <option value="general">All fields</option>
+            <option value="technical">Technical education</option>
+          </select>
+        </label>
+        <button class="reset-button" id="resetFilters" type="button" title="Reset filters">Reset</button>
+      </div>
+    </section>
+
+    <section class="results" aria-labelledby="resultsHeading">
+      <div class="results-heading"><h2 id="resultsHeading">Official scholarship portals</h2><span id="resultCount" aria-live="polite"></span></div>
+      <div class="portal-grid" id="portalGrid"></div>
+      <p class="no-results" id="noResults" hidden>No official portals match these filters. Try another study level or area.</p>
+    </section>
+
+    <aside class="verification-note">
+      <span class="note-mark" aria-hidden="true">!</span>
+      <p><strong>Before you apply</strong><br />Eligibility rules, award amounts, application windows, and required documents can change. Use the official portal's latest notification as the final source.</p>
+    </aside>
+  </main>
+  <script type="module" src="scholarships.js"></script>
+</body>
+</html>

@@ -219,6 +219,34 @@
   font-size: 15px;
 }
 
+.campus-disclosure {
+  margin: -25px auto 25px;
+  color: #52635a;
+  text-align: center;
+  font-size: 13px;
+}
+
+.question-form input[type="text"],
+.campus-filter input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #cbd5cf;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.question-form label { display: block; margin-top: 12px; }
+.campus-filter { max-width: 520px; margin: 0 0 22px; }
+.campus-filter label { display: block; margin-bottom: 7px; font-weight: 600; }
+.campus-tag, .affiliation-tag { display: inline-block; margin: 0 7px 8px 0; padding: 5px 8px; background: #e9f2e9; color: #176c52; border-radius: 3px; font-size: 11px; font-weight: 600; }
+.affiliation-tag { background: #f0eee5; color: #67583a; }
+.question-card .question-meta { color: #627168; font-size: 12px; }
+
+@media (max-width: 600px) {
+  .forum-container { margin-top: 115px; }
+  .campus-disclosure { margin: -20px auto 20px; }
+}
+
 /* 🏷️ Category Badge */
 .category-badge {
   display: inline-block;

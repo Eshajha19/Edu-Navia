@@ -8,7 +8,7 @@ import {
   orderBy,
   onSnapshot,
   doc,
-  setDoc,
+  addDoc,
   updateDoc,
   deleteDoc,
   serverTimestamp
@@ -37,6 +37,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 let currentUser = null;
+let questions = [];
 
 // Toast function
 const toast = document.getElementById("toast");
@@ -59,88 +60,127 @@ onAuthStateChanged(auth, (user) => {
 // Load Questions
 function loadQuestions() {
   const q = query(collection(db, "questions"), orderBy("timestamp", "desc"));
-  const list = document.getElementById("questionsList");
-
   onSnapshot(q, (snapshot) => {
-    list.innerHTML = "";
-    snapshot.forEach((docSnap) => {
-      const data = docSnap.data();
-      const docId = docSnap.id;
-
-      const card = document.createElement("div");
-      card.className = "question-card";
-
-      let content = `
-        <div class="category-badge">${data.category || "General"}</div>
-        <h3>${data.question || "Untitled Question"}</h3>
-        <p><strong>Asked by:</strong> ${data.askedBy || "Anonymous"}</p>
-      `;
-
-      // Show delete question button to asker
-      if (
-        currentUser.email === data.askedBy ||
-        currentUser.displayName === data.askedBy
-      ) {
-        content += `<button onclick="deleteQuestion('${docId}')">🗑️ Delete Question</button>`;
-      }
-
-      if (data.answer) {
-        content += `
-          <p><strong>Answer:</strong> ${data.answer}</p>
-          <p><em>Answered by: ${data.answeredBy || "Anonymous"}</em></p>
-        `;
-
-        if (
-          currentUser.email === data.answeredBy ||
-          currentUser.displayName === data.answeredBy
-        ) {
-          content += `<button onclick="deleteAnswer('${docId}')">🗑️ Delete Answer</button>`;
-        }
-      } else {
-        const isSenior = currentUser.email.endsWith(".edu"); // customize this logic if needed
-        if (isSenior) {
-          content += `
-            <textarea id="answer-${docId}" placeholder="Write your answer..." rows="3"></textarea>
-            <button onclick="submitAnswer('${docId}')">Submit Answer</button>
-          `;
-        } else {
-          content += `<p><em>Awaiting senior response...</em></p>`;
-        }
-      }
-
-      card.innerHTML = content;
-      list.appendChild(card);
-    });
+    questions = snapshot.docs.map(docSnap => ({ id: docSnap.id, ...docSnap.data() }));
+    renderQuestions();
   });
 }
+
+function renderQuestions() {
+  const list = document.getElementById("questionsList");
+  const filter = document.getElementById("universityFilter").value.trim().toLocaleLowerCase();
+  list.replaceChildren();
+
+  const visibleQuestions = questions.filter(data => !filter || `${data.university || ""} ${data.program || ""} ${data.question || ""}`.toLocaleLowerCase().includes(filter));
+  visibleQuestions.forEach(data => {
+    const card = document.createElement("article");
+    card.className = "question-card";
+
+    const category = document.createElement("span");
+    category.className = "category-badge";
+    category.textContent = data.category || "General";
+    card.append(category);
+
+    if (data.university) {
+      const campus = document.createElement("span");
+      campus.className = "campus-tag";
+      campus.textContent = `Campus: ${data.university}`;
+      card.append(campus);
+    }
+    if (data.program) {
+      const program = document.createElement("span");
+      program.className = "campus-tag";
+      program.textContent = data.program;
+      card.append(program);
+    }
+
+    const question = document.createElement("h3");
+    question.textContent = data.question || "Untitled Question";
+    card.append(question);
+
+    const asker = document.createElement("p");
+    asker.className = "question-meta";
+    asker.textContent = `Asked by ${data.askedBy || "Anonymous"}${data.askedByRole ? ` · ${data.askedByRole} (self-reported)` : ""}`;
+    card.append(asker);
+
+    if (data.userId === currentUser.uid || currentUser.email === data.askedBy || currentUser.displayName === data.askedBy) {
+      const deleteButton = document.createElement("button");
+      deleteButton.type = "button";
+      deleteButton.textContent = "Delete question";
+      deleteButton.addEventListener("click", () => window.deleteQuestion(data.id));
+      card.append(deleteButton);
+    }
+
+    if (data.answer) {
+      const answer = document.createElement("p");
+      answer.append(document.createElement("strong"), document.createTextNode(` ${data.answer}`));
+      answer.firstChild.textContent = "Answer:";
+      card.append(answer);
+      const answerMeta = document.createElement("p");
+      answerMeta.className = "question-meta";
+      answerMeta.textContent = `Answered by ${data.answeredBy || "Community member"}${data.answeredByRole ? ` · ${data.answeredByRole} (self-reported)` : ""}`;
+      card.append(answerMeta);
+      if (data.answerUserId === currentUser.uid || currentUser.email === data.answeredBy || currentUser.displayName === data.answeredBy) {
+        const deleteAnswerButton = document.createElement("button");
+        deleteAnswerButton.type = "button";
+        deleteAnswerButton.textContent = "Delete answer";
+        deleteAnswerButton.addEventListener("click", () => window.deleteAnswer(data.id));
+        card.append(deleteAnswerButton);
+      }
+    } else {
+      const answerLabel = document.createElement("label");
+      answerLabel.textContent = "Your campus connection to this answer";
+      const answerRole = document.createElement("select");
+      answerRole.id = `answer-affiliation-${data.id}`;
+      ["Applicant", "Current student", "Graduate", "Other"].forEach(role => answerRole.add(new Option(role, role)));
+      answerLabel.append(answerRole);
+      const answerField = document.createElement("textarea");
+      answerField.id = `answer-${data.id}`;
+      answerField.maxLength = 1200;
+      answerField.rows = 3;
+      answerField.placeholder = "Share a helpful answer";
+      const answerButton = document.createElement("button");
+      answerButton.type = "button";
+      answerButton.textContent = "Submit answer";
+      answerButton.addEventListener("click", () => window.submitAnswer(data.id));
+      card.append(answerLabel, answerField, answerButton);
+    }
+    list.append(card);
+  });
+}
+
+document.getElementById("universityFilter").addEventListener("input", renderQuestions);
 
 // Submit Question
 window.submitQuestion = async () => {
   const questionInput = document.getElementById("question");
   const question = questionInput.value.trim();
-
-  const category = document.getElementById("category").value; // ✅ GET category
+  const category = document.getElementById("category").value;
+  const university = document.getElementById("university").value.trim();
+  const program = document.getElementById("program").value.trim();
+  const askedByRole = document.getElementById("askerAffiliation").value;
 
   if (!question) return showToast("Please enter a question.");
+  if (question.length > 1200) return showToast("Keep your question under 1,200 characters.");
   if (!currentUser) return showToast("You must be logged in to submit a question.");
 
   const askedBy = currentUser.displayName || currentUser.email || "Anonymous";
 
-  // Create unique doc ID (or use addDoc if you want Firestore to auto-generate one)
-  const docId = question.toLowerCase().replace(/[.#$/\[\]\s]/g, "_");
-
-  const docRef = doc(db, "questions", docId); // ✅ DEFINE docRef
-
   try {
-    await setDoc(docRef, {
-      question: question,
-      askedBy: askedBy,
+    await addDoc(collection(db, "questions"), {
+      question,
+      askedBy,
       userId: currentUser.uid,
       timestamp: serverTimestamp(),
-      category: category // ✅ SAVE category correctly
+      category,
+      university,
+      program,
+      askedByRole
     });
 
     questionInput.value = "";
+    document.getElementById("university").value = "";
+    document.getElementById("program").value = "";
     showToast("Question submitted!");
   } catch (error) {
     console.error("Error submitting question:", error);
@@ -173,11 +213,14 @@ window.submitAnswer = async (id) => {
 
 
   const answerBy = currentUser.displayName || currentUser.email;
+  const answerRole = document.getElementById(`answer-affiliation-${id}`)?.value || "Other";
 
   try {
     await updateDoc(doc(db, "questions", id), {
       answer,
       answeredBy: answerBy,
+      answerUserId: currentUser.uid,
+      answeredByRole: answerRole,
     });
 
     showToast("Answer submitted!");

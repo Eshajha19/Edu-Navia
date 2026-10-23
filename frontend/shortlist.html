@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f5f7f3" />
+  <title>Shared Shortlist | Edu Navia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shortlist.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">EN</span><span>Edu Navia</span></a>
+    <a class="back-link" href="application-planner.html">Open application planner <span aria-hidden="true">→</span></a>
+  </header>
+  <main class="page-shell">
+    <p class="eyebrow">SHARED READ-ONLY VIEW</p>
+    <h1>University shortlist</h1>
+    <p class="page-copy">A snapshot of the selected universities and application progress.</p>
+    <div class="privacy-note" role="note">Anyone with this link can view this shortlist. It contains only the selected university names, programs, deadlines, and statuses.</div>
+    <section id="shortlistContent" class="shortlist-content" aria-live="polite"></section>
+    <div id="emptyState" class="empty-state" hidden>This share link is invalid or no longer contains a shortlist.</div>
+  </main>
+  <script type="module" src="shortlist.js"></script>
+</body>
+</html>

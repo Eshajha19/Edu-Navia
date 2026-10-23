@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f5f7f3" />
+  <title>My Shortlist | Edu Navia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="my-shortlist.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">EN</span><span>Edu Navia</span></a>
+    <nav aria-label="Main navigation"><a href="index.html">Home</a><a href="p.html">Universities</a><a class="active" href="my-shortlist.html" aria-current="page">My shortlist</a></nav>
+    <a class="profile-link" href="profile.html">My profile</a>
+  </header>
+  <main class="page-shell">
+    <section class="page-heading">
+      <div><p class="eyebrow">DECIDE TOGETHER</p><h1>My university shortlist</h1><p class="heading-copy">Choose saved universities to share a read-only comparison list.</p></div>
+      <a class="button button-secondary" href="p.html">Find universities</a>
+    </section>
+    <div class="account-notice" id="accountNotice" role="status" aria-live="polite">Loading saved universities...</div>
+    <section class="list-section" aria-labelledby="savedHeading">
+      <div class="section-heading"><div><span class="section-kicker">YOUR SAVED OPTIONS</span><h2 id="savedHeading">Select universities to share</h2></div><span id="selectionCount" class="selection-count">0 selected</span></div>
+      <div id="universityList" class="university-list"></div>
+      <div id="emptyState" class="empty-state" hidden><h3>No saved universities yet</h3><p>Save a university in the University Finder first, then return here to choose which options to share.</p><a class="text-link" href="p.html">Explore universities →</a></div>
+    </section>
+    <section class="share-section" aria-labelledby="shareHeading">
+      <div><span class="section-kicker">SHARE A SNAPSHOT</span><h2 id="shareHeading">Create a read-only link</h2><p>Only selected university names are included. Anyone with the link can view it; it is not private or revocable.</p></div>
+      <div class="share-actions"><button class="button button-primary" id="createShareLink" type="button" disabled>Create shortlist link</button><div class="share-link-row" id="shareLinkRow" hidden><label class="visually-hidden" for="shareUrl">Shortlist share link</label><input id="shareUrl" type="url" readonly /><button class="button button-secondary" id="copyShareUrl" type="button">Copy link</button></div></div>
+    </section>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="my-shortlist.js"></script>
+</body>
+</html>

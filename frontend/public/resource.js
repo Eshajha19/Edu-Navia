@@ -11,9 +11,14 @@
     action: () => showComingSoonPopup("Exam Prep") 
   },
   { 
-    title: "💸 Scholarships", 
-    description: "Find scholarships with eligibility and deadlines.", 
-    action: () => showComingSoonPopup("Scholarships") 
+    title: "📚 Knowledge Base",
+    description: "Search practical guides on admissions, applications, and funding.",
+    action: () => { window.location.href = "knowledge-base.html"; }
+  },
+  {
+    title: "💸 Scholarships",
+    description: "Explore official scholarship sources and filter by study level.",
+    action: () => { window.location.href = "scholarships.html"; }
   },
   { 
     title: "📄 Resume Builder", 

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f5f7f3" />
+  <title>Admission Insights | Edu Navia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="admission-insights.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">EN</span><span>Edu Navia</span></a>
+    <nav aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="examsinfo.html">Exam info</a>
+      <a class="active" href="admission-insights.html" aria-current="page">Admission insights</a>
+    </nav>
+    <a class="profile-link" href="profile.html">My profile</a>
+  </header>
+
+  <main class="page-shell">
+    <section class="intro">
+      <p class="eyebrow">DATA & DECISION SUPPORT</p>
+      <h1>Read the pattern.<br /><span>Check the requirement.</span></h1>
+      <p>Explore sample admission records, then check your marks and subjects against an official requirement you provide.</p>
+    </section>
+
+    <aside class="data-warning" role="note">
+      <span class="warning-mark" aria-hidden="true">!</span>
+      <p><strong>Demo data, not official admission history.</strong> The bundled dataset was generated for development. Its cutoffs and admission outcomes are synthetic and must not be used to estimate real admission chances.</p>
+    </aside>
+
+    <section class="insight-section" id="trendsSection" aria-labelledby="trendsHeading">
+      <div class="section-heading">
+        <div><p class="eyebrow">SAMPLE RECORDS · 2021–2025</p><h2 id="trendsHeading">Admission trend explorer</h2></div>
+        <span class="source-tag">Synthetic dataset</span>
+      </div>
+      <div class="filters">
+        <label>Entrance exam<select id="examFilter"><option value="all">All exams</option></select></label>
+        <label>Course<select id="courseFilter"><option value="all">All courses</option></select></label>
+        <label>University<select id="universityFilter"><option value="all">All universities</option></select></label>
+      </div>
+      <div class="trend-summary"><strong id="recordCount">Loading records...</strong><span>Median closing rank by year in the selected sample</span></div>
+      <div class="chart" id="trendChart" aria-live="polite"></div>
+      <p class="chart-footnote">Lower closing rank is more selective. Sample sizes vary by year and filter; these values are not official cutoffs.</p>
+      <p class="load-error" id="dataError" hidden>Sample admissions data could not be loaded.</p>
+    </section>
+
+    <section class="eligibility-section" id="eligibilitySection" aria-labelledby="eligibilityHeading">
+      <div class="section-heading">
+        <div><p class="eyebrow">CHECK AN OFFICIAL NOTICE</p><h2 id="eligibilityHeading">Eligibility checklist</h2></div>
+        <span class="source-tag source-tag-neutral">Uses your inputs</span>
+      </div>
+      <p class="section-copy">Enter the minimum marks and subjects from the current official admission notice. This checks only those requirements, not seat availability or final admission.</p>
+      <form id="eligibilityForm" class="eligibility-form">
+        <label>Your aggregate (%)<input id="studentMarks" type="number" min="0" max="100" step="0.01" inputmode="decimal" required placeholder="e.g. 82" /></label>
+        <label>Minimum aggregate (%)<input id="minimumMarks" type="number" min="0" max="100" step="0.01" inputmode="decimal" required placeholder="From official notice" /></label>
+        <label>Required subjects, comma separated<input id="requiredSubjects" type="text" maxlength="240" placeholder="e.g. Physics, Mathematics" /></label>
+        <label>Your subjects, comma separated<input id="studentSubjects" type="text" maxlength="240" placeholder="e.g. Physics, Mathematics, Chemistry" /></label>
+        <button type="submit" class="button-primary">Check requirements</button>
+      </form>
+      <div class="eligibility-result" id="eligibilityResult" role="status" aria-live="polite" hidden></div>
+      <p class="chart-footnote">This is a checklist, not a final admission decision. Check all other conditions and the latest notice with the institution.</p>
+    </section>
+  </main>
+  <script type="module" src="admission-insights.js"></script>
+</body>
+</html>

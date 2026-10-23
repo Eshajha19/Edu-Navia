@@ -58,7 +58,8 @@ link href="translate.css" type="stylesheet">
 
 <!-- ✅ Main Content -->
 <main class="forum-container">
-  <h1>Ask Seniors</h1>
+  <h1>Campus Q&amp;A</h1>
+  <p class="campus-disclosure">Campus and experience labels are self-reported and have not been independently verified.</p>
 
   <div class="question-form">
     <label for="category">Select Category:</label>
@@ -67,17 +68,39 @@ link href="translate.css" type="stylesheet">
   <option>Placements</option>
   <option>Campus Culture</option>
   <option>Faculty</option>
+  <option>Admissions</option>
+  <option>Courses</option>
   <option>Any other...</option>
 </select>
 
 <br>
 <br>
+    <label for="university">University or campus:</label>
+    <input id="university" type="text" maxlength="120" placeholder="e.g. University name (optional)">
+
+    <label for="program">Course or program:</label>
+    <input id="program" type="text" maxlength="120" placeholder="e.g. B.Sc. Computer Science (optional)">
+
+    <label for="askerAffiliation">Your connection to this campus:</label>
+    <select id="askerAffiliation">
+      <option>Applicant</option>
+      <option>Current student</option>
+      <option>Graduate</option>
+      <option>Other</option>
+    </select>
+
+    <br>
+    <br>
     <label for="question">Your Question:</label>
-    <textarea id="question" placeholder="e.g. How are placements for CSE in SRM?" rows="4"></textarea>
+    <textarea id="question" maxlength="1200" placeholder="e.g. What should I know about first-year housing?" rows="4"></textarea>
 
     <button id="submitQuestionBtn" onclick="submitQuestion()">Submit Question</button>
   </div>
 
+  <div class="campus-filter">
+    <label for="universityFilter">Filter by university or campus</label>
+    <input id="universityFilter" type="search" placeholder="Search campus questions">
+  </div>
   <div class="questions-list" id="questionsList"></div>
 </main>
 

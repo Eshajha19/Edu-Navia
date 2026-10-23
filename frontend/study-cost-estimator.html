@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f5f7f3" />
+  <title>Study Cost Estimator | Edu Navia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="study-cost-estimator.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">EN</span><span>Edu Navia</span></a>
+    <nav aria-label="Main navigation"><a href="index.html">Home</a><a href="p.html">Universities</a><a class="active" href="study-cost-estimator.html" aria-current="page">Cost estimator</a></nav>
+    <a class="profile-link" href="profile.html">My profile</a>
+  </header>
+  <main class="page-shell">
+    <section class="intro">
+      <p class="eyebrow">PLAN THE FULL PICTURE</p>
+      <h1>What could studying<br /><span>cost over time?</span></h1>
+      <p>Bring tuition, living expenses, travel, and aid together in one estimate you control.</p>
+    </section>
+
+    <div class="notice" role="note"><strong>Your figures, your estimate.</strong> Enter amounts from current university and local sources. Costs vary and this calculator does not fetch or verify university fees.</div>
+
+    <form id="costForm" class="cost-form">
+      <section class="form-section">
+        <p class="section-kicker">01 / PROGRAM</p>
+        <h2>Tuition &amp; duration</h2>
+        <div class="field-grid">
+          <label>Tuition per year <span>INR</span><input id="tuition" type="number" min="0" max="100000000" step="1000" inputmode="numeric" placeholder="e.g. 150000" required /></label>
+          <label>Program duration <span>Years</span><input id="years" type="number" min="1" max="12" step="1" inputmode="numeric" value="3" required /></label>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <p class="section-kicker">02 / LIVING</p>
+        <h2>Monthly &amp; annual costs</h2>
+        <div class="field-grid">
+          <label>Housing per month <span>INR</span><input id="housing" type="number" min="0" max="10000000" step="500" inputmode="numeric" placeholder="e.g. 10000" required /></label>
+          <label>Other living costs per month <span>INR</span><input id="living" type="number" min="0" max="10000000" step="500" inputmode="numeric" placeholder="Food, bills, supplies" required /></label>
+          <label>Travel per year <span>INR</span><input id="travel" type="number" min="0" max="10000000" step="500" inputmode="numeric" placeholder="e.g. 12000" value="0" required /></label>
+          <label>One-time costs <span>INR</span><input id="oneTime" type="number" min="0" max="100000000" step="500" inputmode="numeric" placeholder="Setup, deposits, equipment" value="0" required /></label>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <p class="section-kicker">03 / FUNDING</p>
+        <h2>Aid &amp; budget</h2>
+        <div class="field-grid">
+          <label>Scholarship or aid per year <span>INR</span><input id="aid" type="number" min="0" max="100000000" step="1000" inputmode="numeric" placeholder="0 if none" value="0" required /></label>
+          <label>Your total budget <span>INR · optional</span><input id="budget" type="number" min="0" max="1000000000" step="1000" inputmode="numeric" placeholder="Enter to compare" /></label>
+        </div>
+      </section>
+      <button class="calculate-button" type="submit">Calculate study cost <span aria-hidden="true">→</span></button>
+    </form>
+
+    <section id="results" class="results" aria-labelledby="resultsHeading" aria-live="polite" hidden>
+      <div class="results-heading"><div><p class="section-kicker">YOUR ESTIMATE</p><h2 id="resultsHeading">Estimated total study cost</h2></div><button id="resetButton" type="button" class="reset-button">Edit figures</button></div>
+      <div class="result-total"><span>Estimated net cost</span><strong id="netTotal">₹0</strong><span id="durationSummary"></span></div>
+      <dl class="breakdown">
+        <div><dt>Tuition</dt><dd id="tuitionTotal"></dd></div>
+        <div><dt>Housing &amp; living</dt><dd id="livingTotal"></dd></div>
+        <div><dt>Travel</dt><dd id="travelTotal"></dd></div>
+        <div><dt>One-time costs</dt><dd id="oneTimeTotal"></dd></div>
+        <div><dt>Scholarship or aid</dt><dd id="aidTotal"></dd></div>
+        <div class="gross-row"><dt>Estimated cost before aid</dt><dd id="grossTotal"></dd></div>
+      </dl>
+      <p class="budget-result" id="budgetResult" hidden></p>
+      <p class="result-note">This is a planning estimate, not a fee quote. Confirm tuition, housing, payment schedules, and aid with the institution.</p>
+    </section>
+  </main>
+  <script type="module" src="study-cost-estimator.js"></script>
+</body>
+</html>

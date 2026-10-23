@@ -1,0 +1,34 @@
+:root { font-family: "DM Sans",sans-serif; color:#192b26; background:#f5f7f3; --ink:#192b26; --muted:#697a71; --line:#dfe6df; --green:#176c52; --coral:#db765f; --paper:#fffefa; }
+* { box-sizing:border-box; }
+body { margin:0; min-width:320px; background:#f5f7f3; }
+a { color:inherit; }
+.topbar { min-height:72px; display:flex; align-items:center; justify-content:space-between; gap:20px; padding:0 max(24px,calc((100vw - 1040px)/2)); border-bottom:1px solid var(--line); background:var(--paper); }
+.brand { display:inline-flex; align-items:center; gap:10px; color:var(--ink); text-decoration:none; font:800 16px "Manrope",sans-serif; white-space:nowrap; }
+.brand-mark { display:grid; width:30px; aspect-ratio:1; place-items:center; border-radius:9px; background:var(--green); color:#fff; font-size:10px; }
+.back-link { color:var(--green); font-size:12px; font-weight:700; text-decoration:none; }
+.back-link:hover { text-decoration:underline; text-underline-offset:3px; }
+.page-shell { width:min(100% - 48px,900px); margin:0 auto; padding:56px 0 70px; }
+.eyebrow { margin:0 0 10px; color:var(--green); font-size:10px; font-weight:700; letter-spacing:.13em; }
+h1,h2 { font-family:"Manrope",sans-serif; }
+h1 { margin:0; font-size:clamp(31px,5vw,46px); }
+.page-copy { margin:9px 0 22px; color:var(--muted); font-size:13px; }
+.privacy-note { padding:13px 15px; border-left:3px solid var(--coral); background:#f0eee5; color:#59685f; font-size:11px; line-height:1.65; }
+.shortlist-content { display:grid; gap:10px; margin-top:19px; }
+.shortlist-card { display:grid; grid-template-columns:52px minmax(0,1fr) auto; align-items:center; gap:14px; padding:18px; border:1px solid var(--line); background:var(--paper); }
+.card-number { display:grid; width:38px; aspect-ratio:1; place-items:center; background:#e8efe8; color:var(--green); font:700 12px "Manrope",sans-serif; }
+.card-name { margin:0 0 3px; font:700 16px "Manrope",sans-serif; overflow-wrap:anywhere; }
+.card-program { margin:0; color:var(--muted); font-size:11px; }
+.card-meta { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:7px; }
+.meta-pill { padding:6px 8px; background:#f0f3ee; color:#53645a; font-size:10px; }
+.meta-pill.status { background:#e8efe8; color:var(--green); font-weight:700; }
+.empty-state { padding:44px 20px; color:#8f4c3d; text-align:center; font-size:13px; }
+.empty-state[hidden] { display:none; }
+@media(max-width:600px) {
+  .topbar { min-height:62px; padding:0 16px; }
+  .brand { font-size:14px; }
+  .back-link { font-size:10px; text-align:right; }
+  .page-shell { width:calc(100% - 30px); padding-top:35px; }
+  .shortlist-card { grid-template-columns:36px minmax(0,1fr); gap:11px; padding:15px; }
+  .card-number { width:32px; }
+  .card-meta { grid-column:2; justify-content:flex-start; }
+}

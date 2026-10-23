@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f6f7f2" />
+  <title>Application Planner | Edu Navia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="application-planner.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">EN</span><span>Edu Navia</span></a>
+    <nav class="top-nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="p.html">Universities</a>
+      <a class="active" href="application-planner.html" aria-current="page">Application planner</a>
+    </nav>
+    <a class="profile-link" href="profile.html">My profile</a>
+  </header>
+
+  <main class="page-shell">
+    <section class="page-heading">
+      <div>
+        <p class="eyebrow">ADMISSIONS, ORGANIZED</p>
+        <h1>Your application plan</h1>
+        <p class="heading-copy">Keep each university, deadline, and next step in one place.</p>
+      </div>
+      <button class="button button-primary" id="openApplicationDialog" type="button">Add application <span aria-hidden="true">+</span></button>
+    </section>
+
+    <div class="account-notice" id="accountNotice" role="status" aria-live="polite">Loading your application plan...</div>
+
+    <section class="summary-grid" aria-label="Application overview">
+      <article class="summary-item summary-total"><span class="summary-label">Applications</span><strong id="totalCount">0</strong><span class="summary-note">in your plan</span></article>
+      <article class="summary-item"><span class="summary-label">Coming up</span><strong id="upcomingCount">0</strong><span class="summary-note">deadlines in 14 days</span></article>
+      <article class="summary-item"><span class="summary-label">Submitted</span><strong id="submittedCount">0</strong><span class="summary-note">applications sent</span></article>
+      <article class="summary-item"><span class="summary-label">Estimated fees</span><strong id="feeTotal">₹0</strong><span class="summary-note">fees entered</span></article>
+    </section>
+
+    <section class="wishlist-strip" aria-labelledby="wishlistHeading">
+      <div class="wishlist-copy">
+        <span class="section-kicker">PICK UP WHERE YOU LEFT OFF</span>
+        <h2 id="wishlistHeading">Start from your university wishlist</h2>
+        <p>Choose a saved university to add it to your application plan.</p>
+      </div>
+      <div class="wishlist-controls">
+        <label class="visually-hidden" for="wishlistSelect">Saved university</label>
+        <select id="wishlistSelect" disabled><option value="">No saved universities yet</option></select>
+        <button class="button button-secondary" id="addWishlistUniversity" type="button" disabled>Add to plan</button>
+      </div>
+      <a class="wishlist-empty-link" id="wishlistLink" href="p.html">Explore universities</a>
+    </section>
+
+    <section class="applications-section" aria-labelledby="applicationsHeading">
+      <div class="section-heading">
+        <div><span class="section-kicker">YOUR NEXT STEPS</span><h2 id="applicationsHeading">Applications</h2></div>
+        <label class="filter-control"><span class="visually-hidden">Filter applications by status</span>
+          <select id="statusFilter">
+            <option value="all">All applications</option>
+            <option value="Considering">Considering</option>
+            <option value="In progress">In progress</option>
+            <option value="Submitted">Submitted</option>
+            <option value="Accepted">Accepted</option>
+            <option value="Waitlisted">Waitlisted</option>
+            <option value="Not selected">Not selected</option>
+          </select>
+        </label>
+      </div>
+      <div class="applications-list" id="applicationsList" aria-live="polite"></div>
+      <div class="empty-state" id="emptyState" hidden>
+        <div class="empty-mark" aria-hidden="true">01</div>
+        <h3>Your plan starts here</h3>
+        <p>Add a university, set a deadline, and make the next step clear.</p>
+        <button class="button button-primary" id="emptyAddButton" type="button">Add your first application</button>
+      </div>
+    </section>
+    <p class="data-note">Deadlines and fees are entered by you. Confirm dates and requirements with each university's official admissions website. Import a downloaded calendar file into your calendar app to receive its reminder.</p>
+  </main>
+
+  <dialog class="application-dialog" id="applicationDialog" aria-labelledby="dialogHeading">
+    <form id="applicationForm">
+      <div class="dialog-heading">
+        <div><span class="section-kicker">NEW PLAN ITEM</span><h2 id="dialogHeading">Add an application</h2></div>
+        <button class="icon-button" id="closeApplicationDialog" type="button" aria-label="Close">×</button>
+      </div>
+      <label class="form-field">University name<input id="universityName" name="universityName" maxlength="120" required autocomplete="organization" placeholder="e.g. University of Delhi" /></label>
+      <label class="form-field">Course or program <span class="optional">Optional</span><input id="programName" name="programName" maxlength="120" placeholder="e.g. B.Sc. Computer Science" /></label>
+      <div class="form-row">
+        <label class="form-field">Application deadline <span class="optional">Optional</span><input id="applicationDeadline" name="deadline" type="date" /></label>
+        <label class="form-field">Application fee (INR) <span class="optional">Optional</span><input id="applicationFee" name="fee" type="number" min="0" step="1" inputmode="numeric" placeholder="0" /></label>
+      </div>
+      <label class="form-field">Official application link <span class="optional">Optional</span><input id="applicationUrl" name="url" type="url" maxlength="500" placeholder="https://university.edu/admissions" /></label>
+      <label class="form-field">First tasks <span class="optional">One task per line</span><textarea id="initialTasks" name="tasks" rows="3"></textarea></label>
+      <div class="dialog-actions">
+        <button class="button button-secondary" id="cancelApplication" type="button">Cancel</button>
+        <button class="button button-primary" type="submit">Save application</button>
+      </div>
+    </form>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="application-planner.js"></script>
+</body>
+</html>
